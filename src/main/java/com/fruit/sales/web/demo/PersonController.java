@@ -41,7 +41,6 @@ public class PersonController {
 			sb.append(line);
 		}
 		return sb.toString();
-		
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)

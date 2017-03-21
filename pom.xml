@@ -42,6 +42,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -79,7 +87,20 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>6.0.5</version>
 </dependency>
-		
+
+	<dependency>  
+		<groupId>org.springframework</groupId>  
+		<artifactId>spring-test</artifactId>  
+		<version>4.3.5.RELEASE</version>  
+		<scope>test</scope>  
+	</dependency> 
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>		
   </dependencies>
   
   

@@ -1,6 +1,10 @@
 # FruitSMSDemo
 a demo for fruit sales management system
 
+# Coding Progress
+
+> order status manage: http://localhost:8080/fruit/os/index
+
 # Design
 
 > 原则：尽量从简设计
