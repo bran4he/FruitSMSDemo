@@ -15,4 +15,5 @@ public interface OrderStatusService {
 	boolean delete(OrderStatus os);
 	
 	OrderStatus findById(String id);
+	
 }

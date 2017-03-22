@@ -1,5 +1,7 @@
 package com.fruit.sales.common;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class StringTools {
 
 	public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class StringTools {
 	 */
 	public static String getTableName(String entityName) {
 
-		if (isEmpty(entityName)) {
+		if (StringUtils.isEmpty(entityName)) {
 			return null;
 		}
 		StringBuilder tableName = new StringBuilder("T_");
@@ -42,21 +44,4 @@ public class StringTools {
 		return tableName.toString();
 	}
 
-	/**
-	 * 字符串为空
-	 * @param str
-	 * @return
-	 */
-	public static boolean isEmpty(String str) {
-		return ((str == null) || (str.trim().length() == 0));
-	}
-
-	/**
-	 * 字符串非空
-	 * @param str
-	 * @return
-	 */
-	public static boolean isNotEmpty(String str) {
-		return (!(isEmpty(str)));
-	}
 }

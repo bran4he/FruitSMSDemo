@@ -24,6 +24,9 @@ public class Result {
 		this.result = result;
 		this.msg = msg;
 	}
+	public Result() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

@@ -1,21 +1,14 @@
 package com.fruit.sales.entity;
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-@Component
-public class OrderStatus {
+import com.fruit.sales.entity.base.BaseEntity;
 
-	private String id;
+
+public class OrderStatus extends BaseEntity{
+
 	private String name;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 
 	public String getName() {
 		return name;
@@ -31,7 +24,7 @@ public class OrderStatus {
 
 	@Override
 	public String toString() {
-		return "OrderStatus [id=" + id + ", name=" + name + "]";
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
 	}
 
 	

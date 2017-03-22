@@ -3,6 +3,7 @@
  */
 package com.fruit.sales.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,21 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	@Override
 	public OrderStatus add(OrderStatus os) {
 		os.setId(orderStatusDao.getNextId());
+		os.setInsertDate(new Date());
+		//TODO insert by
+		os.setInsertBy("-1");
+		os.setUpdateDate(new Date());
+		//TODO update by
+		os.setUpdateBy("-1");
 		orderStatusDao.save(os);
 		return os;
 	}
 
 	@Override
 	public boolean update(OrderStatus os) {
+		os.setUpdateDate(new Date());
+		//TODO update by
+		os.setUpdateBy("-2");
 		orderStatusDao.update(os);
 		return true;
 	}

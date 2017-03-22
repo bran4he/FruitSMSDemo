@@ -22,7 +22,7 @@ import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
 import com.fruit.sales.test.BaseTest;
 import com.fruit.sales.web.demo.PersonDaoImpl;
  
-public class OrderStatusDaoTest extends BaseTest{
+public class OrderStatusTest extends BaseTest{
 
 	/* -------------------dao */
 	@Autowired

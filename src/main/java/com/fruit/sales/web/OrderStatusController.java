@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fruit.sales.common.Result;
 import com.fruit.sales.entity.OrderStatus;
+import com.fruit.sales.entity.User;
 import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
 import com.fruit.sales.web.demo.PersonController;
 
@@ -55,10 +56,8 @@ public class OrderStatusController {
 		boolean flag = orderStatusService.delete(os);
 		if(flag){
 			data.put("data", os);
-			return new Result(true, data);
-		}else{
-			return new Result(false, data);
 		}
+		return new Result(flag, data);
 	}
 	
 	
@@ -68,6 +67,17 @@ public class OrderStatusController {
 		logger.info("goto os index");
 		return "order_status";
 	}
+	
+	@RequestMapping(value="update", method = RequestMethod.POST)
+	public Result updateUser(@RequestBody OrderStatus os){
+		boolean flag = orderStatusService.update(os);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if(flag){
+			data.put("data", orderStatusService.findById(os.getId()));
+		}
+		return new Result(flag, data);
+	}
+	
 	
 	//test
 	@RequestMapping(value = "data.json", method = RequestMethod.GET)

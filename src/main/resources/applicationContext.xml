@@ -62,16 +62,44 @@
 	</bean>
 
 
-     <!-- 静态资源解析包括 ：js、css、img、 -->  
+     <!-- 静态资源解析包括 ：js、css、img、 
     <mvc:resources location="/" mapping="**.html"/>  
     <mvc:resources location="/" mapping="**.css"/>  
     <mvc:resources location="/" mapping="**.png"/>  
     <mvc:resources location="/" mapping="**.gif"/>  
     <mvc:resources location="/" mapping="**.jpg"/>
     <mvc:resources location="/" mapping="**.ico"/>
+    <mvc:resources location="/" mapping="**.js"/>
+     -->  
     
     <mvc:resources location="/WEB-INF/static/" mapping="/static/**" />
+    
+     <!-- 拦截器 -->  
+     <mvc:interceptors>  
+         <!-- 多个拦截器，顺序执行 --> 
+         <mvc:interceptor>  
+            <!-- 先匹配所有路径，然后排除不需要检查的路径 -->
+            <mvc:mapping path="/**" />
+            
+            <!-- 与登录相关的请求
+            <mvc:exclude-mapping path="/system/login" />
+            <mvc:exclude-mapping path="/system/lan/**" />
+            -->
+            <mvc:exclude-mapping path="/index/**" />
+            <mvc:exclude-mapping path="/login/**" />
+            
+            <!-- 以下是静态资源 -->
+            <mvc:exclude-mapping path="/static/**" />
+            
+            <!-- 客户端文件上传下载，不使用该校验 
+            <mvc:exclude-mapping path="/download/**" />
+            <mvc:exclude-mapping path="/upload/**" />
+            -->
 
+            <!-- 用户是否已经登录的检查 -->
+            <bean id="loginInterceptor" class="com.fruit.sales.web.interceptor.LoginInterceptor"></bean>  
+         </mvc:interceptor>  
+     </mvc:interceptors> 
 
 
 </beans>
