@@ -1,4 +1,4 @@
-package com.fruit.sales.dao;
+package com.fruit.sales.dao.base;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,7 +42,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	/**
 	 * 简化数据操作
 	 */
-	@Resource(name = "jdbcTemplate")
+//	@Resource(name = "jdbcTemplate")
+	@Autowired
     private JdbcTemplate jdbcTemplate;
 
 	@SuppressWarnings("unchecked")
@@ -53,6 +55,19 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		System.out.println("Dao实现类是：" + entityClass.getName());
 	}
 
+	@Override
+	public Integer getMaxId() {
+		StringBuilder sql = new StringBuilder("SELECT max(id) from ");
+		sql.append(simpleName).append(" ");
+		Integer maxId = jdbcTemplate.queryForObject(sql.toString(),Integer.class);
+		return maxId;
+	}
+
+	@Override
+	public String getNextId() {
+		return String.valueOf(getMaxId() + 1);
+	}
+	
 	@Override
 	public void save(T entity) {
 		String sql = this.makeSql(SQL_INSERT);
@@ -405,5 +420,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		System.out.println("SQL=" + sql);
 		return jdbcTemplate.queryForObject(sql.toString(),Integer.class);
 	}
+
+
 
 }

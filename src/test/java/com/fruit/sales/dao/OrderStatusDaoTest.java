@@ -26,11 +26,11 @@ public class OrderStatusDaoTest extends BaseTest{
 
 	/* -------------------dao */
 	@Autowired
-	private OrderStatusDaoImpl orderStatusDao;
+	private OrderStatusDao orderStatusDao;
 	
 	@Test
 	public void testGetOS(){
-		OrderStatus os = orderStatusDao.get("1");
+		OrderStatus os = orderStatusDao.findById("1");
 		System.out.println(os.toString());
 	}
 	
@@ -38,8 +38,7 @@ public class OrderStatusDaoTest extends BaseTest{
 	public void testAddOS(){
 		OrderStatus os = new OrderStatus();
 		os.setName("this is a test data");
-		OrderStatus os2 = orderStatusDao.insert(os);
-		System.out.println(os2.toString());
+		orderStatusDao.save(os);
 	}
 	
 	/* -------------------service */

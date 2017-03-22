@@ -3,6 +3,7 @@ package com.fruit.sales.dao;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.test.BaseTest;
 import com.fruit.sales.web.demo.Demo;
 import com.fruit.sales.web.demo.DemoDao;
@@ -42,6 +43,11 @@ public class NewDaoTest extends BaseTest{
 		System.out.println(demoDao.findById(1));
 	}
 	
+	
+	@Test
+	public void testDemo_maxId(){
+		System.out.println("max id of T_DEMO :" + demoDao.getMaxId());
+	}
 	
 	@Test
 	public void testDemo_findByPageList(){

@@ -1,4 +1,4 @@
-package com.fruit.sales.dao;
+package com.fruit.sales.dao.base;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
@@ -6,6 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public interface BaseDao<T> extends Serializable{
+	
+	/**
+	 * 获取最大的id，方便插入新对象时设置id+1
+	 * @return
+	 */
+	Integer getMaxId();
+	
+	String getNextId();
+	
 	/**
      * 插入指定的持久化对象
      * @param obj

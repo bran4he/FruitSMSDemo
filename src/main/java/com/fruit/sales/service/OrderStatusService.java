@@ -8,5 +8,11 @@ public interface OrderStatusService {
 
 	List<OrderStatus> listAll();
 	
-	boolean add(OrderStatus os);
+	OrderStatus add(OrderStatus os);
+	
+	boolean update(OrderStatus os);
+	
+	boolean delete(OrderStatus os);
+	
+	OrderStatus findById(String id);
 }

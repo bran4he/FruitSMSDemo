@@ -1,15 +1,13 @@
 package com.fruit.sales.dao;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import com.fruit.sales.dao.base.BaseDaoImpl;
 import com.fruit.sales.entity.OrderStatus;
 
+@Repository
+public class OrderStatusDao extends BaseDaoImpl<OrderStatus>{
 
-public interface OrderStatusDao {
+	private static final long serialVersionUID = 6195394628590015060L;
 	
-	OrderStatus get(String id);
-	
-	List<OrderStatus> getAll();
-	
-	OrderStatus insert(OrderStatus os);
 }

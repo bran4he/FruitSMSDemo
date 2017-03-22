@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fruit.sales.dao.OrderStatusDaoImpl;
+import com.fruit.sales.dao.OrderStatusDao;
 import com.fruit.sales.entity.OrderStatus;
 import com.fruit.sales.service.OrderStatusService;
 
@@ -20,20 +20,36 @@ import com.fruit.sales.service.OrderStatusService;
 public class OrderStatusServiceImpl implements OrderStatusService {
 
 	@Autowired
-	private OrderStatusDaoImpl orderStatusDao;
+	private OrderStatusDao orderStatusDao;
 	
 	@Override
 	public List<OrderStatus> listAll() {
-		// TODO Auto-generated method stub
-		List<OrderStatus> lst = orderStatusDao.getAll();
+		List<OrderStatus> lst = orderStatusDao.findAll();
 		return lst;
 	}
 
 	@Override
-	public boolean add(OrderStatus os) {
-		// TODO Auto-generated method stub
-		orderStatusDao.insert(os);
+	public OrderStatus add(OrderStatus os) {
+		os.setId(orderStatusDao.getNextId());
+		orderStatusDao.save(os);
+		return os;
+	}
+
+	@Override
+	public boolean update(OrderStatus os) {
+		orderStatusDao.update(os);
 		return true;
+	}
+
+	@Override
+	public boolean delete(OrderStatus os) {
+		orderStatusDao.delete(os);
+		return true;
+	}
+
+	@Override
+	public OrderStatus findById(String id) {
+		return orderStatusDao.findById(id);
 	}
 
 }

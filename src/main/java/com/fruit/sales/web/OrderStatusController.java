@@ -3,13 +3,16 @@ package com.fruit.sales.web;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,17 +36,31 @@ public class OrderStatusController {
 		return orderStatusService.listAll();
 	}
 	
-	@RequestMapping(value="/add/{name}", method = RequestMethod.GET)
-	public @ResponseBody Result addOrderStatus(@PathVariable String name){
-		OrderStatus os = new OrderStatus();
-		os.setName(name);
-		boolean flag = orderStatusService.add(os);
-		if(flag){
-			return new Result(true, "add success");
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public @ResponseBody Result addOrderStatus(@RequestBody OrderStatus os){
+		OrderStatus osNew = orderStatusService.add(os);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if(osNew != null){
+			data.put("data", osNew);
+			return new Result(true, data);
 		}else{
-			return new Result(false, "add fail");
+			return new Result(false, data);
 		}
 	}
+	
+	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
+	public @ResponseBody Result delOrderStatus(@PathVariable String id){
+		OrderStatus os = orderStatusService.findById(id);
+		Map<String, Object> data = new HashMap<String, Object>();
+		boolean flag = orderStatusService.delete(os);
+		if(flag){
+			data.put("data", os);
+			return new Result(true, data);
+		}else{
+			return new Result(false, data);
+		}
+	}
+	
 	
 	
 	@RequestMapping(value = "index", method = RequestMethod.GET)

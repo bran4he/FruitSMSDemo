@@ -1,10 +1,11 @@
-package com.fruit.sales.dao;
+package com.fruit.sales.dao.base;
 
 import java.util.List;
 
 public class QueryResult<T> {
 
 	private List<T> list;
+	// total row numbers without page param
 	private int totalRow;
 	
 	public QueryResult(List<T> list, int totalRow) {
