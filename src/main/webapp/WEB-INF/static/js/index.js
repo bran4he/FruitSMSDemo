@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	$("#user").on("click", function(){
-		$.get($(this).attr("action"));
+		$("#userAction").submit();
+	});
+	$("#index").on("click", function(){
+		$("#indexAction").submit();
 	});
 });
 

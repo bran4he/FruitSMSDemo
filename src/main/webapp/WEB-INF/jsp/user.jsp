@@ -6,38 +6,39 @@
 
 	<title>用户管理</title>
 	
-   	<script type="text/javascript" src="../static/js/jquery/jquery-1.10.0-min.js"></script>
    	
-    <script type="text/javascript" src="../static/js/jqgrid/i18n/grid.locale-cn.js"></script>
+		<!-- jqGrid组件基础样式包-必要 -->
+		<link rel="stylesheet" href="../static/js/jqgrid/css/ui.jqgrid.css" />
+		
+		<!-- jqGrid主题包-非必要 --> 
+		<!-- 在jqgrid/css/css这个目录下还有其他的主题包，可以尝试更换看效果 -->
+		<link rel="stylesheet" href="../static/js/jqgrid/css/css/redmond/jquery-ui-1.8.16.custom.css" />
 
-    <script type="text/javascript" src="../static/js/jqgrid/jquery.jqGrid.js"></script>
-    
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/js/jqgrid/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/ui.jqgrid/ui.jqgrid-bootstrap.css" />
+		<!-- jquery插件包-必要 -->
+		<!-- 这个是所有jquery插件的基础，首先第一个引入
+		<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+		 -->
+   		<script type="text/javascript" src="../static/js/jquery/jquery-1.10.0-min.js"></script>
+		
+		<!-- jqGrid插件包-必要 -->
+		<script type="text/javascript" src="../static/js/jqgrid/js/jquery.jqGrid.src.js"></script>
+		
+		<!-- jqGrid插件的多语言包-非必要 -->
+		<!-- 在jqgrid/js/i18n下还有其他的多语言包，可以尝试更换看效果 -->
+		<script type="text/javascript" src="../static/js/jqgrid/js/i18n/grid.locale-cn.js"></script>
 
+		<jsp:include page="public.jsp" flush="true"/>
     
-   	<script>
-	$.jgrid.defaults.width = 780;
-	$.jgrid.defaults.responsive = true;
-	$.jgrid.defaults.styleUI = 'Bootstrap';
-	</script>
-	
-    <script type="text/javascript" src="../static/js/jqgrid/bootstrap.min.js"></script>
-
-	<!-- 
-	<link rel="stylesheet" href="../static/css/bootstrap/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="../static/css/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
-	<script type="text/javascript" src="../static/css/bootstrap/js/bootstrap.min.js"></script>
-	 -->
-    
-    <script type="text/ecmascript" src="../static/js/user.js"></script> 
+    <script type="text/javascript" src="../static/js/user.js"></script> 
 </head>
 <body>
 
+<jsp:include page="header.jsp" flush="true"/>
 
-
-    <table id="jqGrid"></table>
+<div class="container">
+    <table id="jqGrid" twidth="1170" theight="300"></table>
     <div id="jqGridPager"></div>
-    		
+</div>
+<jsp:include page="footer.jsp" flush="true"/>    		
 </body>
 </html>
