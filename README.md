@@ -3,7 +3,35 @@ a demo for fruit sales management system
 
 # Coding Progress
 
-> order status manage: http://localhost:8080/fruit/os/index
+## Plan:
+
+- - -
+
+1. 管理员设计 - 20170322
+2. 首页及菜单设计	- 20170324
+3. Jqrid加载数据及显示 - 20170324
+4. 菜单切换功能模块设计  - 20170324
+5. 管理员日志设计 - 20170323
+6. 登录接口设计 - 20170323
+7. 验证码及系统权限控制  - 20170323
+8. 订单状态设计 - 20170322
+
+- - - 
+
++ Jqgrid调用同一增删改接口 js和前端控制研究和设计
++ 管理退出登录控制及session设置
++ 客户设计
++ 主单设计
++ 次单设计
++ 系统参数设计
+
+> 未完待续...
+
+- - -
+
+## Demo Show
+
+![Alt text](project20170324.png)
 
 
 # Design API
