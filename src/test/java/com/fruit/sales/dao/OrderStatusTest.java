@@ -94,4 +94,10 @@ public class OrderStatusTest extends BaseTest{
 		System.out.println(personDao.findByName("jack"));
 		Assert.assertEquals(personDao.findByName("jack").getAge(), 101);
 	}
+	
+	
+	public static void main(String[] args) {
+		java.sql.Timestamp t = null;
+		
+	}
 }

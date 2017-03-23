@@ -50,6 +50,12 @@ public class LoginController {
 		return "login";
 	}
 	
+	//test
+	@RequestMapping(value = "test", method = RequestMethod.GET)
+	public String test(){
+		return "test";
+	}
+	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@RequestParam("username")String username,
 			@RequestParam("password")String password){

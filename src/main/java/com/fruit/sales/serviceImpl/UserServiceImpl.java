@@ -1,5 +1,6 @@
 package com.fruit.sales.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService{
 	public User add(User user) {
 		// TODO Auto-generated method stub
 		user.setId(userDao.getNextId());
+		
+		user.setNewDefaultDateAndBy();
+		
 		userDao.save(user);
 		return user;
 	}
@@ -33,6 +37,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public boolean update(User user) {
 		// TODO Auto-generated method stub
+		user.setUpdateDefaultDateAndBy();
 		userDao.update(user);
 		return true;
 	}

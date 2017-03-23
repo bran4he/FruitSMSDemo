@@ -30,6 +30,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	//规定命名，每个模块的首页
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index(){
+		return "user";
+	}
+	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	public @ResponseBody List<User> loadAllUsers(){
 		return userService.listAll();

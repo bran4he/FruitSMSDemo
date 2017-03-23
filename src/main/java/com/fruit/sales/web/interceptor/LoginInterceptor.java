@@ -31,13 +31,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 		String username = (String) session.getAttribute(LoginUtil.USER_SESSION);
 		
 		logger.info("LoginInterceptor session:{}", username);
+		//for dev mode
+//		return true;
 		
 		if(StringUtils.isNotEmpty(username)){
 			return true;
 		}
-		
-		//TODO change to redirect
-		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+//		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/login/index");
 		return false;
 	}
 

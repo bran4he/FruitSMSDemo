@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -37,6 +38,15 @@ public final class WebContextHolder {
 
     private static final Logger logger = LoggerFactory.getLogger(WebContextHolder.class);
 
+    public static String getSessionUsername(){
+    	String username = (String) getSession().getAttribute(LoginUtil.USER_SESSION);
+    	if(StringUtils.isEmpty(username)){
+    		return "default";
+    	}else{
+    		return username;
+    	}
+    }
+    
     public static HttpServletRequest getRequest() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         return attributes.getRequest();

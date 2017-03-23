@@ -12,6 +12,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,6 +30,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	 * 序列化版本ID
 	 */
 	private static final long serialVersionUID = -4404021901527702693L;
+	
+	private static final Logger logger = LoggerFactory.getLogger(BaseDaoImpl.class);
+	
 	/**
 	 * 设置一些操作的常量
 	 */
@@ -62,12 +67,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		StringBuilder sql = new StringBuilder("SELECT max(id) from ");
 		sql.append(simpleName).append(" ");
 		Integer maxId = jdbcTemplate.queryForObject(sql.toString(),Integer.class);
-		return maxId;
+		logger.info("getMaxId : {}", maxId);
+		return maxId ==  null ? new Integer(1): maxId;
 	}
 
 	@Override
 	public String getNextId() {
-		return String.valueOf(getMaxId() + 1);
+		String nextId = String.valueOf(getMaxId() + 1);
+		logger.info("getNextId : {}", nextId);
+		return nextId;
 	}
 	
 	@Override
@@ -315,7 +323,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 					} else if (fieldType.equals("java.lang.Integer")) {
 						argTypes[i] = Types.INTEGER;
 					} else if (fieldType.equals("java.util.Date")) {
-						argTypes[i] = Types.DATE;
+//						argTypes[i] = Types.DATE;
+						argTypes[i] = Types.TIMESTAMP;
 					}
 				}
 			} catch (Exception e) {

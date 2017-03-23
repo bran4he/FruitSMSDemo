@@ -23,6 +23,7 @@ public class LoginLogServiceImpl implements LoginLogService{
 	@Override
 	public LoginLog add(LoginLog log) {
 		log.setId(loginLogDao.getNextId());
+		
 		loginLogDao.save(log);
 		return log;
 	}

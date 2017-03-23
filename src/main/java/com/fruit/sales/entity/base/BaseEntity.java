@@ -2,6 +2,8 @@ package com.fruit.sales.entity.base;
 
 import java.util.Date;
 
+import com.fruit.sales.common.WebContextHolder;
+
 public class BaseEntity {
 
 	private String id;
@@ -9,6 +11,20 @@ public class BaseEntity {
 	private Date updateDate;
 	private String insertBy;
 	private String updateBy;
+	
+	public void setNewDefaultDateAndBy(){
+		this.insertDate =  new Date();
+		this.updateDate = new Date();
+		
+		this.insertBy = WebContextHolder.getSessionUsername();
+		this.updateBy = WebContextHolder.getSessionUsername();
+	}
+	
+	public void setUpdateDefaultDateAndBy(){
+		this.updateDate = new Date();
+		
+		this.updateBy = WebContextHolder.getSessionUsername();
+	}
 	
 	public String getId() {
 		return id;

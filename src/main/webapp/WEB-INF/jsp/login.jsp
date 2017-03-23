@@ -9,9 +9,11 @@
 	<link rel="stylesheet" href="../static/css/bootstrap/css/bootstrap.min.css" type="text/css" />
 	<script type="text/javascript" src="../static/css/bootstrap/js/bootstrap.min.js"></script>
 	
+	<!-- 
     <script type="text/javascript" src="../static/js/jquery.form/jquery.form.min.js"></script>
+	 -->
 	
-	<link rel="stylesheet" href="../static/css/index.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/login.css" type="text/css" />
     <script type="text/javascript" src="../static/js/login.js"></script>
     
 </head>
@@ -44,7 +46,7 @@
                         <label for="checkbox1"></label>
                     </div>
                     <span class="text">记住我</span>
-                    <button type="submit" class="btn btn-default">登录</button>
+                    <button type="button" id="loginBtn" class="btn btn-default">登录</button>
                 </div>
             </form>
         </div>

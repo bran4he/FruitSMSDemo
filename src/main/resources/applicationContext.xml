@@ -78,14 +78,12 @@
      <mvc:interceptors>  
          <!-- 多个拦截器，顺序执行 --> 
          <mvc:interceptor>  
-            <!-- 先匹配所有路径，然后排除不需要检查的路径 -->
+            <!-- 先匹配所有路径，然后排除不需要检查的路径  -->
             <mvc:mapping path="/**" />
             
-            <!-- 与登录相关的请求
-            <mvc:exclude-mapping path="/system/login" />
-            <mvc:exclude-mapping path="/system/lan/**" />
-            -->
+            <!-- 与登录相关的请求 
             <mvc:exclude-mapping path="/index/**" />
+            -->
             <mvc:exclude-mapping path="/login/**" />
             
             <!-- 以下是静态资源 -->
