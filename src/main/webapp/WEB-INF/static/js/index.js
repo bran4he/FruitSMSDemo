@@ -1,13 +1,15 @@
 $(document).ready(function(){
-	$("#user").on("click", function(){
-		$("#userAction").submit();
+	
+	$("a[role='menu']").each(function(index, ele){
+		$(ele).on("click", function(){
+			console.info(ele);
+			$(ele).find('form:first').submit();
+		});
 	});
-	$("#index").on("click", function(){
-		$("#indexAction").submit();
-	});
+	
 });
 
 
 window.onload = function () {
-	console.log("load...");
+	console.log("load index.js...");
 }

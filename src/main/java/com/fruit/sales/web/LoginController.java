@@ -77,6 +77,13 @@ public class LoginController {
 		}
 	}
 	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(){
+		WebContextHolder.getSession(true).setAttribute(LoginUtil.USER_SESSION, null);
+		
+		return "redirect:/login/index";
+	}
+	
 	
 	@RequestMapping(value = "verify", method = RequestMethod.POST)
 	public @ResponseBody Result verifyUser(@RequestParam("username")String username,

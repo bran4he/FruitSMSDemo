@@ -37,8 +37,10 @@
                 
                 <div class="form-group">
         			<input class="form-control" id="authcode" type="text" placeholder="验证码" />
-       				<img type="image" src="authcode" id="codeImage" onclick="chageCode()" title="点击重新得到验证码" style="cursor:pointer;"/>
+                 	<i class="fa fa-lock"></i>
+                 	<a href="#" class="fa fa-question-circle"></a>
    				 </div>
+     			<img type="image" src="authcode" id="codeImage" onclick="chageCode()" title="点击重新得到验证码" style="cursor:pointer;"/>
                 
                 <div class="form-group">
                     <div class="main-checkbox">
