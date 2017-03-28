@@ -14,6 +14,13 @@
     <p class="navbar-text">更好更快的水果派送</p>  
     <!-- 居中按钮 -->
       <ul class="nav navbar-nav">
+      	<li>
+	      	<a href="#" role="menu">
+	      	<form action="<%=request.getContextPath()%>/fruitConfig/index" method="get">
+	      	</form>
+	      	水果管理
+	      	</a>
+      	</li>
         <li><a href="#" role="menu">主单管理</a></li>
         <li><a href="#" role="menu">详单管理</a></li>
         <li>
@@ -28,11 +35,17 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">其他功能 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" role="menu">功能1</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#" role="menu">功能2</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#" role="menu">功能3</a></li>
+	            <li>
+	            	<a href="#" role="menu">
+	            	<form action="<%=request.getContextPath()%>/orderStatus/index" method="get">
+	        		</form>
+	            	订单状态参数
+	            	</a>
+	            </li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#" role="menu">功能2</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#" role="menu">功能3</a></li>
           </ul>
         </li>
       </ul>

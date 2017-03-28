@@ -2,13 +2,26 @@ package com.fruit.sales.entity.base;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fruit.sales.common.DateJsonDeserializer;
+import com.fruit.sales.common.DateJsonSerializer;
 import com.fruit.sales.common.WebContextHolder;
 
 public class BaseEntity {
 
 	private String id;
+	
+//	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonSerialize(using = DateJsonSerializer.class)
+	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date insertDate;
+	
+//	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonSerialize(using = DateJsonSerializer.class)
+	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date updateDate;
+	
 	private String insertBy;
 	private String updateBy;
 	

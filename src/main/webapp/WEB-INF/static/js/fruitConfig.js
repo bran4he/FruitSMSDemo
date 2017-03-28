@@ -11,15 +11,23 @@ function pageInit(){
 				height: jQuery("#jqGrid").attr('theight'),
 				url : 'all',//组件创建完成之后请求数据的url
 				datatype : "json",//请求数据返回的类型。可选json,xml,txt
-				colNames : [ '序列号', '用户名', '密码', '邮箱', '新建日期','新建', '更新日期', '更新' ],//jqGrid的列显示名字
+				colNames : [ '序列号', '水果名', '水果月份', '可订时间', '产地','最大可订', '总数', '补充', 
+				             '新建日期','新建', '更新日期', '更新' ],//jqGrid的列显示名字
 				colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
 				             {name : 'id',index : 'id',width : 55}, 
-				             {name : 'username',index : 'username',width : 90}, 
-				             {name : 'password',index : 'password',width : 100,sortable : false}, 
-				             {name : 'email',index : 'email',width : 100,align : "right",sortable : false}, 
-				             {name : 'insertDate',index : 'insertDate',width : 150, formatter:unFormateUpdateDate,sortable : true}, 
+				             {name : 'fruitName',index : 'fruitName',width : 80}, 
+				             {name : 'fruitMonth',index : 'fruitMonth',width : 100, formatter:unFormateUpdateDate}, 
+				             {name : 'maxOderDay',index : 'maxOderDay',width : 100, formatter:unFormateUpdateDate}, 
+				             
+				             {name : 'fruitArea',index : 'fruitArea'}, 
+				             {name : 'maxOrderNum',index : 'maxOrderNum'}, 
+				             {name : 'maxProvNum',index : 'maxProvNum'}, 
+				             
+				             {name : 'remark',index : 'remark'}, 
+				             
+				             {name : 'insertDate',index : 'insertDate',width : 100, formatter:unFormateUpdateDate,sortable : true}, 
 				             {name : 'insertBy',index : 'insertBy',width : 80,sortable : false}, 
-				             {name : 'updateDate',index : 'updateDate',width : 150, formatter:unFormateUpdateDate,sortable : true}, 
+				             {name : 'updateDate',index : 'updateDate',width : 100, formatter:unFormateUpdateDate,sortable : true}, 
 				             {name : 'updateBy',index : 'updateBy',width : 80, sortable : false}
 				           ],
 				rowNum : 10,//一页显示多少条
@@ -30,7 +38,7 @@ function pageInit(){
 				mtype : "get",//向后台请求数据的ajax的类型。可选post,get
 				viewrecords : true,
 				loadonce:true,
-				caption : "用户列表"//表格的标题名字
+				caption : "水果列表"//表格的标题名字
 			});
 	/*创建jqGrid的操作按钮容器*/
 	/*可以控制界面上增删改查的按钮是否显示*/

@@ -23,7 +23,7 @@ import com.fruit.sales.entity.User;
 import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
 import com.fruit.sales.web.demo.PersonController;
 
-@RequestMapping("/os")
+@RequestMapping("/orderStatus")
 @Controller
 public class OrderStatusController {
 
@@ -33,12 +33,12 @@ public class OrderStatusController {
 	private OrderStatusServiceImpl orderStatusService;
 	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
-	public @ResponseBody List<OrderStatus> loadAllOrderStatus(){
+	public @ResponseBody List<OrderStatus> loadAll(){
 		return orderStatusService.listAll();
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public @ResponseBody Result addOrderStatus(@RequestBody OrderStatus os){
+	public @ResponseBody Result add(@RequestBody OrderStatus os){
 		OrderStatus osNew = orderStatusService.add(os);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(osNew != null){
@@ -50,7 +50,7 @@ public class OrderStatusController {
 	}
 	
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
-	public @ResponseBody Result delOrderStatus(@PathVariable String id){
+	public @ResponseBody Result del(@PathVariable String id){
 		OrderStatus os = orderStatusService.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
 		boolean flag = orderStatusService.delete(os);
@@ -65,11 +65,11 @@ public class OrderStatusController {
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(){
 		logger.info("goto os index");
-		return "order_status";
+		return "orderStatus";
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public Result updateUser(@RequestBody OrderStatus os){
+	public @ResponseBody Result update(@RequestBody OrderStatus os){
 		boolean flag = orderStatusService.update(os);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){

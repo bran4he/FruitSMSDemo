@@ -3,12 +3,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8">
-	<title>用户管理</title>
+	<title>水果管理</title>
 	
 	<jsp:include page="jqgrid-public.jsp" flush="true"/>
 	<jsp:include page="public.jsp" flush="true"/>
-    
-    <script type="text/javascript" src="../static/js/user.js"></script> 
+    <script type="text/javascript" src="../static/js/fruitConfig.js"></script> 
 </head>
 <body>
 

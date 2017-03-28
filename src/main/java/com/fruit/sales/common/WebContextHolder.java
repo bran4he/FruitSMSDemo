@@ -41,7 +41,7 @@ public final class WebContextHolder {
     public static String getSessionUsername(){
     	String username = (String) getSession().getAttribute(LoginUtil.USER_SESSION);
     	if(StringUtils.isEmpty(username)){
-    		return "default";
+    		return LoginUtil.UNKONWN_USER;
     	}else{
     		return username;
     	}

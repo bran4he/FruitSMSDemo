@@ -37,12 +37,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
-	public @ResponseBody List<User> loadAllUsers(){
+	public @ResponseBody List<User> loadAll(){
 		return userService.listAll();
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public @ResponseBody Result addUser(@RequestBody User u){
+	public @ResponseBody Result add(@RequestBody User u){
 		User uNew = userService.add(u);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(uNew != null){
@@ -54,7 +54,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
-	public @ResponseBody Result delUser(@PathVariable String id){
+	public @ResponseBody Result del(@PathVariable String id){
 		User u = userService.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
 		boolean flag = userService.delete(u);
@@ -66,7 +66,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public @ResponseBody Result updateUser(@RequestBody User u){
+	public @ResponseBody Result update(@RequestBody User u){
 		boolean flag = userService.update(u);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){

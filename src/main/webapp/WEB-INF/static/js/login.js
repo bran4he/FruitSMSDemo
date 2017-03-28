@@ -1,10 +1,18 @@
 $(document).ready(function(){
-
+	
 	$("#loginBtn").on("click", function(){
 		console.info("loginBtn click...");
 		if(validate()){
 			console.info("all validate pass...");
+			
 			$("#loginForm").submit();
+//影响用户体验			
+//			var n = notyCus('登录成功', 'success', 800);
+//			setTimeout(function(){
+//				console.log("================")
+//				$("#loginForm").submit();
+//			} , 2000);
+			
 		}else{
 			console.info("validate not pass!");
 		}
@@ -13,6 +21,15 @@ $(document).ready(function(){
 	
 });
 
+function notyCus(text, type, timeout){
+	noty({
+		text: text,
+		type: type,
+		timeout: timeout
+	});	
+}
+
+
 function validate() {
 	
 	var username = $("#username").val();
@@ -20,17 +37,17 @@ function validate() {
     var authcode = $("#authcode").val();
     
     if (!username) {
-        alert('请输入用户名');
+    	notyCus('请输入用户名', 'warning', 1500);
         return false;
     }
     
     if(!password){
-    	alert('请输入密码');
+    	notyCus('请输入密码', 'warning', 1500);
     	return false;
     }
     
     if (!authcode) {
-    	alert('请输入验证码');
+    	notyCus('请输入验证码', 'warning', 1500);
     	return false;
     }
     
@@ -54,6 +71,12 @@ function validate() {
 			console.log("verify username/password()...");
 			console.info(data);
 			flag = data.result;
+			if(!flag){
+				notyCus('用户名或密码错误', 'error', 2000);
+			}
+		},
+		error: function(){
+			notyCus('系统异常, 请联系管理员', 'notification', 2000);
 		}
 	});
 	
@@ -75,6 +98,12 @@ function validateCode(){
 			console.info("validateCode()...");
 			console.info(data);
 			flag = data.result;
+			if(!flag){
+				notyCus('验证码错误, 请重新输入', 'error', 2000);
+			}
+		},
+		error: function(){
+			notyCus('系统异常, 请联系管理员', 'notification', 2000);
 		}
 	});
 	

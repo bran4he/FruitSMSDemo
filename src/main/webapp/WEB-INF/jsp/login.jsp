@@ -5,8 +5,12 @@
 	<meta http-equiv="Content-Type" content="text/html; UTF-8">
 
 	<script type="text/javascript" src="../static/js/jquery/jquery-1.10.0-min.js"></script>
-	
+
+	<!-- noty -->
+	<script type="text/javascript" src="../static/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+		
 	<link rel="stylesheet" href="../static/css/bootstrap/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/fontawesome/css/font-awesome.min.css">
 	<script type="text/javascript" src="../static/css/bootstrap/js/bootstrap.min.js"></script>
 	
 	<!-- 
@@ -25,20 +29,18 @@
                 <span class="heading">用户登录</span>
                 
                 <div class="form-group">
+                	<i class="icon-user"></i>
                     <input class="form-control" id="username" name="username" placeholder="用户名或电子邮件">
-                    <i class="fa fa-user"></i>
                 </div>
                 
                 <div class="form-group help">
+					<i class="icon-key"></i>                    
                     <input type="password" class="form-control" id="password" name="password" placeholder="密　码">
-                    <i class="fa fa-lock"></i>
-                    <a href="#" class="fa fa-question-circle"></a>
                 </div>
                 
                 <div class="form-group">
+                	<i class="icon-barcode"></i>
         			<input class="form-control" id="authcode" type="text" placeholder="验证码" />
-                 	<i class="fa fa-lock"></i>
-                 	<a href="#" class="fa fa-question-circle"></a>
    				 </div>
      			<img type="image" src="authcode" id="codeImage" onclick="chageCode()" title="点击重新得到验证码" style="cursor:pointer;"/>
                 

@@ -10,6 +10,9 @@ public class LoginUtil {
 	public static final String USER_SESSION = "current_user";
 	public static final String AUTH_CODE_SESSION = "authCode";
 	
+	public static final String UNKONWN_USER = "unknown";
+	
+	
 	public static String getIpAddr() {
 		HttpServletRequest request = WebContextHolder.getRequest();
        String ip = request.getHeader("x-forwarded-for");   

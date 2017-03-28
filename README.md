@@ -1,6 +1,16 @@
 # FruitSMSDemo
 a demo for fruit sales management system
 
+
+# Issues
+
+## T_FRUIT_CONFIG
+fruitMonth:水果上架的月份
+maxOrderDay:可以触发下单（主单）操作的最晚日期，限制为当月的某号，如25号
+maxProvNum:此批次水果最大可提供份数（水果都是按份数计算）
+maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单一个月对一个水果只可以下一份
+
+
 # Coding Progress
 
 ## Plan:
@@ -15,6 +25,7 @@ a demo for fruit sales management system
 6. 登录接口设计 - 20170323
 7. 验证码及系统权限控制  - 20170323
 8. 订单状态设计 - 20170322
+9. 实现前端全部的增删改的设计和coding, 使用orderstatus为范例 - 20170327
 
 - - - 
 
@@ -24,6 +35,7 @@ a demo for fruit sales management system
 + 主单设计
 + 次单设计
 + 系统参数设计
++ 暂时未设计翻页操作，全部使用loadonce=ture设计，后期改进
 
 > 未完待续...
 
