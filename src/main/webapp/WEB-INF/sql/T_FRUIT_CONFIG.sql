@@ -1,0 +1,38 @@
+drop table if exists T_FRUIT_CONFIG;
+CREATE TABLE `T_FRUIT_CONFIG` (
+`id` int(10) NOT NULL AUTO_INCREMENT, 
+
+`fruitName` VARCHAR(100) NOT NULL,
+`fruitArea` VARCHAR(100) NOT NULL,
+
+`fruitMonth` timestamp NOT NULL,
+`maxOderDay` timestamp NOT NULL,
+
+`maxOrderNum` int(10) NOT NULL,
+`maxProvNum` int(10) NOT NULL,
+
+`remark` VARCHAR(200),
+`extendData` VARCHAR(1000),
+
+`insertDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+`insertBy` VARCHAR(20) default 'admin',
+`updateDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+`updateBy` VARCHAR(20) default 'admin',
+
+PRIMARY KEY(`id`)
+);
+alter table T_FRUIT_CONFIG AUTO_INCREMENT=1;
+
+insert into T_FRUIT_CONFIG 
+	values 
+(1, 'apple', 'shanghai','2017-03-02', '2017-03-25',2, 25, 
+	'this is remark', '{name:"jack"}','2017-03-02', 'admin','2017-03-02', 'admin');
+
+/*以上初始化和建库脚步*/
+
+select * from T_FRUIT_CONFIG;
+
+
+
+
+
