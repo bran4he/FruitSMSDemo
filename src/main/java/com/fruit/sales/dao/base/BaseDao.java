@@ -54,6 +54,8 @@ public interface BaseDao<T> extends Serializable{
      * @param pageSize
      */
 	QueryResult<T> findByPageList(int pageNo, int pageSize);
+	
+	
     /**
      * 根据条件检索指定页和指定条数的持久化对象
      * @param pageNo
@@ -66,7 +68,18 @@ public interface BaseDao<T> extends Serializable{
      * @param pageSize
      */
 	QueryResult<T> findByPageList(int pageNo, int pageSize, LinkedHashMap<String, String> orderby);
-    /**
+   
+	/**
+	 * 默认QueryParam含有oder by
+	 * 
+	 * rows =1;page=1;sidx=id;sord=desc
+	 * 
+	 * @param queryParam
+	 * @return
+	 */
+	QueryResult<T> findByPageList(QueryParam queryParam);
+	
+	/**
      * 根据条件和排序检索指定页和指定条数的持久化对象
      * @param pageNo
      * @param pageSize

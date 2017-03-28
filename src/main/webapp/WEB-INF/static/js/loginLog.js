@@ -9,7 +9,7 @@ function pageInit(){
 			{
 				width: jQuery("#jqGrid").attr('twidth'),
 				height: jQuery("#jqGrid").attr('theight'),
-				url : 'all',
+				url : 'list',
 				datatype : "json",
 				colNames : [ 'ID', 'userId', 'username','loginDate', 'loginIP'],//jqGrid的列显示名字
 				colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
@@ -19,6 +19,12 @@ function pageInit(){
 				             {name : 'loginDate',index : 'loginDate'}, 
 				             {name : 'loginIP',index : 'loginIP'}, 
 				           ],
+	           jsonReader : {  
+	        	    root: "list",   // json中代表实际模型数据的入口  
+	        	    page: "pageNo",   // json中代表当前页码  
+	        	    total: "totalPage", // json中代表页码总数
+	        	    records: "totalRow", // json中代表数据行总数的数据
+	        	},
 				rowNum : 10,//一页显示多少条
 				rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
 				pager : '#jqGridPager',//表格页脚的占位符(一般是div)的id
@@ -26,7 +32,7 @@ function pageInit(){
 				sortorder : "desc",//排序方式,可选desc,asc
 				mtype : "get",//向后台请求数据的ajax的类型。可选post,get
 				viewrecords : true,
-				loadonce:true,
+//				loadonce:true,
 				caption : "订单状态参数列表"//表格的标题名字
 			});
 	/*创建jqGrid的操作按钮容器*/

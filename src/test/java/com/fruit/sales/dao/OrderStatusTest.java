@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.fruit.sales.dao.OrderStatusDao;
 import com.fruit.sales.entity.OrderStatus;
 import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
 import com.fruit.sales.test.BaseTest;

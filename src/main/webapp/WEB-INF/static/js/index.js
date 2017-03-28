@@ -194,8 +194,8 @@ function del(rowId){
         	console.log(data);
         	if(data.result){
         		console.info("删除成功");
-        		jQuery("#jqGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
-//        		jQuery("#jqGrid").trigger("reloadGrid"); 
+        		jQuery("#jqGrid").trigger("reloadGrid"); 
+//        		jQuery("#jqGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
 //    			location.reload(true);
     			myNoty('删除成功', 'success', 1500);
         	}else{
@@ -244,8 +244,8 @@ function btnOk(){
         		console.info("更新成功");
         		$("#dialog").dialog('close');
 //        		location.reload(true);
-//        		jQuery("#jqGrid").trigger("reloadGrid"); 
-        		jQuery("#jqGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
+        		jQuery("#jqGrid").trigger("reloadGrid"); 
+//        		jQuery("#jqGrid").jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
         		myNoty('保存成功', 'success', 1500);
         	}else{
         		console.warn("更新失败！");
@@ -262,6 +262,80 @@ function btnOk(){
 //点击新建和更新窗口的【取消】按钮事件
 function btnCancle(){
 	$("#dialog").dialog('close');
+}
+
+//init jqgrid
+function jqGridInit(colNames, colModel, caption){
+	//创建jqGrid组件
+	jQuery("#jqGrid").jqGrid(
+			{
+				width: jQuery("#jqGrid").attr('twidth'),
+				height: jQuery("#jqGrid").attr('theight'),
+				url : 'list',
+				datatype : "json",
+				//jqGrid的列显示名字
+				colNames : colNames,
+				//jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
+				colModel : colModel,
+	           jsonReader : {  
+	        	    root: "list",   // json中代表实际模型数据的入口  
+	        	    page: "pageNo",   // json中代表当前页码  
+	        	    total: "totalPage", // json中代表页码总数
+	        	    records: "totalRow", // json中代表数据行总数的数据
+	        	},
+				rowNum : 10,//一页显示多少条
+				rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
+				pager : '#jqGridPager',//表格页脚的占位符(一般是div)的id
+				sortname : 'id',//初始化的时候排序的字段
+				sortorder : "desc",//排序方式,可选desc,asc
+				mtype : "get",//向后台请求数据的ajax的类型。可选post,get
+				viewrecords : true,
+//				loadonce:true,
+				caption : caption //表格的标题名字
+			});
+	/*创建jqGrid的操作按钮容器*/
+	/*可以控制界面上增删改查的按钮是否显示*/
+	jQuery("#jqGrid")
+	.jqGrid('navGrid','#jqGridPager', 
+		{
+		edit: false,
+        add : false,
+        del : false,
+        search :false,
+        refresh: false
+        }
+	)
+	.jqGrid('navButtonAdd', '#jqGridPager',{
+		id:"add",
+		caption:"新建",
+		buttonicon:"ui-icon-plus",
+		onClickButton: btnAddClick,
+		position:"last"
+	})
+	.jqGrid('navButtonAdd', '#jqGridPager',{
+		id:"update",
+		caption:"编辑",
+		buttonicon:"ui-icon-pencil",
+		onClickButton: btnUpdateClick,
+		position:"last"
+	})
+	.jqGrid('navButtonAdd','#jqGridPager',{
+		id:"delete",
+		caption:"删除",   
+		buttonicon:"ui-icon-minus",   
+		onClickButton: btnDeleteClick,   
+		position:"last"  
+	})
+//	.jqGrid('navButtonAdd','#jqGridPager',{
+//		id:"refresh",
+//		caption:"刷新",   
+//		buttonicon:"ui-icon-refresh",   
+//		onClickButton: function(){   
+//			$(this).trigger("reloadGrid");  
+//		},   
+//		position:"last"  
+//	})
+	;
 }
 
 window.onload = function () {

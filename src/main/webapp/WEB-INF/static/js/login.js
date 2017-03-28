@@ -100,6 +100,7 @@ function validateCode(){
 			flag = data.result;
 			if(!flag){
 				notyCus('验证码错误, 请重新输入', 'error', 2000);
+				chageCode();	//change code
 			}
 		},
 		error: function(){

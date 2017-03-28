@@ -9,8 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,16 +18,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.fruit.sales.common.StringTools;
+import com.fruit.sales.entity.FruitConfig;
 
 /**
  * 实体类名和数据库表名去除（_）后一致，大小写无区别
+ * 
+ * 字段名和实体属性名一致
+ * 
  */
 public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 
 	/**
 	 * 序列化版本ID
 	 */
-	private static final long serialVersionUID = -4404021901527702693L;
+	private static final long serialVersionUID = -2407864365659244942L;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BaseDaoImpl.class);
 	
@@ -49,7 +51,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	/**
 	 * 简化数据操作
 	 */
-//	@Resource(name = "jdbcTemplate")
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -84,11 +85,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		Object[] args = this.setArgs(entity, SQL_INSERT);
 		int[] argTypes = this.setArgTypes(entity, SQL_INSERT);
 		
-//		System.out.println("============================");
-//		System.out.println(sql);
-//		System.out.println(Arrays.asList(args));
-//		System.out.println(Arrays.asList(argTypes));
-//		System.out.println("============================");
+		System.out.println("=============UPDATE===============");
+		System.out.println(sql);
+		System.out.println(Arrays.asList(args));
+		System.out.println(Arrays.toString(argTypes));
+		System.out.println("============================");
 		
 		int n = jdbcTemplate.update(sql.toString(), args, argTypes);
 		System.out.println("======save:" + n);
@@ -100,10 +101,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		Object[] args = this.setArgs(entity, SQL_UPDATE);
 		int[] argTypes = this.setArgTypes(entity, SQL_UPDATE);
 		
-		System.out.println("============================");
+		System.out.println("=============SAVE===============");
 		System.out.println(sql);
 		System.out.println(Arrays.asList(args));
-		System.out.println(argTypes);
+		System.out.println(Arrays.toString(argTypes));
 		System.out.println("============================");
 		
 		int n = jdbcTemplate.update(sql, args, argTypes);
@@ -117,12 +118,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		int[] argTypes = this.setArgTypes(entity, SQL_DELETE);
 		int n = jdbcTemplate.update(sql, args, argTypes);
 		
-//		System.out.println("============================");
-//		System.out.println(sql);
-//		System.out.println(Arrays.asList(args));
-//		System.out.println(Arrays.asList(argTypes));
-//		System.out.println("============================");
-//		
+		System.out.println("=============DELETE===============");
+		System.out.println(sql);
+		System.out.println(Arrays.asList(args));
+		System.out.println(Arrays.toString(argTypes));
+		System.out.println("============================");
+		
 		System.out.println("======delete:" + n);
 	}
 
@@ -153,34 +154,43 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
         String sql = "SELECT * FROM " + simpleName;  
         RowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(entityClass);  
         return jdbcTemplate.query(sql, rowMapper);  
-    }  
+    }
   
     @Override  
     public QueryResult<T> findByPageList(int pageNo, int pageSize) {  
         List<T> list = this.find(pageNo, pageSize, null, null);  
         int totalRow = this.count(null);  
-        return new QueryResult<T>(list, totalRow);  
+        return new QueryResult<T>(list, totalRow, pageNo, pageSize);  
     }  
   
+
+    
     @Override  
-    public QueryResult<T> findByPageList(int pageNo, int pageSize, Map<String, String> where) {  
+    public QueryResult<T> findByPageList(int pageNo, int pageSize, Map<String, String> where) {
         List<T> list = this.find(pageNo, pageSize, where, null);  
-        int totalRow = this.count(where);  
-        return new QueryResult<T>(list, totalRow);  
+        int totalRow = this.count(where);
+        return new QueryResult<T>(list, totalRow, pageNo, pageSize);  
     }  
   
     @Override  
     public QueryResult<T> findByPageList(int pageNo, int pageSize, LinkedHashMap<String, String> orderby) {  
         List<T> list = this.find(pageNo, pageSize, null, orderby);  
         int totalRow = this.count(null);  
-        return new QueryResult<T>(list, totalRow);  
+        return new QueryResult<T>(list, totalRow, pageNo, pageSize);  
     }  
   
+	@Override
+	public QueryResult<T> findByPageList(QueryParam queryParam) {
+		LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+		orderby.put(queryParam.getSidx(), queryParam.getSord());
+		return findByPageList(queryParam.getPage(), queryParam.getRows(), orderby);
+	}
+    
     @Override  
     public QueryResult<T> findByPageList(int pageNo, int pageSize, Map<String, String> where, LinkedHashMap<String, String> orderby) {  
         List<T> list = this.find(pageNo, pageSize, where, orderby);  
         int totalRow = this.count(where);  
-        return new QueryResult<T>(list, totalRow);  
+        return new QueryResult<T>(list, totalRow, pageNo, pageSize);  
     } 
 
 	/**
@@ -188,14 +198,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	 */
 	private String makeSql(String sqlFlag) {
 		StringBuffer sql = new StringBuffer();
-//		Field[] fields = entityClass.getDeclaredFields();
+		Field[] fields = entityClass.getDeclaredFields();
 		//apache commons lang3
-		Field[] fields = FieldUtils.getAllFields(entityClass);
+//		Field[] fields = FieldUtils.getAllFields(entityClass);
 		if (sqlFlag.equals(SQL_INSERT)) {
 			sql.append(" INSERT INTO " + simpleName);
 			sql.append("(");
 			for (int i = 0; fields != null && i < fields.length; i++) {
 				fields[i].setAccessible(true); // 暴力反射
+//				String column = StringTools.camel2Underline(fields[i].getName());
 				String column = fields[i].getName();
 				sql.append(column).append(",");
 			}
@@ -210,8 +221,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 			sql.append(" UPDATE " + simpleName + " SET ");
 			for (int i = 0; fields != null && i < fields.length; i++) {
 				fields[i].setAccessible(true); // 暴力反射
+//				String column = StringTools.camel2Underline(fields[i].getName());
 				String column = fields[i].getName();
-				if (column.equals("id")) { // id 代表主键
+				if ("id".equalsIgnoreCase(column)) { // id 代表主键
 					continue;
 				}
 				sql.append(column).append("=").append("?,");
@@ -231,9 +243,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	 *  设置参数
 	 */
 	private Object[] setArgs(T entity, String sqlFlag) {
-//		Field[] fields = entityClass.getDeclaredFields();
+		Field[] fields = entityClass.getDeclaredFields();
 		//update by brandon
-		Field[] fields = FieldUtils.getAllFields(entityClass);
+//		Field[] fields = FieldUtils.getAllFields(entityClass);
 		if (sqlFlag.equals(SQL_INSERT)) {
 			Object[] args = new Object[fields.length];
 			for (int i = 0; args != null && i < args.length; i++) {
@@ -246,54 +258,62 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 			}
 			return args;
 		} else if (sqlFlag.equals(SQL_UPDATE)) {
-			Object[] args = new Object[fields.length];
-			int idx = 0;
-			for(Field f : fields){
-				f.setAccessible(true);	// 暴力反射
-				//update by brandon, search for id
-				if("id".equalsIgnoreCase(f.getName())){
-					try {
-						args[fields.length-1] = f.get(entity);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}else{
-					try {
-						args[idx] = f.get(entity);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					idx++;
-				}
-			}
-			
-//			for (int i = 0; tempArr != null && i < tempArr.length; i++) {
-//				try {
-//					fields[i].setAccessible(true); // 暴力反射
-//					tempArr[i] = fields[i].get(entity);
-//				} catch (Exception e) {
-//					e.printStackTrace();
+			Object[] tempArr = new Object[fields.length];
+//			Object[] args = new Object[fields.length];
+//			int idx = 0;
+//			for(Field f : fields){
+//				f.setAccessible(true);	// 暴力反射
+//				//update by brandon, search for id
+//				if("id".equalsIgnoreCase(f.getName())){
+//					try {
+//						args[fields.length-1] = f.get(entity);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}else{
+//					try {
+//						args[idx] = f.get(entity);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//					idx++;
 //				}
 //			}
-//			Object[] args = new Object[fields.length];
-//			System.arraycopy(tempArr, 1, args, 0, tempArr.length - 1); // 数组拷贝
-//			args[args.length - 1] = tempArr[0];
 			
-			return args;
-		} else if (sqlFlag.equals(SQL_DELETE)) {
-			Object[] args = new Object[1]; // 长度是1
-			for(Field f : fields){
-				f.setAccessible(true);	// 暴力反射
-				//update by brandon, search for id
-				if("id".equalsIgnoreCase(f.getName())){
-					try {
-						args[0] = f.get(entity);
-						return args;
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+			for (int i = 0; tempArr != null && i < tempArr.length; i++) {
+				try {
+					fields[i].setAccessible(true); // 暴力反射
+					tempArr[i] = fields[i].get(entity);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
+			Object[] args = new Object[fields.length];
+			System.arraycopy(tempArr, 1, args, 0, tempArr.length - 1); // 数组拷贝
+			args[args.length - 1] = tempArr[0];
+			return args;
+			
+		} else if (sqlFlag.equals(SQL_DELETE)) {
+			Object[] args = new Object[1]; // 长度是1
+            fields[0].setAccessible(true); // 暴力反射  
+            try {  
+                args[0] = fields[0].get(entity);  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }
+			
+//			for(Field f : fields){
+//				f.setAccessible(true);	// 暴力反射
+//				//update by brandon, search for id
+//				if("id".equalsIgnoreCase(f.getName())){
+//					try {
+//						args[0] = f.get(entity);
+//						return args;
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
 			return args;
 		}
 		return null;
@@ -304,17 +324,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	 *  设置参数类型(缺少的用到了再添加)
 	 */
 	private int[] setArgTypes(T entity, String sqlFlag) {
-//		Field[] fields = entityClass.getDeclaredFields();
+		Field[] fields = entityClass.getDeclaredFields();
 		//update by brandon, get super class fields, support BaseEntity
-		Field[] fields = FieldUtils.getAllFields(entityClass);
+//		Field[] fields = FieldUtils.getAllFields(entityClass);
 		if (sqlFlag.equals(SQL_INSERT)) {
 			int[] argTypes = new int[fields.length];
 			try {
 				for (int i = 0; argTypes != null && i < argTypes.length; i++) {
 					fields[i].setAccessible(true); // 暴力反射
-//					String fieldType = fields[i].get(entity).getClass().getName();
+					String fieldType = fields[i].get(entity).getClass().getName();
 					//update by brandon
-					String fieldType = fields[i].getGenericType().getTypeName();
+//					String fieldType = fields[i].getGenericType().getTypeName();
 					
 					if (fieldType.equals("java.lang.String")) {
 						argTypes[i] = Types.VARCHAR;
@@ -345,7 +365,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 					} else if (fieldType.equals("java.lang.Integer")) {
 						tempArgTypes[i] = Types.INTEGER;
 					} else if (fieldType.equals("java.util.Date")) {
-						tempArgTypes[i] = Types.DATE;
+//						tempArgTypes[i] = Types.DATE;
+						tempArgTypes[i] = Types.TIMESTAMP;
 					}
 				}
 				System.arraycopy(tempArgTypes, 1, argTypes, 0,
@@ -483,6 +504,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		System.out.println("SQL=" + sql);
 		return jdbcTemplate.queryForObject(sql.toString(),Integer.class);
 	}
+
+
 
 
 

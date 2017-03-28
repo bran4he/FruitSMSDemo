@@ -18,7 +18,7 @@
 	      	<a href="#" role="menu">
 	      	<form action="<%=request.getContextPath()%>/fruitConfig/index" method="get">
 	      	</form>
-	      	水果管理
+	      	水果配置
 	      	</a>
       	</li>
         <li><a href="#" role="menu">主单管理</a></li>

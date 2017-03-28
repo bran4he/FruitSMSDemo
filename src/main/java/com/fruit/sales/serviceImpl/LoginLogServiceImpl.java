@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fruit.sales.dao.LoginLogDao;
+import com.fruit.sales.dao.base.QueryParam;
+import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.entity.LoginLog;
 import com.fruit.sales.service.LoginLogService;
 import com.fruit.sales.vo.LoginLogVO;
@@ -20,6 +22,11 @@ public class LoginLogServiceImpl implements LoginLogService{
 	public List<LoginLogVO> listAllVO() {
 		return loginLogDao.findAllVO();
 	}
+	
+	@Override
+	public QueryResult<LoginLogVO> listVO(QueryParam queryParam) {
+		return loginLogDao.findByVOPageList(queryParam);
+	}
 
 	@Override
 	public LoginLog add(LoginLog log) {
@@ -28,5 +35,6 @@ public class LoginLogServiceImpl implements LoginLogService{
 		loginLogDao.save(log);
 		return log;
 	}
+
 
 }

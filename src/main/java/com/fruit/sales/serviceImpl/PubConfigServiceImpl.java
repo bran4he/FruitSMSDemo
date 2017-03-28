@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fruit.sales.dao.PubConfigDao;
+import com.fruit.sales.dao.base.QueryParam;
+import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.service.PubConfigService;
 
@@ -13,20 +15,26 @@ import com.fruit.sales.service.PubConfigService;
 public class PubConfigServiceImpl implements PubConfigService {
 
 	@Autowired
-	private PubConfigDao pubCfgDao;
+	private PubConfigDao dao;
 
 	@Override
+	public QueryResult<PubConfig> list(QueryParam queryParam) {
+		// TODO Auto-generated method stub
+		return dao.findByPageList(queryParam);
+	}
+	
+	@Override
 	public List<PubConfig> listAll() {
-		return pubCfgDao.findAll();
+		return dao.findAll();
 	}
 
 	@Override
 	public PubConfig add(PubConfig pubCfg) {
-		pubCfg.setId(pubCfgDao.getNextId());
+		pubCfg.setId(dao.getNextId());
 
 		pubCfg.setNewDefaultDateAndBy();
 
-		pubCfgDao.save(pubCfg);
+		dao.save(pubCfg);
 		return pubCfg;
 	}
 
@@ -34,19 +42,19 @@ public class PubConfigServiceImpl implements PubConfigService {
 	public boolean update(PubConfig pubCfg) {
 		pubCfg.setUpdateDefaultDateAndBy();
 
-		pubCfgDao.update(pubCfg);
+		dao.update(pubCfg);
 		return true;
 	}
 
 	@Override
 	public boolean delete(PubConfig pubCfg) {
-		pubCfgDao.delete(pubCfg);
+		dao.delete(pubCfg);
 		return true;
 	}
 
 	@Override
 	public PubConfig findById(String id) {
-		return pubCfgDao.findById(id);
+		return dao.findById(id);
 	}
 
 }

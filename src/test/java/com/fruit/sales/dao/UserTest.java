@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fruit.sales.dao.UserDao;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.test.BaseTest;
 

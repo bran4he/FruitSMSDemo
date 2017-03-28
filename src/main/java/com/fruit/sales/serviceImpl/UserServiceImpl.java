@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fruit.sales.dao.UserDao;
+import com.fruit.sales.dao.base.QueryParam;
+import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.service.UserService;
 
@@ -16,6 +18,12 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Override
+	public QueryResult<User> list(QueryParam queryParam) {
+		// TODO Auto-generated method stub
+		return userDao.findByPageList(queryParam);
+	}
 	
 	@Override
 	public List<User> listAll() {
@@ -60,6 +68,8 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userDao.findUserByName(username);
 	}
+
+
 
 
 

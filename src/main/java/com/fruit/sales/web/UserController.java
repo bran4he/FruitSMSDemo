@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +14,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fruit.sales.common.LoginUtil;
 import com.fruit.sales.common.Result;
-import com.fruit.sales.entity.OrderStatus;
+import com.fruit.sales.dao.base.QueryParam;
+import com.fruit.sales.dao.base.QueryResult;
+import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.service.UserService;
 
 @RequestMapping("/user")
 @Controller
-public class UserController {
+public class UserController implements BaseController<User>{
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	private UserService userService;
+	private UserService service;
 	
 	//规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
@@ -36,14 +38,22 @@ public class UserController {
 		return "user";
 	}
 	
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public @ResponseBody QueryResult<User> list(HttpServletRequest request){
+		
+		QueryParam queryParam = QueryUtil.getQueryParam(request);
+		
+		return service.list(queryParam);
+	}
+	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	public @ResponseBody List<User> loadAll(){
-		return userService.listAll();
+		return service.listAll();
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public @ResponseBody Result add(@RequestBody User u){
-		User uNew = userService.add(u);
+		User uNew = service.add(u);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(uNew != null){
 			data.put("data", uNew);
@@ -55,9 +65,9 @@ public class UserController {
 	
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id){
-		User u = userService.findById(id);
+		User u = service.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = userService.delete(u);
+		boolean flag = service.delete(u);
 		if(flag){
 			data.put("data", u);
 			return new Result(true, data);
@@ -67,10 +77,10 @@ public class UserController {
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public @ResponseBody Result update(@RequestBody User u){
-		boolean flag = userService.update(u);
+		boolean flag = service.update(u);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
-			data.put("data", userService.findById(u.getId()));
+			data.put("data", service.findById(u.getId()));
 		}
 		return new Result(flag, data);
 	}

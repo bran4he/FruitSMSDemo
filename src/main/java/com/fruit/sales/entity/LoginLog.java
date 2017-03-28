@@ -15,6 +15,11 @@ public class LoginLog {
 	public LoginLog() {
 	}
 	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
+	}
+	
 	public LoginLog(String id, String userId, Date loginDate, String loginIP) {
 		super();
 		this.id = id;
@@ -47,10 +52,6 @@ public class LoginLog {
 		this.loginIP = loginIP;
 	}
 
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
-	}
 	
 	
 }

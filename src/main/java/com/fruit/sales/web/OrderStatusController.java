@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +20,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fruit.sales.common.Result;
+import com.fruit.sales.dao.base.QueryParam;
+import com.fruit.sales.dao.base.QueryResult;
+import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.OrderStatus;
+import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
 import com.fruit.sales.web.demo.PersonController;
 
 @RequestMapping("/orderStatus")
 @Controller
-public class OrderStatusController {
+public class OrderStatusController implements BaseController<OrderStatus>{
 
 	private static final Logger logger = LoggerFactory.getLogger(OrderStatusController.class);
 	
 	@Autowired
-	private OrderStatusServiceImpl orderStatusService;
+	private OrderStatusServiceImpl service;
 	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(){
@@ -38,14 +44,22 @@ public class OrderStatusController {
 		return "orderStatus";
 	}
 	
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public @ResponseBody QueryResult<OrderStatus> list(HttpServletRequest request){
+		
+		QueryParam queryParam = QueryUtil.getQueryParam(request);
+		
+		return service.list(queryParam);
+	}
+	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	public @ResponseBody List<OrderStatus> loadAll(){
-		return orderStatusService.listAll();
+		return service.listAll();
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public @ResponseBody Result add(@RequestBody OrderStatus os){
-		OrderStatus osNew = orderStatusService.add(os);
+		OrderStatus osNew = service.add(os);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(osNew != null){
 			data.put("data", osNew);
@@ -57,9 +71,9 @@ public class OrderStatusController {
 	
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id){
-		OrderStatus os = orderStatusService.findById(id);
+		OrderStatus os = service.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = orderStatusService.delete(os);
+		boolean flag = service.delete(os);
 		if(flag){
 			data.put("data", os);
 		}
@@ -72,10 +86,10 @@ public class OrderStatusController {
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public @ResponseBody Result update(@RequestBody OrderStatus os){
-		boolean flag = orderStatusService.update(os);
+		boolean flag = service.update(os);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
-			data.put("data", orderStatusService.findById(os.getId()));
+			data.put("data", service.findById(os.getId()));
 		}
 		return new Result(flag, data);
 	}
