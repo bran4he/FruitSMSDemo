@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fruit.sales.dao.LoginLogDao;
 import com.fruit.sales.entity.LoginLog;
 import com.fruit.sales.service.LoginLogService;
+import com.fruit.sales.vo.LoginLogVO;
 
 @Service
 public class LoginLogServiceImpl implements LoginLogService{
@@ -16,8 +17,8 @@ public class LoginLogServiceImpl implements LoginLogService{
 	private LoginLogDao loginLogDao;
 	
 	@Override
-	public List<LoginLog> listAll() {
-		return loginLogDao.findAll();
+	public List<LoginLogVO> listAllVO() {
+		return loginLogDao.findAllVO();
 	}
 
 	@Override

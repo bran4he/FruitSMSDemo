@@ -103,7 +103,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		System.out.println("============================");
 		System.out.println(sql);
 		System.out.println(Arrays.asList(args));
-		System.out.println(Arrays.asList(argTypes));
+		System.out.println(argTypes);
 		System.out.println("============================");
 		
 		int n = jdbcTemplate.update(sql, args, argTypes);

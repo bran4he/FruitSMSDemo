@@ -32,6 +32,12 @@ public class OrderStatusController {
 	@Autowired
 	private OrderStatusServiceImpl orderStatusService;
 	
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index(){
+		logger.info("goto os index");
+		return "orderStatus";
+	}
+	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
 	public @ResponseBody List<OrderStatus> loadAll(){
 		return orderStatusService.listAll();
@@ -62,11 +68,7 @@ public class OrderStatusController {
 	
 	
 	
-	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index(){
-		logger.info("goto os index");
-		return "orderStatus";
-	}
+
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public @ResponseBody Result update(@RequestBody OrderStatus os){

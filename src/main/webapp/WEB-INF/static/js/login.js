@@ -115,6 +115,10 @@ function chageCode(){
 	$("#codeImage").attr("src", "authcode?time=" + t);
 }
 
+
+
+
+
 window.onload = function () {
 	console.log("load...");
 }

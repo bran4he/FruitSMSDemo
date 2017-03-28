@@ -12,6 +12,7 @@ public class BaseEntity {
 
 	private String id;
 	
+	//for spring mvc directly
 //	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@JsonSerialize(using = DateJsonSerializer.class)
 	@JsonDeserialize(using = DateJsonDeserializer.class)

@@ -3,12 +3,12 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8" charset="utf-8">
-	<title>用户管理</title>
+	<title>公共参数</title>
 	
 	<jsp:include page="jqgrid-public.jsp" flush="true"/>
 	<jsp:include page="public.jsp" flush="true"/>
     
-    <script type="text/javascript" src="../static/js/user.js"></script> 
+    <script type="text/javascript" src="../static/js/pubConfig.js"></script> 
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"/>
@@ -21,7 +21,7 @@
 	
 
 
-	<div id="dialog" title="用户信息" dialogWidth="500" dialogHeight="400">
+	<div id="dialog" title="公共参数" dialogWidth="500" dialogHeight="390">
 	
 	<!-- 面板框 -->
 	<div class="panel panel-default">
@@ -36,21 +36,21 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">username</label>
+			    <label for="lastname" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="username">
+			      <input type="text" class="form-control" name="name" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">password</label>
+			    <label for="lastname" class="col-sm-2 control-label">Value</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="password">
+			      <input type="text" class="form-control" name="value">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">email</label>
+			    <label for="lastname" class="col-sm-2 control-label">remark</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="email">
+			      <input type="text" class="form-control" name="remark">
 			    </div>
 			  </div>
 			  

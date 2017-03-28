@@ -11,16 +11,13 @@ function pageInit(){
 				height: jQuery("#jqGrid").attr('theight'),
 				url : 'all',
 				datatype : "json",
-				colNames : [ 'ID', 'username', 'password', 'email', '新建日期','新建人', '更新日期', '更新人' ],//jqGrid的列显示名字
+				colNames : [ 'ID', 'userId', 'username','loginDate', 'loginIP'],//jqGrid的列显示名字
 				colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
 				             {name : 'id',index : 'id'}, 
+				             {name : 'userId',index : 'userId'}, 
 				             {name : 'username',index : 'username'}, 
-				             {name : 'password',index : 'password'}, 
-				             {name : 'email',index : 'email'}, 
-				             {name : 'insertDate',index : 'insertDate'}, 
-				             {name : 'insertBy',index : 'insertBy'}, 
-				             {name : 'updateDate',index : 'updateDate'}, 
-				             {name : 'updateBy',index : 'updateBy'}
+				             {name : 'loginDate',index : 'loginDate'}, 
+				             {name : 'loginIP',index : 'loginIP'}, 
 				           ],
 				rowNum : 10,//一页显示多少条
 				rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
@@ -43,42 +40,5 @@ function pageInit(){
         search :false,
         refresh: false
         }
-	)
-	.jqGrid('navButtonAdd', '#jqGridPager',{
-		id:"add",
-		caption:"新建",
-		buttonicon:"ui-icon-plus",
-		onClickButton: btnAddClick,
-		position:"last"
-	})
-	.jqGrid('navButtonAdd', '#jqGridPager',{
-		id:"update",
-		caption:"编辑",
-		buttonicon:"ui-icon-pencil",
-		onClickButton: btnUpdateClick,
-		position:"last"
-	})
-	.jqGrid('navButtonAdd','#jqGridPager',{
-		id:"delete",
-		caption:"删除",   
-		buttonicon:"ui-icon-minus",   
-		onClickButton: btnDeleteClick,   
-		position:"last"  
-	})
-//	.jqGrid('navButtonAdd','#jqGridPager',{
-//		id:"refresh",
-//		caption:"刷新",   
-//		buttonicon:"ui-icon-refresh",   
-//		onClickButton: function(){   
-//			$(this).trigger("reloadGrid");  
-//		},   
-//		position:"last"  
-//	})
-	;
+	);
 }
-
-
-
-
-
-

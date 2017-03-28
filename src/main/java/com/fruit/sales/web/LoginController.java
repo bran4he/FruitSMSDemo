@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -29,6 +30,7 @@ import com.fruit.sales.common.LoginUtil;
 import com.fruit.sales.common.Result;
 import com.fruit.sales.common.WebContextHolder;
 import com.fruit.sales.entity.LoginLog;
+import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.service.LoginLogService;
 import com.fruit.sales.service.UserService;
@@ -50,11 +52,6 @@ public class LoginController {
 		return "login";
 	}
 	
-	//test
-	@RequestMapping(value = "test", method = RequestMethod.GET)
-	public String test(){
-		return "test";
-	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@RequestParam("username")String username,

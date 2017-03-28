@@ -30,22 +30,32 @@
 	        	用户管理
         	</a>
         </li>
-        <li><a href="#" role="menu">参数管理</a></li>
-        <li><a href="#" role="menu">登录日志</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">其他功能 <span class="caret"></span></a>
           <ul class="dropdown-menu">
 	            <li>
 	            	<a href="#" role="menu">
-	            	<form action="<%=request.getContextPath()%>/orderStatus/index" method="get">
-	        		</form>
-	            	订单状态参数
+		            	<form action="<%=request.getContextPath()%>/orderStatus/index" method="get">
+		        		</form>
+		            	订单状态参数
 	            	</a>
 	            </li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#" role="menu">功能2</a></li>
+	            <li>
+		            <a href="#" role="menu">
+			            <form action="<%=request.getContextPath()%>/pubConfig/index" method="get">
+		        		</form>
+		            	公共参数管理
+		            </a>
+	            </li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#" role="menu">功能3</a></li>
+	            <li>
+	            <a href="#" role="menu">
+	            	<form action="<%=request.getContextPath()%>/loginLog/index" method="get">
+	        		</form>
+	            	登录日志
+	            </a>
+	            </li>
           </ul>
         </li>
       </ul>
@@ -59,7 +69,6 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" role="menu">锁定屏幕</a></li>
             <li><a href="#" role="menu">其他功能</a></li>
             <li role="separator" class="divider"></li>
             <li>
