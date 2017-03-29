@@ -1,0 +1,4 @@
+body { font-size: 12px; }
+.ui-widget { font-size: 1em; }
+.ui-datepicker { font-size: 11px; }
+  .ui-datepicker select.ui-datepicker-year, .ui-datepicker select.ui-datepicker-month { width: auto; }

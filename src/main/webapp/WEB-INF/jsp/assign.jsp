@@ -86,7 +86,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">expireDate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="expireDate" readonly="readonly">
+			      <input type="text" class="form-control" name="expireDate" dateFlag="true" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">

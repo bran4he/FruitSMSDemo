@@ -62,6 +62,7 @@ function formToJson(form){
 }
 
 //编辑时触发【复制jqgrid内容到对话框】
+//setup datetime picker
 function setDialogData(rowData){
 	//input
 	$("#form input").each(function(idx, ele){
@@ -79,6 +80,25 @@ function setDialogData(rowData){
 			$(ele).val(rowData[name]);
 		}
 	});
+	//date/time/day picker
+	$("#form input").each(function(idx, ele){
+		var name = $(ele).attr('dateFlag');
+		console.info(name);
+		if(name){
+			$(ele).prop("readOnly", true)
+				.datetimepicker({
+//					changeMonth: true, 
+//					changeYear: true,
+					dateFormat: "yy-mm-dd",
+					timeFormat: "HH:mm:ss",
+					 showButtonPanel: true,
+					 showHour: true,
+					 showMinute: true,
+					 showSecond: true
+				});
+		}
+	});
+	
 }
 
 //【清除对话框内容】，防止再次加载

@@ -50,7 +50,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">planDeliveryDate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="planDeliveryDate">
+			      <input type="text" class="form-control" dateFlag="true" name="planDeliveryDate">
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -74,7 +74,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">deliveryDate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="deliveryDate">
+			      <input type="text" class="form-control" dateFlag="true" name="deliveryDate">
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -92,7 +92,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">finishDate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="finishDate">
+			      <input type="text" class="form-control" dateFlag="true" name="finishDate">
 			    </div>
 			  </div>
 			  <div class="form-group">

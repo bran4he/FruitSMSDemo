@@ -31,9 +31,10 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 12. add paging function from server part - 20170329
 13. add ASSIGN function from back-end and front-end - 20170329
 14. add ASSIGN_DETAIL function from back-end and front-end - 20170329
+15. add jquery-ui datepicker and jQuery-Timepicker-Addon for pick up date and time - 20170329
 - - - 
 
-+ Jqgrid调用同一增删改接口 js和前端控制研究和设计
++ ~~Jqgrid调用同一增删改接口 js和前端控制研究和设计~~ -  done #10
 + ~~管理退出登录控制及session设置~~ - done #11
 + ~~ASSIGN设计~~ - done #14
 + ~~ASSIGN DETAIL设计~~ - done #14

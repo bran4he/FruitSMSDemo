@@ -50,13 +50,13 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">fruitMonth</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="fruitMonth">
+			      <input type="text" class="form-control" dateFlag="true" name="fruitMonth">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">maxOrderDay</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxOrderDay">
+			      <input type="text" class="form-control" dateFlag="true" name="maxOrderDay">
 			    </div>
 			  </div>
 			  <div class="form-group">
