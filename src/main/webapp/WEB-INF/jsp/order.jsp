@@ -3,12 +3,12 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8" charset="utf-8">
-	<title>水果配置参数</title>
+	<title>订单管理</title>
 	
 	<jsp:include page="jqgrid-public.jsp" flush="true"/>
 	<jsp:include page="public.jsp" flush="true"/>
     
-    <script type="text/javascript" src="../static/js/fruitConfig.js"></script> 
+    <script type="text/javascript" src="../static/js/order.js"></script> 
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"/>
@@ -21,7 +21,7 @@
 	
 
 
-	<div id="dialog" title="水果配置参数信息" dialogWidth="850" dialogHeight="520">
+	<div id="dialog" title="订单信息" dialogWidth="780" dialogHeight="490">
 	
 	<!-- 面板框 -->
 	<div class="panel panel-default">
@@ -36,39 +36,75 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">fruitName</label>
+			    <label for="lastname" class="col-sm-2 control-label">statusId</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="fruitName">
+			      <input type="text" class="form-control" name="statusId">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">fruitArea</label>
+			    <label for="lastname" class="col-sm-2 control-label">assignId</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="fruitArea">
+			      <input type="text" class="form-control" name="assignId">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">fruitMonth</label>
+			    <label for="lastname" class="col-sm-2 control-label">planDeliveryDate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="fruitMonth">
+			      <input type="text" class="form-control" name="planDeliveryDate">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">maxOrderDay</label>
+			    <label for="lastname" class="col-sm-2 control-label">address</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxOrderDay">
+			      <input type="text" class="form-control" name="address">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">maxOrderNum</label>
+			    <label for="lastname" class="col-sm-2 control-label">contactName</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxOrderNum">
+			      <input type="text" class="form-control" name="contactName">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">maxProvNum</label>
+			    <label for="lastname" class="col-sm-2 control-label">contactPhone</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxProvNum">
+			      <input type="text" class="form-control" name="contactPhone">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">deliveryDate</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="deliveryDate">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">deliveryBy</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="deliveryBy">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">deliveryRemark</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="deliveryRemark">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">finishDate</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="finishDate">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">finishBy</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="finishBy">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">finishRemark</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="finishRemark">
 			    </div>
 			  </div>
 			  <div class="form-group">

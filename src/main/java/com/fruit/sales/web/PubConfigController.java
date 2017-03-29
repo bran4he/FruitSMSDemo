@@ -22,6 +22,7 @@ import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.serviceImpl.PubConfigServiceImpl;
+import com.fruit.sales.web.base.BaseController;
 
 @RequestMapping("/pubConfig")
 @Controller

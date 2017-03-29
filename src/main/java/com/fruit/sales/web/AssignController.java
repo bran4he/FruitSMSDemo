@@ -20,6 +20,7 @@ import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
+import com.fruit.sales.web.base.BaseController;
 
 @RequestMapping("/assign")
 @Controller
@@ -42,11 +43,6 @@ public class AssignController implements BaseController<Assign> {
 		return service.list(queryParam);
 	}
 
-	@Override
-	public List<Assign> loadAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	@RequestMapping(value="add", method = RequestMethod.POST)

@@ -27,6 +27,7 @@ import com.fruit.sales.entity.OrderStatus;
 import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
+import com.fruit.sales.web.base.BaseController;
 import com.fruit.sales.web.demo.PersonController;
 
 @RequestMapping("/orderStatus")

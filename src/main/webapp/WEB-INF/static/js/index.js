@@ -63,7 +63,16 @@ function formToJson(form){
 
 //编辑时触发【复制jqgrid内容到对话框】
 function setDialogData(rowData){
+	//input
 	$("#form input").each(function(idx, ele){
+		var name = $(ele).attr('name');
+		console.info(name);
+		if(name){
+			$(ele).val(rowData[name]);
+		}
+	});
+	//remark
+	$("#form textarea").each(function(idx, ele){
 		var name = $(ele).attr('name');
 		console.info(name);
 		if(name){
@@ -94,10 +103,25 @@ function initUpdateDialog(rowData){
 			modal: true,
 			open: setDialogData(rowData), //auto set data from jqgrid to dialog
 			close: cleanDialog,	//close auto remove input value
-			buttons: {
-					"取消": btnCancle,
-					"保存": btnOk
-			   }
+			buttons: [
+			          {
+							text:'取消',
+							icons: {
+						        primary: "ui-icon-help"
+						      },
+						      click:btnCancle
+						},{
+							text:'保存',
+							icons: {
+						        primary: "ui-icon-check"
+						      },
+						      click:btnOk
+						}
+			          ]
+//			{
+//					"取消": btnCancle,
+//					"保存": btnOk
+//			   }
 	};
 	$("#dialog")
 		.dialog(opts)
@@ -112,10 +136,21 @@ function btnAddClick(){
 			height: $("#dialog").attr('dialogHeight'),
 			modal: true,
 			close: cleanDialog,	//close auto remove input value
-			buttons: {
-					"取消": btnCancle,
-					"保存": btnOk
-			   }
+			buttons: [
+			          {
+							text:'取消',
+							icons: {
+						        primary: "ui-icon-help"
+						      },
+						      click:btnCancle
+						},{
+							text:'保存',
+							icons: {
+						        primary: "ui-icon-check"
+						      },
+						      click:btnOk
+						}
+			          ]
 	};
 	$("#dialog")
 		.dialog(opts)

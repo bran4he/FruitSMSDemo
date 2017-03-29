@@ -22,6 +22,7 @@ import com.fruit.sales.entity.FruitConfig;
 import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.entity.User;
 import com.fruit.sales.service.FruitConfigService;
+import com.fruit.sales.web.base.BaseController;
 
 @RequestMapping("/fruitConfig")
 @Controller

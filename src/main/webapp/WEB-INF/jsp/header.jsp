@@ -28,8 +28,20 @@
         	Assign管理
         	</a>
         </li>
-        <li><a href="#" role="menu">Order管理</a></li>
-        <li><a href="#" role="menu">AssignDetail管理</a></li>
+        <li>
+        	<a href="#" role="menu">
+        		Order管理
+        		<form action="<%=request.getContextPath()%>/order/index" method="get">
+        		</form>
+        	</a>
+        </li>
+        <li>
+        	<a href="#" role="menu">
+        		AssignDetail管理
+        		<form action="<%=request.getContextPath()%>/assignDetail/index" method="get">
+        		</form>
+        	</a>
+        </li>
         <li>
         	<a href="#" role="menu">
 	        	<form action="<%=request.getContextPath()%>/user/index" method="get">
@@ -47,7 +59,6 @@
 		            	订单状态参数
 	            	</a>
 	            </li>
-	            <li role="separator" class="divider"></li>
 	            <li>
 		            <a href="#" role="menu">
 			            <form action="<%=request.getContextPath()%>/pubConfig/index" method="get">

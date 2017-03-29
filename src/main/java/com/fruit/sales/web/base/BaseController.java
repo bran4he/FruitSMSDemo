@@ -1,4 +1,4 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.base;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface BaseController<T> {
 	
 	QueryResult<T> list(HttpServletRequest request);
 	
-	List<T> loadAll();
+//	List<T> loadAll();
 	
 	Result add(T obj);
 	
