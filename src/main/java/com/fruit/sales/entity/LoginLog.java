@@ -5,11 +5,20 @@ import java.util.Date;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fruit.sales.common.DateJsonDeserializer;
+import com.fruit.sales.common.DateJsonSerializer;
+
 public class LoginLog {
 
 	private String id;
 	private String userId;
+	
+	@JsonSerialize(using = DateJsonSerializer.class)
+	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date loginDate;
+	
 	private String loginIP;
 	
 	public LoginLog() {

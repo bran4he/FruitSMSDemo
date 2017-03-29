@@ -85,7 +85,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		Object[] args = this.setArgs(entity, SQL_INSERT);
 		int[] argTypes = this.setArgTypes(entity, SQL_INSERT);
 		
-		System.out.println("=============UPDATE===============");
+		System.out.println("=============SAVE===============");
 		System.out.println(sql);
 		System.out.println(Arrays.asList(args));
 		System.out.println(Arrays.toString(argTypes));
@@ -101,7 +101,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		Object[] args = this.setArgs(entity, SQL_UPDATE);
 		int[] argTypes = this.setArgTypes(entity, SQL_UPDATE);
 		
-		System.out.println("=============SAVE===============");
+		System.out.println("=============UPDATE===============");
 		System.out.println(sql);
 		System.out.println(Arrays.asList(args));
 		System.out.println(Arrays.toString(argTypes));

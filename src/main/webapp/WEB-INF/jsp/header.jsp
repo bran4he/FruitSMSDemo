@@ -21,8 +21,15 @@
 	      	水果配置
 	      	</a>
       	</li>
-        <li><a href="#" role="menu">主单管理</a></li>
-        <li><a href="#" role="menu">详单管理</a></li>
+        <li>
+        	<a href="#" role="menu">
+        	<form action="<%=request.getContextPath()%>/assign/index" method="get">
+        	</form>
+        	Assign管理
+        	</a>
+        </li>
+        <li><a href="#" role="menu">Order管理</a></li>
+        <li><a href="#" role="menu">AssignDetail管理</a></li>
         <li>
         	<a href="#" role="menu">
 	        	<form action="<%=request.getContextPath()%>/user/index" method="get">

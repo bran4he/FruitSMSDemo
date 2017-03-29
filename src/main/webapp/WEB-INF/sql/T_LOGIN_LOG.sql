@@ -17,8 +17,9 @@ select * from T_LOGIN_LOG;
 
 delete from T_LOGIN_LOG;
 
+show create table T_LOGIN_LOG;
 
 select max(id) from T_LOGIN_LOG;
 
 select log.*, u.username from T_LOGIN_LOG log join T_USER u
-	on log.userId = u.id order by log.id;
+	on log.userId = u.id order by log.id limit 1, 10;

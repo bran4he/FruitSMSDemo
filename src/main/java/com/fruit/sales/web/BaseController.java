@@ -9,6 +9,9 @@ import com.fruit.sales.dao.base.QueryResult;
 
 public interface BaseController<T> {
 
+	//规定命名，每个模块的首页
+	String index();
+	
 	QueryResult<T> list(HttpServletRequest request);
 	
 	List<T> loadAll();
