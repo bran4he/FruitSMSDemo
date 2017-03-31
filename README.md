@@ -45,9 +45,54 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 > 未完待续 user and business requirement...
 
-+ can Assign add new records? if can, the unit summary not equals the total form AssignDetail
-+ can AssignDetail be deleted? if can, then design function minus from Assign(check many rules)
-+ AssignDetail can add and update.
+## 接口plan
+
++ 提供号码是否存在及激活在Assign表里
++ 下订单接口
++ 我的订单查询接口，使用条件过滤
+
+
+
+### Assign
+
+>后台
+
++ 不允许add/update/delete
+
+>前台
+
++ 提供接口提供手机号码状态查询
++ 激活号码时更新status，下订单时减少unit，取消订单时增加unit
+
+### AssignDetail - 后台源数据控制
+
+>后台
+
++ 允许add
++ 不允许delte，写错数量时允许unit填负值进行对冲
++ 允许有条件的编辑：
+	+ 不允许编辑unit，只允许新建对冲
+	+ slavePhone允许编辑，新建是为真实，编辑时仍为真实；新建时虚拟，编辑时强制虚拟号码改为真实号码
+	+ isVirtual不允许编辑，新建时时真是号码，一直是真实；新建时是虚拟，第一次编辑置强制置为真实并且不允许改动
++ 所有的改动只允许按规定流程顺序执行，不能错乱或者回退信息流	
+
+>前台
+
+
+### Order - 前台消费数据控制
+
+>后台
+
++ 不允许add/edit/delete
++ 不允许更新订单 - 后台管理不负责更新订单的信息，全部由前台来操作
++ 提供两个按钮，支持批量选择，支持status更改'待派送' -> '派送中' -> '派送成功'
++ 订单状态参数的新建和修改不开放
+
+>前台
+
++ 提供必要的接口参数，给前台下订单使用(add接口)
++ 支持前台订单的取消（地址等信息错误重新下单）
++ 
 
 - - -
 
