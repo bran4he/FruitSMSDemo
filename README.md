@@ -45,6 +45,10 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 > 未完待续 user and business requirement...
 
++ can Assign add new records? if can, the unit summary not equals the total form AssignDetail
++ can AssignDetail be deleted? if can, then design function minus from Assign(check many rules)
++ AssignDetail can add and update.
+
 - - -
 
 # Demo Show

@@ -15,4 +15,8 @@ public interface AssignService {
 	boolean delete(Assign assign);
 	
 	Assign findById(String id);
+	
+	boolean hasSlavePhone(String phone);
+	
+	Assign findBySlavePhone(String phone);
 }

@@ -49,4 +49,13 @@ public class AssignServiceImpl implements AssignService{
 		return dao.findById(id);
 	}
 
+	@Override
+	public boolean hasSlavePhone(String phone){
+		return dao.existSlavePhone(phone);
+	}
+
+	@Override
+	public Assign findBySlavePhone(String phone) {
+		return dao.findByFiled("slavePhone", phone);
+	}
 }

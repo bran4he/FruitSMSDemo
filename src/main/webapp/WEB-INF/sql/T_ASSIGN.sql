@@ -2,12 +2,9 @@ drop table if exists T_ASSIGN;
 CREATE TABLE `T_ASSIGN` (
 `id` int(10) NOT NULL AUTO_INCREMENT, 
 
-`masterPhone` VARCHAR(100) ,
-`masterName` VARCHAR(100) ,
-
-`slavePhone` VARCHAR(100) ,
+`slavePhone` VARCHAR(100) ,	/*唯一索引*/
 `slaveName` VARCHAR(100) ,
-
+`isVirtual` tinyint(1),	/*是否是虚拟号码，0-No, 1-Yes*/
 `initialUnit` int(10) NOT NULL,
 `balanceUnit` int(10) NOT NULL,
 
@@ -24,20 +21,29 @@ CREATE TABLE `T_ASSIGN` (
 `updateDate` timestamp DEFAULT CURRENT_TIMESTAMP,
 `updateBy` VARCHAR(20) default 'admin',
 
-PRIMARY KEY(`id`)
+PRIMARY KEY(`id`),
+UNIQUE KEY `slaveKey` (`slavePhone`)
 );
 alter table T_ASSIGN AUTO_INCREMENT=1;
 
 insert into T_ASSIGN
 	values
-(null, '15687654523', 'master', '1452643725367' , 'slave', 
-	2, 2, 'xxxxxxxxx', 3, '2020-03-20', 
+(1, '15692132432' , 'slave', 0,
+	10, 10, 'xxxxxxxxx', 3, '2020-03-20', 
+	'remark', 'ext data', 
+	'2017-03-02', 'admin','2017-03-02', 'admin');
+
+insert into T_ASSIGN
+	values
+(2, '2' , 'slave', 1,
+	10, 10, 'xxxxxxxxx', 3, '2020-03-20', 
 	'remark', 'ext data', 
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 /*以上初始化和建库脚步*/
 
 select * from T_ASSIGN;
+
 
 
 

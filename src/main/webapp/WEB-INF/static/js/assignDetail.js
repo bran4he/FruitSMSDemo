@@ -1,6 +1,7 @@
 $(function(){
 	var colNames = [ 'ID', 
-	                 'assignId', 
+	                 'assignId',
+	                 'isVirtual',
 	                 'unitUpdate',
 	                 
 	                 'masterPhone', 
@@ -19,6 +20,7 @@ $(function(){
 		             {name : 'id',index : 'id'}, 
 		             
 		             {name : 'assignId',index : 'assignId'}, 
+		             {name : 'isVirtual',index : 'isVirtual'}, 
 		             {name : 'unitUpdate',index : 'unitUpdate'},
 		             
 		             {name : 'masterPhone',index : 'masterPhone'}, 

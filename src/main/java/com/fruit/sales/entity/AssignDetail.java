@@ -15,14 +15,16 @@ public class AssignDetail {
 
 	private String id;	
 	
-	private Integer assignId;
+	private String assignId;
 	private Integer unitUpdate;
 	
 	
 	private String masterPhone;
 	private String masterName;
+	
 	private String slavePhone;
 	private String slaveName;
+	private Integer isVirtual;
 	
 	private String remark;
 	
@@ -48,7 +50,8 @@ public class AssignDetail {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+//		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
 	public void setNewDefaultDateAndBy(){
@@ -77,13 +80,13 @@ public class AssignDetail {
 
 
 
-	public Integer getAssignId() {
+	public String getAssignId() {
 		return assignId;
 	}
 
 
 
-	public void setAssignId(Integer assignId) {
+	public void setAssignId(String assignId) {
 		this.assignId = assignId;
 	}
 
@@ -205,6 +208,18 @@ public class AssignDetail {
 
 	public void setUnitUpdate(Integer unitUpdate) {
 		this.unitUpdate = unitUpdate;
+	}
+
+
+
+	public Integer getIsVirtual() {
+		return isVirtual;
+	}
+
+
+
+	public void setIsVirtual(Integer isVirtual) {
+		this.isVirtual = isVirtual;
 	}
 	
 	

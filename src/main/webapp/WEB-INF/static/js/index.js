@@ -64,58 +64,88 @@ function formToJson(form){
 //编辑时触发【复制jqgrid内容到对话框】
 //setup datetime picker
 function setDialogData(rowData){
-	//input
-	$("#form input").each(function(idx, ele){
+	
+	$("#form input, textarea").each(function(idx, ele){
+		//input and remark
 		var name = $(ele).attr('name');
-		console.info(name);
 		if(name){
 			$(ele).val(rowData[name]);
 		}
-	});
-	//remark
-	$("#form textarea").each(function(idx, ele){
-		var name = $(ele).attr('name');
-		console.info(name);
-		if(name){
-			$(ele).val(rowData[name]);
-		}
-	});
-	//date/time/day picker
-	$("#form input").each(function(idx, ele){
-		var name = $(ele).attr('dateFlag');
-		console.info(name);
-		if(name){
+		
+		//date time picker
+		var dateFlag = $(ele).attr('dateFlag');
+		if(dateFlag){
 			$(ele).prop("readOnly", true)
 				.datetimepicker({
-//					changeMonth: true, 
-//					changeYear: true,
 					dateFormat: "yy-mm-dd",
 					timeFormat: "HH:mm:ss",
-					 showButtonPanel: true,
-					 showHour: true,
-					 showMinute: true,
-					 showSecond: true
+					showButtonPanel: true,
+					showHour: true,
+					showMinute: true,
+					showSecond: true
 				});
+		}
+		
+	});
+	
+	
+	//根据input初始化checkbox的状态
+	$("#form :checkbox").each(function(idx, ele){
+		console.info($(this).prev().val());
+		
+		if('1' == $(this).prev().val()){
+			$(this).prop('checked', true);
+			$(this).prev().val(1);
+		}else{
+			$(this).prop('checked', false);
+			$(this).prev().val(0);
 		}
 	});
 	
+	bindCheckBoxEvt();
 }
 
 //【清除对话框内容】，防止再次加载
 function cleanDialog(){
-	$("#form input").each(function(idx, ele){
+	$("#form input, textarea").each(function(idx, ele){
 		var name = $(ele).attr('name');
+		var type = $(ele).attr('type');
 		if(name){
-			$(ele).val('');
+			if(type == 'checkbox'){
+				$(ele).prop("checked", false);
+			}else{
+				$(ele).val('');
+			}
 		}
 	});
 }
 
+//初始化【新建对话框】
+function initAddDialog(){
+	//新建窗口时默认为非虚拟号，即input value=0
+	$("#form :checkbox").each(function(idx, ele){
+		$(this).prev().val(0);
+	});
+	
+	bindCheckBoxEvt();
+}
+
+//绑定checkbox的点击事件
+function bindCheckBoxEvt(){
+	
+	$("#form :checkbox").change(function(){
+		if($(this).prop("checked")){
+			$(this).prev().val(1);
+		}else{
+			$(this).prev().val(0);
+		}
+	});
+}
+
+
 //初始化【编辑对话框】
 function initUpdateDialog(rowData){
 	console.info(rowData);
-	console.info(rowData.id);
-	console.info(rowData.name);
 	
 	var opts = {
 			width: $("#dialog").attr('dialogWidth'),
@@ -155,6 +185,7 @@ function btnAddClick(){
 			width: $("#dialog").attr('dialogWidth'),
 			height: $("#dialog").attr('dialogHeight'),
 			modal: true,
+			open: initAddDialog,
 			close: cleanDialog,	//close auto remove input value
 			buttons: [
 			          {
@@ -348,10 +379,8 @@ function jqGridInit(colNames, colModel, caption){
 //				loadonce:true,
 				caption : caption //表格的标题名字
 			});
-	/*创建jqGrid的操作按钮容器*/
-	/*可以控制界面上增删改查的按钮是否显示*/
-	jQuery("#jqGrid")
-	.jqGrid('navGrid','#jqGridPager', 
+	
+	jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager', 
 		{
 		edit: false,
         add : false,
@@ -360,27 +389,41 @@ function jqGridInit(colNames, colModel, caption){
         refresh: false
         }
 	)
-	.jqGrid('navButtonAdd', '#jqGridPager',{
-		id:"add",
-		caption:"新建",
-		buttonicon:"ui-icon-plus",
-		onClickButton: btnAddClick,
-		position:"last"
-	})
-	.jqGrid('navButtonAdd', '#jqGridPager',{
-		id:"update",
-		caption:"编辑",
-		buttonicon:"ui-icon-pencil",
-		onClickButton: btnUpdateClick,
-		position:"last"
-	})
-	.jqGrid('navButtonAdd','#jqGridPager',{
-		id:"delete",
-		caption:"删除",   
-		buttonicon:"ui-icon-minus",   
-		onClickButton: btnDeleteClick,   
-		position:"last"  
-	})
+	/*创建jqGrid的操作按钮容器*/
+	/*可以控制界面上增删改查的按钮是否显示*/
+	if($("#jqGrid").attr("addCaption")){
+		jQuery("#jqGrid").jqGrid('navButtonAdd', '#jqGridPager',{
+			id:"add",
+			caption:$("#jqGrid").attr("addCaption"),
+			buttonicon:"ui-icon-plus",
+			onClickButton: btnAddClick,
+			position:"last"
+		})
+	}
+	
+
+	
+	if($("#jqGrid").attr("updateCaption")){
+		jQuery("#jqGrid").jqGrid('navButtonAdd', '#jqGridPager',{
+			id:"update",
+			caption:$("#jqGrid").attr("updateCaption"),
+			buttonicon:"ui-icon-pencil",
+			onClickButton: btnUpdateClick,
+			position:"last"
+		})
+	}
+	
+	if($("#jqGrid").attr("deleteCaption")){
+		jQuery("#jqGrid").jqGrid('navButtonAdd','#jqGridPager',{
+			id:"delete",
+			caption:$("#jqGrid").attr("deleteCaption"),   
+			buttonicon:"ui-icon-minus",   
+			onClickButton: btnDeleteClick,   
+			position:"last"  
+		})
+	}
+
+
 //	.jqGrid('navButtonAdd','#jqGridPager',{
 //		id:"refresh",
 //		caption:"刷新",   

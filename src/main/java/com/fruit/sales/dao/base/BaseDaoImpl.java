@@ -345,6 +345,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 					} else if (fieldType.equals("java.util.Date")) {
 //						argTypes[i] = Types.DATE;
 						argTypes[i] = Types.TIMESTAMP;
+					} else if (fieldType.equals("java.lang.Boolean")) {
+						argTypes[i] = Types.TINYINT;
 					}
 				}
 			} catch (Exception e) {
@@ -367,6 +369,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 					} else if (fieldType.equals("java.util.Date")) {
 //						tempArgTypes[i] = Types.DATE;
 						tempArgTypes[i] = Types.TIMESTAMP;
+					} else if (fieldType.equals("java.lang.Boolean")) {
+						argTypes[i] = Types.TINYINT;
 					}
 				}
 				System.arraycopy(tempArgTypes, 1, argTypes, 0,
@@ -503,6 +507,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		}
 		System.out.println("SQL=" + sql);
 		return jdbcTemplate.queryForObject(sql.toString(),Integer.class);
+	}
+
+	@Override
+	public T findByFiled(String filedName, String fileValue) {
+		String sql = "SELECT * FROM " + simpleName
+				+ " WHERE " + filedName + "=?";
+		RowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(entityClass);
+		return jdbcTemplate.query(sql, rowMapper, fileValue).get(0);
 	}
 
 

@@ -14,8 +14,11 @@
 	<jsp:include page="header.jsp" flush="true"/>
 
 	<div class="container">
-	    <table id="jqGrid" twidth="1170" theight="300"></table>
-	    <div id="jqGridPager"></div>
+	    <table id="jqGrid" twidth="1170" theight="300"
+	    addCaption="新建" updateCaption="编辑"
+	    >
+	    </table>
+    	<div id="jqGridPager"></div>
 	</div>
 	<jsp:include page="footer.jsp" flush="true"/> 
 	
@@ -36,25 +39,23 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">masterPhone</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="masterPhone">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">masterName</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="masterName">
-			    </div>
-			  </div>
-			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">slavePhone</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="slavePhone">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">slaveName</label>
+			    <label for="isVirtual" class="col-sm-2 control-label">isVirtual</label>
+			     <div class="checkbox">
+			     <label>
+					<input type="text" class="form-control" name="isVirtual" readonly="readonly">
+					<input type="checkbox">
+					如果是虚拟号码请务必勾选
+			     </label>
+				 </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="slaveName" class="col-sm-2 control-label">slaveName</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="slaveName">
 			    </div>
@@ -92,7 +93,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">remark</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="remark">
+			      <textarea class="form-control" rows="3" name="remark" ></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">

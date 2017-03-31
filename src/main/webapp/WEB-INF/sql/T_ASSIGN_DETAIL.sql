@@ -8,8 +8,10 @@ CREATE TABLE `T_ASSIGN_DETAIL` (
 `masterPhone` VARCHAR(100) ,
 `masterName` VARCHAR(100) ,
 
+
 `slavePhone` VARCHAR(100) ,
 `slaveName` VARCHAR(100) ,
+`isVirtual` tinyint(1),	/*是否是虚拟号码，0-No, 1-Yes*/
 
 `remark` VARCHAR(200),
 
@@ -25,9 +27,16 @@ alter table T_ASSIGN_DETAIL AUTO_INCREMENT=1;
 
 insert into T_ASSIGN_DETAIL
 	values
-(null, 1, 10,
-'15687654523', 'master', '1452643725367' , 'slave', 
+(1, 1, 10,
+'12345678901', 'master', '15692132432' , 'slave', 0,
 	'remark',
+	'2017-03-02', 'admin','2017-03-02', 'admin');
+
+insert into T_ASSIGN_DETAIL
+	values
+(2, 1, 10,
+'12345678901', 'master', '2' , 'slave', 1,
+	'虚拟号码',
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 /*以上初始化和建库脚步*/

@@ -15,9 +15,8 @@ public class Assign {
 
 	private String id;
 	
-	private String masterPhone;
-	private String masterName;
-	private String slavePhone;
+	private String slavePhone;//unique
+	private Integer isVirtual;
 	private String slaveName;
 	
 	private Integer initialUnit;
@@ -78,22 +77,6 @@ public class Assign {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getMasterPhone() {
-		return masterPhone;
-	}
-
-	public void setMasterPhone(String masterPhone) {
-		this.masterPhone = masterPhone;
-	}
-
-	public String getMasterName() {
-		return masterName;
-	}
-
-	public void setMasterName(String masterName) {
-		this.masterName = masterName;
 	}
 
 	public String getSlavePhone() {
@@ -199,6 +182,15 @@ public class Assign {
 	public void setUpdateBy(String updateBy) {
 		this.updateBy = updateBy;
 	}
+
+	public Integer getIsVirtual() {
+		return isVirtual;
+	}
+
+	public void setIsVirtual(Integer isVirtual) {
+		this.isVirtual = isVirtual;
+	}
+
 	
 	
 }
