@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.common.Result;
 import com.fruit.sales.dao.base.QueryParam;
@@ -23,7 +25,10 @@ import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.web.base.BaseController;
+import com.fruit.sales.web.integration.CusUserService;
+import com.fruit.sales.web.integration.common.UserConstant;
 import com.fruit.sales.weechat.RegisterStatus;
+import com.fruit.sales.weechat.RestultCode;
 import com.fruit.sales.weechat.ReturnResult;
 
 @RequestMapping("/assign")
@@ -34,6 +39,9 @@ public class AssignController implements BaseController<Assign> {
 	
 	@Autowired
 	private AssignService service;
+	
+	@Autowired
+	private CusUserService cusUserService;
 	
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
@@ -107,4 +115,26 @@ public class AssignController implements BaseController<Assign> {
 		return rr;
 	}
 
+	@RequestMapping(value="register/{phone}/{weechatOpenId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult registerUser(@PathVariable String phone, @PathVariable String weechatOpenId) throws JsonProcessingException{
+		logger.info("registerUser with phone:{} and weechatOpenId:{}", phone, weechatOpenId);
+		
+		ReturnResult rr = new ReturnResult();
+		
+		if(StringUtils.isNotEmpty(phone) && StringUtils.isNotEmpty(weechatOpenId)){
+			Assign assign = service.findBySlavePhone(phone);
+			if(null != assign){
+				rr = cusUserService.registerUser(assign, weechatOpenId);
+			}else{
+				//user not exists
+				rr.setCode(RestultCode.FAIL.toString());
+				rr.setValue(UserConstant.USER_NOT_EXISTS);
+			}
+			
+		}else{
+			rr.setCode(RestultCode.FAIL.toString());
+			rr.setValue(BusinessConstant.PARAM_NOT_CORRECT);
+		}
+		return rr;
+	}
 }

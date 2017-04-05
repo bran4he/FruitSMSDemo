@@ -19,6 +19,7 @@ import com.fruit.sales.entity.Order;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.service.FruitConfigService;
 import com.fruit.sales.service.OrderService;
+import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.weechat.RestultCode;
 import com.fruit.sales.weechat.ReturnResult;
 
@@ -50,14 +51,14 @@ public class UserOrderService {
 		//check the order date
 		if(fruitConfig.getMaxOrderDay().compareTo(new Date()) < 0){
 			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(BusinessConstant.EXCEED_MAX_ORDER_DATE);
+			rr.setValue(UserOrderConstant.EXCEED_MAX_ORDER_DATE);
 			return rr;
 		}
 		
 		//检查水果设置参数 max provide num - balance num
 		if(fruitConfig.getBalanceNum() < order.getOrderUnit()){
 			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(BusinessConstant.EXCEED_FRUIT_BALANCE);
+			rr.setValue(UserOrderConstant.EXCEED_FRUIT_BALANCE);
 			return rr;
 		}
 		
@@ -65,21 +66,21 @@ public class UserOrderService {
 		//检查水果设置参数max order num
 		if(fruitConfig.getMaxOrderNum() < order.getOrderUnit()){
 			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(BusinessConstant.EXCEED_MAX_ORDER_LIMIT);
+			rr.setValue(UserOrderConstant.EXCEED_MAX_ORDER_LIMIT);
 			return rr;
 		}
 		
 		//检查用户的库存
 		if(assign.getBalanceUnit() < order.getOrderUnit()){
 			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(BusinessConstant.BALANCE_NOT_ENOUGH);
+			rr.setValue(UserOrderConstant.BALANCE_NOT_ENOUGH);
 			return rr;
 		}
 		
 		//check assign balance unit
 		if(balanceUnitFromAssign < order.getOrderUnit()){
 			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(BusinessConstant.EXCEED_ASSIGN_BALANCE_UNIT);
+			rr.setValue(UserOrderConstant.EXCEED_ASSIGN_BALANCE_UNIT);
 			return rr;
 		}
 		
@@ -104,7 +105,7 @@ public class UserOrderService {
 		
 		//retrun message
 		rr.setCode(RestultCode.SUCCESS.toString());
-		rr.setValue(BusinessConstant.USER_ORDER_SUCCESS);
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
 		ObjectMapper mapper = new ObjectMapper();  
         String orderJson =  mapper.writeValueAsString(order);
 		rr.setMsg(orderJson);

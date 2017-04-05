@@ -6,11 +6,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +26,10 @@ import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.entity.Order;
 import com.fruit.sales.service.AssignService;
-import com.fruit.sales.service.FruitConfigService;
 import com.fruit.sales.service.OrderService;
 import com.fruit.sales.web.base.BaseController;
 import com.fruit.sales.web.integration.UserOrderService;
+import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.weechat.RestultCode;
 import com.fruit.sales.weechat.ReturnResult;
 
@@ -86,14 +86,20 @@ public class OrderController implements BaseController<Order>{
 		
 		ReturnResult rr = new ReturnResult();
 		
-		Assign assign = assinService.findByWeechatId(weechatId);
-		
-		if(null != assign){
-			rr = userOrderService.order(assign, order);
+		if(StringUtils.isNotEmpty(weechatId)){
+			Assign assign = assinService.findByWeechatId(weechatId);
+			
+			if(null != assign){
+				rr = userOrderService.order(assign, order);
+			}else{
+				//用户验证未通过
+				rr.setCode(RestultCode.FAIL.toString());
+				rr.setValue(UserOrderConstant.USER_NOT_AUTH);
+			}
+			
 		}else{
-			//用户验证未通过
 			rr.setCode(RestultCode.FAIL.toString());
-			rr.setValue(BusinessConstant.USER_NOT_AUTH);
+			rr.setValue(BusinessConstant.PARAM_NOT_CORRECT);
 		}
 		
 		return rr;

@@ -54,12 +54,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 ```
 URL: {web_root}/assign/validate/{phone}
 ```
-**sample**
-```
-GET  fruit/assign/validate/15692132432
-```
-
-Response:
+**Response:**
 ```
 {
   "code": "success",
@@ -67,7 +62,6 @@ Response:
   "msg": null
 }
 ```
-
 **value of return**
 ```
 	ACTIVE("active"), 
@@ -75,7 +69,52 @@ Response:
 	NA("NA");
 ```
 
+**sample**
+```
+GET  fruit/assign/validate/1588888888
+```
+
 - - -
+
+
+### 激活手机号码并关联存储weechatOpenId
+**Request:**
+```
+URL: {web_root}/assign/register/{phone}/{weechatOpenId}
+```
+
+**Response**
+```
+{
+  "code": "{code}",
+  "value": {status},
+  "msg": null
+}
+```
+
+**code**
+```
+	SUCCESS("success"), 
+	EXCEPTION("exception"), 
+	FAIL("fail");
+```
+
+**value**
+```
+PARAM_NOT_CORRECT: -1
+PROCESS_SUCCESS:0
+USER_NOT_EXISTS:1
+```
+
+**sample**
+```
+GET  fruit/assign/register/1588888888/QWERTYUIOP
+{
+  "code": "success",
+  "value": "0",
+  "msg": null
+}
+```
 
 ### 下订单接口
 **Request:**
@@ -151,7 +190,11 @@ Response:
 - - -
 
 
-+ 我的订单查询接口，使用条件过滤
+
+
+
+
+### 我的订单查询接口，使用条件过滤
 
 
 
