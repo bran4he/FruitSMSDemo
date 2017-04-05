@@ -49,7 +49,6 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 ### 提供号码是否存在及激活在Assign表里
 
-```
 **Request:**
 ```
 URL: {web_root}/assign/validate/{phone}
