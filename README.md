@@ -197,6 +197,16 @@ Response:
 ```
 POST: {web_root}/rest/order/query/{weechatId}/{status}
 ```
+**status**
+```
+	 ALL = "0";
+	 WAIT_FOR = "1";
+	 DELIVERYING = "2";
+	 DELIVERY_SUCCESS = "3";
+	 CUSTOMER_CANCLE = "4";
+	 DELIVERY_FAIL = "5";
+```
+
 **Response**
 ```
 {
@@ -204,6 +214,19 @@ POST: {web_root}/rest/order/query/{weechatId}/{status}
   "value": {value},
   "msg": {list of order}
 }
+
+**sample**
+Request:
+GET fruit/rest/order/query/QWERTYUIOP/0
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "[{\"id\":\"1\",\"statusId\":null,\"statusValue\":\"派送中\",\"assignId\":null,\"weecharOpenid\":\"QWERTYUIOP\",\"orderUnit\":5,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remark\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null},{\"id\":\"2\",\"statusId\":null,\"statusValue\":\"待派送\",\"assignId\":null,\"weecharOpenid\":\"QWERTYUIOP\",\"orderUnit\":1,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remakr\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
+}
+```
 
 
 ### Assign
@@ -214,7 +237,7 @@ POST: {web_root}/rest/order/query/{weechatId}/{status}
 
 >前台
 
-+ 提供接口提供手机号码状态查询
++ 提供接口提供手机号码状态查询 - done
 + 激活号码时更新status，下订单时减少unit，取消订单时增加unit
 
 ### AssignDetail - 后台管理人员控制源数据
@@ -245,7 +268,7 @@ POST: {web_root}/rest/order/query/{weechatId}/{status}
 
 + 提供必要的接口参数，给前台下订单使用(add接口)
 + 支持前台订单的取消（地址等信息错误重新下单）
-+ 
+
 
 - - -
 

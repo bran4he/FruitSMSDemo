@@ -21,14 +21,15 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	
 	public List<IOrderVO> iQueryUserOrder(String weechatId, String status){
 		
-		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_ORDER oo join T_ORDER_STATUS os join T_ASSIGN aa on oo.assignId = aa.id");
+		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id ");
 		
-		if(StringUtils.equalsIgnoreCase(OrderConstant.ALL, status)){
-			sql.append("on oo.statusId = os.id ");
-		}else{
-			sql.append("on oo.statusId = ").append(status).append(" ");
+		sql.append("WHERE weecharOpenid='").append(weechatId).append("' ");
+		
+		if(!StringUtils.equalsIgnoreCase(OrderConstant.ALL, status)){
+			sql.append("AND WHERE oo.statusId = ").append(status).append(" ");
 		}
-		sql.append("WHRE weecharOpenid=").append(weechatId).append(" ").append("order by updateDate ");
+		
+		sql.append("order by updateDate ");
 		
 		logger.info("iQueryUserOrder sql:\n{}", sql.toString());
 		
