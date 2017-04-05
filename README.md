@@ -47,6 +47,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 ## 接口plan
 
+
 ### 提供号码是否存在及激活在Assign表里
 
 **Request:**
@@ -61,6 +62,7 @@ URL: {web_root}/assign/validate/{phone}
   "msg": null
 }
 ```
+
 **value of return**
 ```
 	ACTIVE("active"), 
@@ -131,24 +133,26 @@ BODY:
 }
 
 ```
-**code of return**
+**code**
 ```
 	SUCCESS("success"), 
 	EXCEPTION("exception"), 
 	FAIL("fail");
 ```
 
-**value of return**
+**value**
 ```
-	public static final String USER_ORDER_SUCCESS = new String("0");
-	public static final String USER_NOT_AUTH = new String("1");
-	public static final String BALANCE_NOT_ENOUGH = new String("2");
-	public static final String EXCEED_MAX_ORDER_LIMIT = new String("3");
-	public static final String EXCEED_MAX_ORDER_DATE = new String("4");
-	public static final String EXCEED_ASSIGN_BALANCE_UNIT = new String("5");
-	public static final String EXCEED_FRUIT_BALANCE = new String("6");
+	PARAM_NOT_CORRECT = new String("-1");
+	PROCESS_SUCCESS = new String("0");
+	USER_NOT_AUTH = new String("1");
+	BALANCE_NOT_ENOUGH = new String("2");
+	EXCEED_MAX_ORDER_LIMIT = new String("3");
+	EXCEED_MAX_ORDER_DATE = new String("4");
+	EXCEED_ASSIGN_BALANCE_UNIT = new String("5");
+	EXCEED_FRUIT_BALANCE = new String("6");
 ```
-**msg of return**
+
+**msg**
 ```
 null
 order data(success)
