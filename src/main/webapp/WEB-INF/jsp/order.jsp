@@ -15,7 +15,7 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
-	    addCaption="新建" updateCaption="编辑" deleteCaption="删除"
+	    addCaption="新建" updateCaption="编辑"
 	    >
 	    </table>
 	    <div id="jqGridPager"></div>
@@ -48,6 +48,24 @@
 			    <label for="lastname" class="col-sm-2 control-label">assignId</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="assignId">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">fruitId</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="fruitId">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">fruitName</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="fruitName">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">orderUnit</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="orderUnit">
 			    </div>
 			  </div>
 			  <div class="form-group">

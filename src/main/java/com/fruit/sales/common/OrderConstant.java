@@ -8,10 +8,10 @@ public class OrderConstant {
 	3	用户取消
 	4	派送失败
 */	
-	private static final String WAIT_FOR = "1";
-	private static final String DELIVERYING = "2";
-	private static final String DELIVERY_SUCCESS = "3";
-	private static final String CUSTOMER_CANCLE = "4";
-	private static final String DELIVERY_FAIL = "5";
+	public static final String WAIT_FOR = "1";
+	public static final String DELIVERYING = "2";
+	public static final String DELIVERY_SUCCESS = "3";
+	public static final String CUSTOMER_CANCLE = "4";
+	public static final String DELIVERY_FAIL = "5";
 	
 }

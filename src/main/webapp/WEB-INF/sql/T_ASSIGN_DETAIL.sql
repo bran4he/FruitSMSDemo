@@ -13,6 +13,7 @@ CREATE TABLE `T_ASSIGN_DETAIL` (
 `slaveName` VARCHAR(100) ,
 `isVirtual` tinyint(1),	/*是否是虚拟号码，0-No, 1-Yes*/
 
+
 `remark` VARCHAR(200),
 
 `insertDate` timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -28,7 +29,7 @@ alter table T_ASSIGN_DETAIL AUTO_INCREMENT=1;
 insert into T_ASSIGN_DETAIL
 	values
 (1, 1, 10,
-'12345678901', 'master', '15692132432' , 'slave', 0,
+'12345678901', 'master', '15692132432' , 'slave', 0, 
 	'remark',
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 

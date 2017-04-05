@@ -514,7 +514,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		String sql = "SELECT * FROM " + simpleName
 				+ " WHERE " + filedName + "=?";
 		RowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(entityClass);
-		return jdbcTemplate.query(sql, rowMapper, fileValue).get(0);
+		List<T> lst = jdbcTemplate.query(sql, rowMapper, fileValue);
+		if(null != lst && lst.size()> 0){
+			return lst.get(0);
+		}
+		return null;
 	}
 
 

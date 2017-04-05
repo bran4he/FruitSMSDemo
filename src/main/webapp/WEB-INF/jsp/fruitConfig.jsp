@@ -69,6 +69,12 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">balanceNum</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="balanceNum" readonly="readonly">
+			    </div>
+			  </div>
+			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">maxProvNum</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="maxProvNum">

@@ -16,6 +16,7 @@ public class Assign {
 	private String id;
 	
 	private String slavePhone;//unique
+	private Integer isActive;
 	private Integer isVirtual;
 	private String slaveName;
 	
@@ -189,6 +190,14 @@ public class Assign {
 
 	public void setIsVirtual(Integer isVirtual) {
 		this.isVirtual = isVirtual;
+	}
+
+	public Integer getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
 	}
 
 	

@@ -58,4 +58,9 @@ public class AssignServiceImpl implements AssignService{
 	public Assign findBySlavePhone(String phone) {
 		return dao.findByFiled("slavePhone", phone);
 	}
+
+	@Override
+	public Assign findByWeechatId(String weechatId) {
+		return dao.findByFiled("weecharOpenid", weechatId);
+	}
 }

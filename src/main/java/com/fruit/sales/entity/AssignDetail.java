@@ -26,6 +26,7 @@ public class AssignDetail {
 	private String slaveName;
 	private Integer isVirtual;
 	
+	
 	private String remark;
 	
 	@JsonSerialize(using = DateJsonSerializer.class)
@@ -221,7 +222,6 @@ public class AssignDetail {
 	public void setIsVirtual(Integer isVirtual) {
 		this.isVirtual = isVirtual;
 	}
-	
-	
+
 	
 }

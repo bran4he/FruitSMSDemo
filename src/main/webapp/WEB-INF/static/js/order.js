@@ -2,6 +2,12 @@ $(function(){
 	var colNames = [ 'ID', 
 	                 'statusId', 
 	                 'assignId', 
+	                 'orderUnit', 
+	                 'fruitId', 
+	                 'fruitName', 
+	                 
+	                 
+	                 
 	                 'planDeliveryDate', 
 	                 'address', 
 	                 'contactName', 
@@ -25,6 +31,10 @@ $(function(){
 		             {name : 'id',index : 'id'}, 
 		             {name : 'statusId',index : 'statusId'}, 
 		             {name : 'assignId',index : 'assignId'}, 
+		             {name : 'orderUnit',index : 'orderUnit'}, 
+		             {name : 'fruitId',index : 'fruitId'}, 
+		             {name : 'fruitName',index : 'fruitName'}, 
+		             
 		             {name : 'planDeliveryDate',index : 'planDeliveryDate'}, 
 		             {name : 'address',index : 'address'}, 
 		             {name : 'contactName',index : 'contactName'}, 

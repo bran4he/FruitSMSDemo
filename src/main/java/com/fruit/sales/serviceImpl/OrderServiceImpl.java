@@ -1,5 +1,7 @@
 package com.fruit.sales.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +49,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order findById(String id) {
 		return dao.findById(id);
+	}
+
+	@Override
+	public List<Order> listAll() {
+		return dao.findAll();
 	}
 }

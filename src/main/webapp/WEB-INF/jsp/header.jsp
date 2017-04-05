@@ -30,15 +30,15 @@
         </li>
         <li>
         	<a href="#" role="menu">
-        		Order管理
-        		<form action="<%=request.getContextPath()%>/order/index" method="get">
+        		AssignDetail管理
+        		<form action="<%=request.getContextPath()%>/assignDetail/index" method="get">
         		</form>
         	</a>
         </li>
         <li>
         	<a href="#" role="menu">
-        		AssignDetail管理
-        		<form action="<%=request.getContextPath()%>/assignDetail/index" method="get">
+        		Order管理
+        		<form action="<%=request.getContextPath()%>/order/index" method="get">
         		</form>
         	</a>
         </li>
@@ -87,7 +87,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" role="menu">其他功能</a></li>
+            <li><a href="#" role="menu">TBD功能</a></li>
             <li role="separator" class="divider"></li>
             <li>
             <a href="#" role="menu">

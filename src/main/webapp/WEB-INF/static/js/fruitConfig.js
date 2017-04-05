@@ -1,5 +1,19 @@
 $(function(){
-	var colNames =[ '序列号', 'fruitName', 'fruitArea','fruitMonth', 'maxOrderDay', 'maxOrderNum', 'maxProvNum', 'remark','extendData', '新建日期','新建人', '更新日期', '更新人' ];
+	var colNames =[ '序列号', 
+	                'fruitName', 
+	                'fruitArea',
+	                'fruitMonth', 
+	                'maxOrderDay', 
+	                'maxOrderNum', 
+	                'maxProvNum', 
+	                'balanceNum', 
+	                
+	                'remark',
+	                'extendData', 
+	                '新建日期',
+	                '新建人', 
+	                '更新日期', 
+	                '更新人' ];
 	var colModel = [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
 		             {name : 'id',index : 'id'}, 
 		             {name : 'fruitName',index : 'fruitName'}, 
@@ -7,7 +21,9 @@ $(function(){
 		             {name : 'fruitMonth',index : 'fruitMonth'}, 
 		             {name : 'maxOrderDay',index : 'maxOrderDay'}, 
 		             {name : 'maxOrderNum',index : 'maxOrderNum'}, 
-		             {name : 'maxProvNum',index : 'maxProvNum'}, 
+		             {name : 'maxProvNum',index : 'maxProvNum'},
+		             {name : 'balanceNum',index : 'balanceNum'},
+		             
 		             {name : 'remark',index : 'remark'}, 
 		             {name : 'extendData',index : 'extendData'}, 
 		             

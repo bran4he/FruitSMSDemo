@@ -1,5 +1,6 @@
 package com.fruit.sales.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -11,14 +12,22 @@ import com.fruit.sales.common.DateJsonDeserializer;
 import com.fruit.sales.common.DateJsonSerializer;
 import com.fruit.sales.common.WebContextHolder;
 
-public class Order {
+public class Order{
 
 	private String id;
 	
 
-	private Integer statusId;
-	private Integer assignId;
-
+	//fk
+	private String statusId;
+	//fk
+	private String assignId;
+	
+	private Integer orderUnit;
+	
+	//fk
+	private String fruitId;
+	private String fruitName;
+	
 	@JsonSerialize(using = DateJsonSerializer.class)
 	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date planDeliveryDate;
@@ -62,8 +71,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
-//		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
+//		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 	
 	public void setNewDefaultDateAndBy(){
@@ -119,19 +128,19 @@ public class Order {
 		this.updateBy = updateBy;
 	}
 
-	public Integer getStatusId() {
+	public String getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(Integer statusId) {
+	public void setStatusId(String statusId) {
 		this.statusId = statusId;
 	}
 
-	public Integer getAssignId() {
+	public String getAssignId() {
 		return assignId;
 	}
 
-	public void setAssignId(Integer assignId) {
+	public void setAssignId(String assignId) {
 		this.assignId = assignId;
 	}
 
@@ -230,6 +239,29 @@ public class Order {
 	public void setExtendData(String extendData) {
 		this.extendData = extendData;
 	}
-	
+
+	public Integer getOrderUnit() {
+		return orderUnit;
+	}
+
+	public void setOrderUnit(Integer orderUnit) {
+		this.orderUnit = orderUnit;
+	}
+
+	public String getFruitId() {
+		return fruitId;
+	}
+
+	public void setFruitId(String fruitId) {
+		this.fruitId = fruitId;
+	}
+
+	public String getFruitName() {
+		return fruitName;
+	}
+
+	public void setFruitName(String fruitName) {
+		this.fruitName = fruitName;
+	}
 	
 }

@@ -61,6 +61,19 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 		
 		logger.info("AssignDetail request:\n ?", ad.toString());
 		
+		AssignDetail adNew = null;
+		adNew = handleActiveAdd(ad);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (adNew != null) {
+			data.put("data", adNew);
+			return new Result(true, data);
+		} else {
+			return new Result(false, data);
+		}
+	}
+	
+	private AssignDetail handleActiveAdd(AssignDetail ad){
 		String phone = ad.getSlavePhone();
 		AssignDetail adNew = null;
 		
@@ -86,16 +99,21 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 				//1st - save new record to a - this should be first
 				Assign assign = new Assign();
 				
+				//phone not active
+				assign.setIsActive(BusinessConstant.NOT_ACTIVE);
+				//update unit
 				assign.setBalanceUnit(ad.getUnitUpdate());
+				assign.setInitialUnit(ad.getUnitUpdate());
+				
 				//default
-				assign.setEffectivePeriod(1);
+				assign.setEffectivePeriod(BusinessConstant.ASSIGN_DEF_EFF_PERIOD);
 				//default
 				Date date = new Date(); 
-				DateTime dateTime = new DateTime(date).plusYears(1);
+				DateTime dateTime = new DateTime(date).plusYears(assign.getEffectivePeriod());
 				assign.setExpireDate(dateTime.toDate());
+				
 				//default
 				assign.setExtendData("");
-				assign.setInitialUnit(ad.getUnitUpdate());
 				assign.setIsVirtual(ad.getIsVirtual());
 				//将AD的信息组合起来加入到A的remark
 				assign.setRemark(BizTool.genAssRemarkFromAD(ad));
@@ -103,7 +121,7 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 				//add real phone
 				assign.setSlavePhone(phone);
 				//default
-				assign.setWeecharOpenid("NA");
+				assign.setWeecharOpenid(BusinessConstant.DEFAULT_WEECHAT_ID);
 				
 				Assign assignNew = assignService.add(assign);
 				
@@ -119,19 +137,22 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 			}else if(BusinessConstant.IS_VIRTUAL.equals(ad.getIsVirtual())){
 				//1st - save new record to a - this should be first
 				Assign assign = new Assign();
+				
 				assign.setBalanceUnit(ad.getUnitUpdate());
+				assign.setInitialUnit(ad.getUnitUpdate());
 				
 				//default
-				assign.setEffectivePeriod(1);
+				assign.setEffectivePeriod(BusinessConstant.ASSIGN_DEF_EFF_PERIOD);
 				//default
 				Date date = new Date(); 
-				DateTime dateTime = new DateTime(date).plusYears(1);
+				DateTime dateTime = new DateTime(date).plusYears(assign.getEffectivePeriod());
 				assign.setExpireDate(dateTime.toDate());
 				//default
 				assign.setExtendData("");
 				
-				assign.setInitialUnit(ad.getUnitUpdate());
 				assign.setIsVirtual(ad.getIsVirtual());
+				//phone not active
+				assign.setIsActive(BusinessConstant.NOT_ACTIVE);
 				
 				//将AD的信息组合起来加入到A的remark
 				assign.setRemark(BizTool.genAssRemarkFromAD(ad));
@@ -140,7 +161,7 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 				//temp data
 				assign.setSlavePhone("tempPhoneNo");
 				//default
-				assign.setWeecharOpenid("NA");
+				assign.setWeecharOpenid(BusinessConstant.DEFAULT_WEECHAT_ID);
 				
 				Assign assignNew = assignService.add(assign);
 				
@@ -160,36 +181,31 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 			}
 		}
 		
-		
-		Map<String, Object> data = new HashMap<String, Object>();
-		if (adNew != null) {
-			data.put("data", adNew);
-			return new Result(true, data);
-		} else {
-			return new Result(false, data);
-		}
+		return adNew;
 	}
-
+	
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id) {
-		AssignDetail u = service.findById(id);
-		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = service.delete(u);
-		if (flag) {
-			data.put("data", u);
-			return new Result(true, data);
-		}
-		return new Result(flag, data);
+//		AssignDetail u = service.findById(id);
+//		Map<String, Object> data = new HashMap<String, Object>();
+//		boolean flag = service.delete(u);
+//		if (flag) {
+//			data.put("data", u);
+//			return new Result(true, data);
+//		}
+//		return new Result(flag, data);
+		return null;
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public @ResponseBody Result update(@RequestBody AssignDetail u) {
-		boolean flag = service.update(u);
-		Map<String, Object> data = new HashMap<String, Object>();
-		if (flag) {
-			data.put("data", service.findById(u.getId()));
-		}
-		return new Result(flag, data);
+//		boolean flag = service.update(u);
+//		Map<String, Object> data = new HashMap<String, Object>();
+//		if (flag) {
+//			data.put("data", service.findById(u.getId()));
+//		}
+//		return new Result(flag, data);
+		return null;
 	}
 
 }

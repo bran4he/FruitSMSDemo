@@ -19,4 +19,6 @@ public interface FruitConfigService {
 	boolean delete(FruitConfig fruitConfig);
 	
 	FruitConfig findById(String id);
+	
+	
 }

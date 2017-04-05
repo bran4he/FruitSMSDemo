@@ -47,8 +47,110 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 ## 接口plan
 
-+ 提供号码是否存在及激活在Assign表里
-+ 下订单接口
+### 提供号码是否存在及激活在Assign表里
+
+```
+**Request:**
+```
+URL: {web_root}/assign/validate/{phone}
+```
+**sample**
+```
+GET  fruit/assign/validate/15692132432
+```
+
+Response:
+```
+{
+  "code": "success",
+  "value": {status},
+  "msg": null
+}
+```
+
+**value of return**
+```
+	ACTIVE("active"), 
+	NOTACTIVE("notactive"), 
+	NA("NA");
+```
+
+- - -
+
+### 下订单接口
+**Request:**
+```
+POST: {web_root}/order/userOrder/{weechatOpenID}
+BODY:
+{JSON DATA}
+```
+**Response**
+```
+{
+  "code": null,
+  "value": null,
+  "msg": null
+}
+
+```
+**code of return**
+```
+	SUCCESS("success"), 
+	EXCEPTION("exception"), 
+	FAIL("fail");
+```
+
+**value of return**
+```
+	public static final String USER_ORDER_SUCCESS = new String("0");
+	public static final String USER_NOT_AUTH = new String("1");
+	public static final String BALANCE_NOT_ENOUGH = new String("2");
+	public static final String EXCEED_MAX_ORDER_LIMIT = new String("3");
+	public static final String EXCEED_MAX_ORDER_DATE = new String("4");
+	public static final String EXCEED_ASSIGN_BALANCE_UNIT = new String("5");
+	public static final String EXCEED_FRUIT_BALANCE = new String("6");
+```
+**msg of return**
+```
+null
+order data(success)
+```
+
+**sample**
+```
+POST  fruit/order/userOrder/QWERTYUIOP
+BODY 
+  {
+    "fruitId": 1,
+    "fruitName": "apple0",
+    "orderUnit": 1,
+    "address": "中国上海市淞沪路270号创智天地广场3号楼",
+    "contactName": "王小二",
+    "contactPhone": "15888888888",
+    "remark":"remakr"
+  }
+```
+
+Response:
+```
+//success
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "{\"id\":\"2\",\"statusId\":\"1\",\"assignId\":\"1\",\"orderUnit\":1,\"fruitId\":\"1\",\"fruitName\":\"apple0\",\"planDeliveryDate\":\"2017-04-12 14:50:28\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":\"2017-04-12 14:50:28\",\"deliveryBy\":\"DeliveryBy\",\"deliveryRemark\":\"DeliveryRemark\",\"finishDate\":\"2017-04-12 14:50:28\",\"finishBy\":\"FinishBy\",\"finishRemark\":\"FinishRemark\",\"remark\":\"remakr\",\"extendData\":\"extdata\",\"insertDate\":\"2017-04-05 14:50:28\",\"updateDate\":\"2017-04-05 14:50:28\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}"
+}
+
+//fail
+{
+  "code": "EXCEPTION",
+  "value": "6",
+  "msg": null
+}
+```
+
+- - -
+
+
 + 我的订单查询接口，使用条件过滤
 
 
@@ -64,7 +166,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 + 提供接口提供手机号码状态查询
 + 激活号码时更新status，下订单时减少unit，取消订单时增加unit
 
-### AssignDetail - 后台源数据控制
+### AssignDetail - 后台管理人员控制源数据
 
 >后台
 
@@ -74,7 +176,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 	+ 不允许编辑unit，只允许新建对冲
 	+ slavePhone允许编辑，新建是为真实，编辑时仍为真实；新建时虚拟，编辑时强制虚拟号码改为真实号码
 	+ isVirtual不允许编辑，新建时时真是号码，一直是真实；新建时是虚拟，第一次编辑置强制置为真实并且不允许改动
-+ 所有的改动只允许按规定流程顺序执行，不能错乱或者回退信息流	
++ 所有的改动只允许按规定流程顺序执行，不能错乱或者回退信息流
 
 >前台
 

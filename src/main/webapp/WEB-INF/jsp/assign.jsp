@@ -15,21 +15,18 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
-	    addCaption="新建" updateCaption="编辑"
 	    >
 	    </table>
     	<div id="jqGridPager"></div>
 	</div>
 	<jsp:include page="footer.jsp" flush="true"/> 
 	
-
-
+<!-- 
 	<div id="dialog" title="水果分配信息" dialogWidth="780" dialogHeight="490">
 	
-	<!-- 面板框 -->
 	<div class="panel panel-default">
 	    <div class="panel-body">
-			<!-- form显示所有信息 -->
+	    
 		  <form class="form-horizontal" role="form" id="form" 
 		  	addAction="add" updateAction="update" deleteAction="delete">
 			  <div class="form-group">
@@ -113,12 +110,12 @@
 			</form>
 	    
 	    </div>
-	    <!-- 
-    	<div class="panel-footer">面板脚注</div>
-	     -->
 	</div>
 		
 	</div>
+
+ -->
+
 
 </body>
 </html>
