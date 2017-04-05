@@ -49,3 +49,10 @@ insert into T_ORDER
 /*以上初始化和建库脚步*/
 
 select * from T_ORDER;
+
+select oo.*, os.name as statusValue, aa.weecharOpenid as weecharOpenid
+	from T_ORDER oo 
+	join T_ORDER_STATUS os on oo.statusId = os.id 
+	join T_ASSIGN aa on oo.assignId = aa.id
+where weecharOpenid = 'QWERTYUIOP'
+order by updateDate;

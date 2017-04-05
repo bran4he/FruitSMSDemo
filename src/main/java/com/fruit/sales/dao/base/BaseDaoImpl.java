@@ -53,6 +53,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	 */
 	@Autowired
     private JdbcTemplate jdbcTemplate;
+	
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
 
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl() {

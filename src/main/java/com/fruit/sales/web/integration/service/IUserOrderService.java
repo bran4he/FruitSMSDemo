@@ -1,6 +1,7 @@
-package com.fruit.sales.web.integration;
+package com.fruit.sales.web.integration.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -13,20 +14,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.common.OrderConstant;
+import com.fruit.sales.dao.OrderDao;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.entity.FruitConfig;
 import com.fruit.sales.entity.Order;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.service.FruitConfigService;
 import com.fruit.sales.service.OrderService;
+import com.fruit.sales.vo.IOrderVO;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.weechat.RestultCode;
 import com.fruit.sales.weechat.ReturnResult;
 
 @Service
-public class UserOrderService {
+public class IUserOrderService {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserOrderService.class);
+	private static final Logger logger = LoggerFactory.getLogger(IUserOrderService.class);
 	
 	@Autowired
 	private OrderService service;
@@ -36,6 +39,38 @@ public class UserOrderService {
 	
 	@Autowired
 	private FruitConfigService fruitConfigService;
+	
+	@Autowired
+	private OrderDao orderDao;
+	
+	public ReturnResult queryUserOrder(String weechatId, String status) throws JsonProcessingException{
+		ReturnResult rr = new ReturnResult();
+		
+		List<IOrderVO> orderLst = orderDao.iQueryUserOrder(weechatId, status);
+		ObjectMapper mapper = new ObjectMapper();  
+        String orderJson =  mapper.writeValueAsString(orderLst);
+		rr.setMsg(orderJson);
+		
+		rr.setCode(RestultCode.SUCCESS.toString());
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+		
+		
+		return rr;
+	}
+	
+	
+
+	
+	private void setDefaultOrderParams(Order order){
+		order.setDeliveryDate(new DateTime().plusDays(7).toDate());
+		order.setDeliveryBy("DeliveryBy");
+		order.setDeliveryRemark("DeliveryRemark");
+		order.setFinishDate(new DateTime().plusDays(7).toDate());
+		order.setFinishBy("FinishBy");
+		order.setFinishRemark("FinishRemark");
+		order.setExtendData("extdata");
+	}
+	
 	
 	@Transactional
 	public ReturnResult order(Assign assign, Order order) throws JsonProcessingException{
@@ -112,16 +147,6 @@ public class UserOrderService {
 		
 		return rr;
 	
-	}
-	
-	private void setDefaultOrderParams(Order order){
-		order.setDeliveryDate(new DateTime().plusDays(7).toDate());
-		order.setDeliveryBy("DeliveryBy");
-		order.setDeliveryRemark("DeliveryRemark");
-		order.setFinishDate(new DateTime().plusDays(7).toDate());
-		order.setFinishBy("FinishBy");
-		order.setFinishRemark("FinishRemark");
-		order.setExtendData("extdata");
 	}
 	
 }

@@ -52,7 +52,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 **Request:**
 ```
-URL: {web_root}/assign/validate/{phone}
+URL: {web_root}/rest/user/validate/{phone}
 ```
 **Response:**
 ```
@@ -72,7 +72,7 @@ URL: {web_root}/assign/validate/{phone}
 
 **sample**
 ```
-GET  fruit/assign/validate/1588888888
+GET  fruit/rest/user/validate/1588888888
 ```
 
 - - -
@@ -81,7 +81,7 @@ GET  fruit/assign/validate/1588888888
 ### 激活手机号码并关联存储weechatOpenId
 **Request:**
 ```
-URL: {web_root}/assign/register/{phone}/{weechatOpenId}
+URL: {web_root}/rest/user/register/{phone}/{weechatOpenId}
 ```
 
 **Response**
@@ -109,7 +109,7 @@ USER_NOT_EXISTS:1
 
 **sample**
 ```
-GET  fruit/assign/register/1588888888/QWERTYUIOP
+GET  fruit/rest/user/register/1588888888/QWERTYUIOP
 {
   "code": "success",
   "value": "0",
@@ -120,7 +120,7 @@ GET  fruit/assign/register/1588888888/QWERTYUIOP
 ### 下订单接口
 **Request:**
 ```
-POST: {web_root}/order/userOrder/{weechatOpenID}
+POST: {web_root}/rest/order/userOrder/{weechatOpenID}
 BODY:
 {JSON DATA}
 ```
@@ -192,13 +192,18 @@ Response:
 
 - - -
 
-
-
-
-
-
 ### 我的订单查询接口，使用条件过滤
-
+**Request:**
+```
+POST: {web_root}/rest/order/query/{weechatId}/{status}
+```
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": {list of order}
+}
 
 
 ### Assign

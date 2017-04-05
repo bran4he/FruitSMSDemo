@@ -1,4 +1,4 @@
-package com.fruit.sales.web.integration;
+package com.fruit.sales.web.integration.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import com.fruit.sales.weechat.RestultCode;
 import com.fruit.sales.weechat.ReturnResult;
 
 @Service
-public class CusUserService {
+public class IUserService {
 
 	@Autowired
 	private AssignService assignService;

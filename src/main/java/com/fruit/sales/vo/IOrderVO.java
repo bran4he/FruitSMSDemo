@@ -1,4 +1,4 @@
-package com.fruit.sales.entity;
+package com.fruit.sales.vo;
 
 import java.util.Date;
 
@@ -11,15 +11,20 @@ import com.fruit.sales.common.DateJsonDeserializer;
 import com.fruit.sales.common.DateJsonSerializer;
 import com.fruit.sales.common.WebContextHolder;
 
-public class Order{
+public class IOrderVO {
+
 
 	private String id;
 	
 
 	//fk
 	private String statusId;
+	private String statusValue;
+	
 	//fk
 	private String assignId;
+	private String weecharOpenid;
+	
 	
 	private Integer orderUnit;
 	
@@ -64,8 +69,10 @@ public class Order{
 	
 	
 	
-	public Order() {
+
+	public IOrderVO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -262,5 +269,21 @@ public class Order{
 	public void setFruitName(String fruitName) {
 		this.fruitName = fruitName;
 	}
-	
+
+	public String getStatusValue() {
+		return statusValue;
+	}
+
+	public void setStatusValue(String statusValue) {
+		this.statusValue = statusValue;
+	}
+
+	public String getWeecharOpenid() {
+		return weecharOpenid;
+	}
+
+	public void setWeecharOpenid(String weecharOpenid) {
+		this.weecharOpenid = weecharOpenid;
+	}
+
 }
