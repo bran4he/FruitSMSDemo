@@ -39,6 +39,7 @@ public class IUserController {
 		logger.info("validate phone and get assign:\n{}", assign);
 		
 		ReturnResult rr = new ReturnResult();
+		
 		if(assign != null){
 			if(BusinessConstant.IS_ACTIVE.equals(assign.getIsActive())){
 				rr.setValue(RegisterStatus.ACTIVE.toString());

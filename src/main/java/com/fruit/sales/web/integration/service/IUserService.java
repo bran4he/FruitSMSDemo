@@ -23,6 +23,7 @@ public class IUserService {
 		
 		ReturnResult rr = new ReturnResult();
 		assign.setWeecharOpenid(weecharOpenid);
+		assign.setIsActive(BusinessConstant.IS_ACTIVE);		//set active
 		assignService.update(assign);
 		
 		rr.setCode(RestultCode.SUCCESS.toString());

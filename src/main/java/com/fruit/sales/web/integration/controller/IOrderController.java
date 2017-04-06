@@ -38,6 +38,24 @@ public class IOrderController {
 	private IUserService iUserService;
 	
 	
+	@RequestMapping(value="cancleOrder/{orderId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult cancleOrder(@PathVariable String orderId) throws JsonProcessingException{
+		
+		logger.info("cancleOrder, weechatId:{} and orderId:{}", orderId);
+		ReturnResult rr = new ReturnResult();
+		
+		if(StringUtils.isNotEmpty(orderId)){
+			rr = iUserOrderService.cancleUserOrder(orderId);
+			
+		}else{
+			rr.setCode(RestultCode.FAIL.toString());
+			rr.setValue(BusinessConstant.PARAM_NOT_CORRECT);
+		}
+		
+		return rr;
+	}
+	
+	
 	@RequestMapping(value="query/{weechatId}/{status}", method = RequestMethod.GET)
 	public @ResponseBody ReturnResult queryOrder(@PathVariable String weechatId, @PathVariable String status) throws JsonProcessingException{
 		logger.info("queryOrder, weechatId:{} and status:{}", weechatId, status);

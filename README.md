@@ -32,6 +32,11 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 13. add ASSIGN function from back-end and front-end - 20170329
 14. add ASSIGN_DETAIL function from back-end and front-end - 20170329
 15. add jquery-ui datepicker and jQuery-Timepicker-Addon for pick up date and time - 20170329
+16. add api of phone register - 20170405
+17. add api of order - 20170405
+18. add api of validate phone - 20170405
+19. add api for user cancle order - 20170406
+
 - - - 
 
 + ~~Jqgrid调用同一增删改接口 js和前端控制研究和设计~~ -  done #10
@@ -227,7 +232,36 @@ Response:
   "msg": "[{\"id\":\"1\",\"statusId\":null,\"statusValue\":\"派送中\",\"assignId\":null,\"weecharOpenid\":\"QWERTYUIOP\",\"orderUnit\":5,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remark\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null},{\"id\":\"2\",\"statusId\":null,\"statusValue\":\"待派送\",\"assignId\":null,\"weecharOpenid\":\"QWERTYUIOP\",\"orderUnit\":1,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remakr\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
 }
 ```
+- - -
 
+### 取消订单接口
+**Request:**
+```
+GET: {web_root}/rest/order/cancleOrder/{orderId}
+```
+
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": {JSON of order if success}
+}
+
+**sample**
+Request:
+GET fruit/rest/order/cancleOrder/2
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "{\"id\":\"2\",\"statusId\":\"4\",\"assignId\":\"1\",\"orderUnit\":1,\"fruitId\":\"1\",\"fruitName\":\"apple0\",\"planDeliveryDate\":\"2017-04-12 14:50:28\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":\"2017-04-12 14:50:28\",\"deliveryBy\":\"DeliveryBy\",\"deliveryRemark\":\"DeliveryRemark\",\"finishDate\":\"2017-04-12 14:50:28\",\"finishBy\":\"FinishBy\",\"finishRemark\":\"FinishRemark\",\"remark\":\"remakr\",\"extendData\":\"extdata\",\"insertDate\":\"2017-04-05 14:50:28\",\"updateDate\":\"2017-04-06 09:47:11\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}"
+}
+```
+
+- - -
 
 ### Assign
 
@@ -238,7 +272,9 @@ Response:
 >前台
 
 + 提供接口提供手机号码状态查询 - done
-+ 激活号码时更新status，下订单时减少unit，取消订单时增加unit
++ 激活号码时更新status - done
++ 下订单时减少unit - done
++ 取消订单时增加unit - done
 
 ### AssignDetail - 后台管理人员控制源数据
 

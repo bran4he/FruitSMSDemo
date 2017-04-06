@@ -6,7 +6,7 @@ public class BusinessConstant {
 	public static final String MAX_ORDER_TO_DAY = "ORDER_DAY_TO";
 	public static final String MAX_TEST_PARAM = "TEST_PARAM";
 	
-	//in assign and assgin detail, salve phone no is or not virtual
+	//assign, salve phone no is or not virtual
 	public static final Integer IS_VIRTUAL = new Integer(1);
 	public static final Integer NOT_VIRTUAL = new Integer(0);
 	

@@ -26,7 +26,7 @@ public class OrderDao extends BaseDaoImpl<Order>{
 		sql.append("WHERE weecharOpenid='").append(weechatId).append("' ");
 		
 		if(!StringUtils.equalsIgnoreCase(OrderConstant.ALL, status)){
-			sql.append("AND WHERE oo.statusId = ").append(status).append(" ");
+			sql.append("AND oo.statusId = ").append(status).append(" ");
 		}
 		
 		sql.append("order by updateDate ");
@@ -43,6 +43,7 @@ public class OrderDao extends BaseDaoImpl<Order>{
 			iOrderVO.setContactPhone(resultSet.getString("contactPhone"));
 			iOrderVO.setRemark(resultSet.getString("remark"));
 			
+			iOrderVO.setStatusId(resultSet.getString("statusId"));
 			iOrderVO.setStatusValue(resultSet.getString("statusValue"));
 			iOrderVO.setWeecharOpenid(resultSet.getString("weecharOpenid"));
 			

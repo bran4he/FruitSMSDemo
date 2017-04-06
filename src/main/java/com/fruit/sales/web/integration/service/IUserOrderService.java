@@ -43,6 +43,32 @@ public class IUserOrderService {
 	@Autowired
 	private OrderDao orderDao;
 	
+	@Autowired
+	private OrderService orderService;
+	
+	@Transactional
+	public ReturnResult cancleUserOrder(String orderId) throws JsonProcessingException{
+		ReturnResult rr = new ReturnResult();
+		
+		Order order = orderService.findById(orderId);
+		order.setStatusId(OrderConstant.CUSTOMER_CANCLE);
+		orderService.update(order);
+		
+		int orderUnit = order.getOrderUnit();
+		
+		Assign assign = assinService.findById(order.getAssignId());
+		assign.setBalanceUnit(assign.getBalanceUnit() + orderUnit);
+		assinService.update(assign);
+		
+		rr.setCode(RestultCode.SUCCESS.toString());
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+		ObjectMapper mapper = new ObjectMapper();  
+        String orderJson =  mapper.writeValueAsString(order);
+		rr.setMsg(orderJson);
+		
+		return rr;
+	}
+	
 	public ReturnResult queryUserOrder(String weechatId, String status) throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
 		
@@ -53,7 +79,6 @@ public class IUserOrderService {
 		
 		rr.setCode(RestultCode.SUCCESS.toString());
 		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
-		
 		
 		return rr;
 	}
@@ -78,7 +103,8 @@ public class IUserOrderService {
 		ReturnResult rr = new ReturnResult();
 		
 		FruitConfig fruitConfig = fruitConfigService.findById(order.getFruitId());
-		int balanceUnitFromFruit = fruitConfig.getBalanceNum();
+		//TODO
+//		int balanceUnitFromFruit = fruitConfig.getBalanceNum();
 		
 		int balanceUnitFromAssign = assign.getBalanceUnit();
 		
@@ -91,11 +117,12 @@ public class IUserOrderService {
 		}
 		
 		//检查水果设置参数 max provide num - balance num
-		if(fruitConfig.getBalanceNum() < order.getOrderUnit()){
-			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(UserOrderConstant.EXCEED_FRUIT_BALANCE);
-			return rr;
-		}
+		//TODO wait for new requirements
+//		if(fruitConfig.getBalanceNum() < order.getOrderUnit()){
+//			rr.setCode(RestultCode.EXCEPTION.toString());
+//			rr.setValue(UserOrderConstant.EXCEED_FRUIT_BALANCE);
+//			return rr;
+//		}
 		
 		
 		//检查水果设置参数max order num
@@ -124,8 +151,9 @@ public class IUserOrderService {
 		assinService.update(assign);
 		
 		//update fruitConfig
-		fruitConfig.setBalanceNum(balanceUnitFromFruit - order.getOrderUnit());
-		fruitConfigService.update(fruitConfig);
+		//TODO 
+//		fruitConfig.setBalanceNum(balanceUnitFromFruit - order.getOrderUnit());
+//		fruitConfigService.update(fruitConfig);
 		
 		//save order
 		order.setAssignId(assign.getId());
