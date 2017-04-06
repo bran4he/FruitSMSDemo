@@ -21,4 +21,5 @@ public interface AssignService {
 	Assign findBySlavePhone(String phone);
 	
 	Assign findByWeechatId(String weechatId);
+	
 }

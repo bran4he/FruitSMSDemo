@@ -50,6 +50,16 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 > 未完待续 user and business requirement...
 
+## 微信第三方接口的安全性设计
+方案1：AOP
+方案2：Interceptor
+
+说明：
+1. 选择方案2，可以方便的自定义拦截路径，不需要在每一个api上加上注解，直接通过xml配置即可。
+2. rest/user/register/用户注册激活请求不需要认证
+2. 其他请求需要在HTTP请求header上加上Auth属性，属性值为当前weechatOpenId
+
+
 ## 接口plan
 
 

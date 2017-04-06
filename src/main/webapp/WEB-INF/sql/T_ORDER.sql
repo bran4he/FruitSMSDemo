@@ -58,6 +58,4 @@ WHERE weecharOpenid = 'QWERTYUIOP'
 AND oo.statusId = 1
 order by updateDate;
 
-
-
-select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id WHERE weecharOpenid=`QWERTYUIOP` order by updateDate; 
+select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id WHERE weecharOpenid='QWERTYUIOP' AND  oo.statusId = 2 order by updateDate;
