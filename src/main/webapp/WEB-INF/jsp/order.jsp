@@ -15,11 +15,19 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
-	    addCaption="新建" updateCaption="编辑"
+	    multiselect="true" mutiUpdateUrl="mutiUpdate"
 	    >
 	    </table>
 	    <div id="jqGridPager"></div>
+	    
+	    <br>
+	    <div id="quickOpt" style="float: right">
+		<button type="button" class="btn btn-primary" statusValue="2">一键"派送中"</button>
+		<button type="button" class="btn btn-success" statusValue="3">一键"派送成功"</button>
+	    </div>
 	</div>
+	
+	
 	<jsp:include page="footer.jsp" flush="true"/> 
 	
 

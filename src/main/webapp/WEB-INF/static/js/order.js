@@ -58,6 +58,55 @@ $(function(){
 	//页面加载完成之后执行
 	jqGridInit(colNames, colModel, caption);
 	$("#dialog").dialog({ autoOpen: false });
+	
+	//快速操作
+	$("#quickOpt button").on('click', function(){
+//		console.info($(this).attr('statusValue'));
+		var rows = $("#jqGrid").jqGrid('getGridParam','selarrrow');
+		console.info(rows);
+		console.info(rows.length);
+		var param;
+		if(rows.length == 0){
+			myInformNoty('请至少选择一行数据');
+		}else{
+			var ids ='';
+			for(var s in rows){
+				ids = ids + s +",";
+			}
+			param = ids.substring(0, ids.length -1);
+			console.info("ids:" + param);
+			console.info("status:" + $(this).attr('statusValue'));
+			
+			//request
+		    $.ajax({
+		    	type: "POST",
+		    	url:  $("#jqGrid").attr('mutiUpdateUrl'),
+		    	data: {
+		    		"ids": param,
+		    		"status":$(this).attr('statusValue'),
+		    	},
+		    	contentType: 'application/json',
+		    	dataType: 'json',
+		        success: function(data) {
+		        	console.log(data);
+		        	if(data.result){
+		        		jQuery("#jqGrid").trigger("reloadGrid");
+		        		var msg = '更新成功,选择'+data.requestCount+'条更新'+data.updateCount+'条';
+		    			myNoty(msg, 'success', 1500);
+		        	}else{
+		        		var msg = '更新失败,选择'+data.requestCount+'条更新'+data.updateCount+'条';
+		        		myNoty("更新失败", 'error', 1500);
+		        	}
+		        },
+		        error: function(xhr) {
+		        	myNoty('系统异常, 请联系管理员', 'error', 3000);
+		        } 
+		    });
+			
+		}
+	});
+	
+	
 });
 
 

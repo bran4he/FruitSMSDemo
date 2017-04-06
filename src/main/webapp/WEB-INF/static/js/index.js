@@ -102,6 +102,23 @@ function setDialogData(rowData){
 		}
 	});
 	
+	//虚拟号码特殊check
+//	+ slavePhone允许编辑，新建是为真实，编辑时仍为真实
+	$("#form").find(".specialCheck").each(function(){
+		console.log($(this));
+		if($(this).prop('checked')){
+			console.info('is v');
+			$(this).attr('disabled',true);
+		}else{
+			console.info('not v');
+//	+ 新建时虚拟，编辑时强制虚拟号码改为真实号码
+			$(this).prop('checked', true);
+			$(this).prev().val(1);
+			$(this).attr('disabled',true);
+		}
+		
+	});
+	
 	bindCheckBoxEvt();
 }
 
@@ -124,6 +141,9 @@ function cleanDialog(){
 function initAddDialog(){
 	//新建窗口时默认为非虚拟号，即input value=0
 	$("#form :checkbox").each(function(idx, ele){
+		//允许修改，防止编辑时携带的属性仍然在
+		$(this).attr('disabled',false);
+		$(this).prop('checked', false);
 		$(this).prev().val(0);
 	});
 	
@@ -215,7 +235,7 @@ function btnUpdateClick(){
 	console.info("update row:" + rowId);
 	
 	if(!rowId){
-		myInformNoty('请选择一行数据操作');
+		myInformNoty('请选择一行数据');
 		return false;
 	}
 	
@@ -376,6 +396,7 @@ function jqGridInit(colNames, colModel, caption){
 				sortorder : "desc",//排序方式,可选desc,asc
 				mtype : "get",//向后台请求数据的ajax的类型。可选post,get
 				viewrecords : true,
+				multiselect: $("#jqGrid").attr('multiselect'),//多选
 //				loadonce:true,
 				caption : caption //表格的标题名字
 			});

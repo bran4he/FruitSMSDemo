@@ -30,9 +30,20 @@
 	<!-- 面板框 -->
 	<div class="panel panel-default">
 	    <div class="panel-body">
+		  	<div class="ui-widget">
+				<div class="ui-state-error ui-corner-all" style="padding: 0.8em;">
+					<p style="margin: auto"><span class="ui-icon ui-icon-alert" ></span>
+					<strong>slavePhone信息警示:</strong></p>
+					<p style="margin: auto" >&nbsp;&nbsp;&nbsp;&nbsp;1.新建时为真实号,编辑时仍为真实,不允许修改为虚拟号</p>
+					<p style="margin: auto">&nbsp;&nbsp;&nbsp;&nbsp;2.新建时为虚拟号,编辑时强制置为真实号码.请务必修改否则取消保存</p>
+				</div>
+			</div>
+			<br>
 			<!-- form显示所有信息 -->
 		  <form class="form-horizontal" role="form" id="form" 
 		  	addAction="add" updateAction="update" deleteAction="delete">
+		  	
+			
 			  <div class="form-group">
 			    <label for="firstname" class="col-sm-2 control-label">ID</label>
 			    <div class="col-sm-10">
@@ -48,7 +59,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">unitUpdate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="unitUpdate">
+			      <input type="text" class="form-control" name="unitUpdate" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -67,11 +78,11 @@
   			  <div class="form-group">
 			    <label for="isVirtual" class="col-sm-2 control-label">isVirtual</label>
 			     <div class="checkbox">
-			     <label>
-					<input type="text" class="form-control" name="isVirtual" readonly="readonly">
-					<input type="checkbox">
-					如果是虚拟号码请务必勾选
-			     </label>
+				     <label>
+						<input type="text" class="form-control" name="isVirtual" readonly="readonly">
+						<input type="checkbox" class="specialCheck" >
+						如果是虚拟号码请务必勾选
+				     </label>
 				 </div>
 			  </div>
 			  

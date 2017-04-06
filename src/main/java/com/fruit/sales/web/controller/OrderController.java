@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fruit.sales.common.Result;
@@ -91,6 +92,25 @@ public class OrderController implements BaseController<Order>{
 			return new Result(true, data);
 		}
 		return new Result(flag, data);
+	}
+	
+	@RequestMapping(value="mutiUpdate", method = RequestMethod.POST)
+	public @ResponseBody Result mutiUpdateStatus(@RequestParam("ids") String ids, @RequestParam("status") String status){
+	
+		logger.info("mutiUpdate, ids:{} and status:{}", ids, status);
+		
+		String[] idArr = ids.split(",");
+		int count = service.updateMutiStatus(idArr, status);
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("updateCount", count);
+		data.put("requestCount", idArr.length);
+		
+		if(count == idArr.length){
+			return new Result(true, data);
+		}else{
+			return new Result(false, data);
+		}
 	}
 
 }

@@ -19,4 +19,6 @@ public interface OrderService {
 	Order findById(String id);
 	
 	List<Order> listAll();
+	
+	int updateMutiStatus(String[] idArr, String status);
 }

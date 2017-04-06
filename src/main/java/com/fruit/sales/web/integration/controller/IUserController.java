@@ -32,11 +32,32 @@ public class IUserController {
 	@Autowired
 	private IUserService IUserService;
 	
-	@RequestMapping(value="validate/{phone}", method = RequestMethod.GET)
+	@RequestMapping(value="validatePhone/{phone}", method = RequestMethod.GET)
 	public @ResponseBody ReturnResult checkPhoneStatus(@PathVariable String phone){
 		Assign assign = assignService.findBySlavePhone(phone);
 		
 		logger.info("validate phone and get assign:\n{}", assign);
+		
+		ReturnResult rr = new ReturnResult();
+		
+		if(assign != null){
+			if(BusinessConstant.IS_ACTIVE.equals(assign.getIsActive())){
+				rr.setValue(RegisterStatus.ACTIVE.toString());
+			}else if(BusinessConstant.NOT_ACTIVE.equals(assign.getIsActive())){
+				rr.setValue(RegisterStatus.NOTACTIVE.toString());
+			}
+		}else{
+			rr.setValue(RegisterStatus.NA.toString());
+		} 
+		
+		return rr;
+	}
+	
+	@RequestMapping(value="validateWeechatId/{weechatId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult checkWeechatIdStatus(@PathVariable String weechatId){
+		Assign assign = assignService.findByWeechatId(weechatId);
+		
+		logger.info("validate weechatId and get assign:\n{}", assign);
 		
 		ReturnResult rr = new ReturnResult();
 		

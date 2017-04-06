@@ -19,6 +19,23 @@ public class OrderDao extends BaseDaoImpl<Order>{
 
 	private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
 	
+	public int updateMutiStatus(String[] idArr, String status){
+		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId=")
+							.append(status).append("WHERE id in(");
+		for(int i=0 ; i< idArr.length; i++){
+			if(i == idArr.length-1 ){
+				sql.append(idArr[i]);
+			}else{
+				sql.append(idArr[i]).append(", ");
+			}
+		}
+		sql.append(") ");
+		int count = getJdbcTemplate().update(sql.toString());
+		return count;
+	}
+	
+	
+	
 	public List<IOrderVO> iQueryUserOrder(String weechatId, String status){
 		
 		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id ");

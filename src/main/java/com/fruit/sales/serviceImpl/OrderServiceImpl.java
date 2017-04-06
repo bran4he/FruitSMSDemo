@@ -55,4 +55,10 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> listAll() {
 		return dao.findAll();
 	}
+
+	@Override
+	public int updateMutiStatus(String[] idArr, String status) {
+		int count = dao.updateMutiStatus(idArr, status);
+		return count;
+	}
 }

@@ -38,6 +38,9 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 19. add api for user cancle order - 20170406
 20. add auth validation for integration api - 20170406
 21. add Spring AOP for log
+22. slavePhone有条件性编辑来保持系统逻辑简单 - 20170406
+23. add api of validate weechatOpenId - 20170406
+24. add quick operation for changing order status
 - - - 
 
 + ~~Jqgrid调用同一增删改接口 js和前端控制研究和设计~~ -  done #10
@@ -47,7 +50,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 + ~~ORDER设计~~ - done #13
 + ~~系统参数设计~~ - done #11
 + ~~暂时未设计翻页操作，全部使用loadonce=ture设计，后期改进~~ - done #12
-+ setup new ORDER, how to desgin UI and get data from ASSIGN
++ setup new ORDER, how to desgin UI and get data from ASSIGN - done
 
 > 未完待续 user and business requirement...
 
@@ -68,7 +71,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 
 **Request:**
 ```
-URL: {web_root}/rest/user/validate/{phone}
+URL: {web_root}/rest/user/validatePhone/{phone}
 ```
 **Response:**
 ```
@@ -88,11 +91,17 @@ URL: {web_root}/rest/user/validate/{phone}
 
 **sample**
 ```
-GET  fruit/rest/user/validate/1588888888
+GET  fruit/rest/user/validatePhone/1588888888
 ```
 
 - - -
 
+### 校验weechatOpenId的状态
+**Request:**
+```
+URL: {web_root}/rest/user/validateWeechatId/{weechatId}
+```
+> 其他同上
 
 ### 激活手机号码并关联存储weechatOpenId
 **Request:**
@@ -274,6 +283,35 @@ Response:
 
 - - -
 
+### 查询余额接口
+**Request:**
+```
+GET: {web_root}/rest/assign/checkBalance/{weechatId}
+```
+
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": null
+}
+
+**sample**
+Request:
+GET fruit/rest/assign/checkBalance/QWERTYUIOP
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "5",
+  "msg": null
+}
+```
+
+- - -
+
 ### Assign
 
 >后台
@@ -291,12 +329,13 @@ Response:
 
 >后台
 
-+ 允许add
-+ 不允许delte，写错数量时允许unit填负值进行对冲
++ 允许add - done
++ 不允许delete，写错数量时允许unit填负值进行对冲 -done
 + 允许有条件的编辑：
-	+ 不允许编辑unit，只允许新建对冲
-	+ slavePhone允许编辑，新建是为真实，编辑时仍为真实；新建时虚拟，编辑时强制虚拟号码改为真实号码
-	+ isVirtual不允许编辑，新建时时真是号码，一直是真实；新建时是虚拟，第一次编辑置强制置为真实并且不允许改动
+	+ 不允许编辑unit，只允许新建正值增加或者新建负值对冲  -done
+	+ slavePhone允许编辑，新建是为真实，编辑时仍为真实，不允许修改为虚拟 - done
+	+ 新建时虚拟，编辑时强制虚拟号码改为真实号码  - done
+	+ isVirtual不允许编辑，新建时时真号码，一直是真实；新建时是虚拟，第一次编辑置强制置为真实并且不允许改动
 + 所有的改动只允许按规定流程顺序执行，不能错乱或者回退信息流
 
 >前台
@@ -309,7 +348,7 @@ Response:
 + 不允许add/edit/delete
 + 不允许更新订单 - 后台管理不负责更新订单的信息，全部由前台来操作
 + 提供两个按钮，支持批量选择，支持status更改'待派送' -> '派送中' -> '派送成功'
-+ 订单状态参数的新建和修改不开放
++ 订单状态参数的新建和修改不开放 - done
 
 >前台
 
