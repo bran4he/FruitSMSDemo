@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fruit.sales.dao.OrderDao;
 import com.fruit.sales.dao.base.QueryParam;
@@ -56,6 +57,7 @@ public class OrderServiceImpl implements OrderService {
 		return dao.findAll();
 	}
 
+	@Transactional
 	@Override
 	public int updateMutiStatus(String[] idArr, String status) {
 		int count = dao.updateMutiStatus(idArr, status);

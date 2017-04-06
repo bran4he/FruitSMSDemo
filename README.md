@@ -40,7 +40,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 21. add Spring AOP for log
 22. slavePhone有条件性编辑来保持系统逻辑简单 - 20170406
 23. add api of validate weechatOpenId - 20170406
-24. add quick operation for changing order status
+24. add quick operation for changing order status - 20170406
 - - - 
 
 + ~~Jqgrid调用同一增删改接口 js和前端控制研究和设计~~ -  done #10
@@ -350,13 +350,13 @@ Response:
 
 + 不允许add/edit/delete
 + 不允许更新订单 - 后台管理不负责更新订单的信息，全部由前台来操作
-+ 提供两个按钮，支持批量选择，支持status更改'待派送' -> '派送中' -> '派送成功'
++ 提供两个按钮，支持批量选择，支持status更改'待派送' -> '派送中' -> '派送成功' - done
 + 订单状态参数的新建和修改不开放 - done
 
 >前台
 
-+ 提供必要的接口参数，给前台下订单使用(add接口)
-+ 支持前台订单的取消（地址等信息错误重新下单）
++ 提供必要的接口参数，给前台下订单使用(add接口) - done
++ 支持前台订单的取消（地址等信息错误重新下单） - done
 
 
 - - -

@@ -62,39 +62,43 @@ $(function(){
 	//快速操作
 	$("#quickOpt button").on('click', function(){
 //		console.info($(this).attr('statusValue'));
-		var rows = $("#jqGrid").jqGrid('getGridParam','selarrrow');
-		console.info(rows);
-		console.info(rows.length);
+		var rowIds = $("#jqGrid").jqGrid('getGridParam','selarrrow');
+		console.info(rowIds);
+		console.info(rowIds.length);
 		var param;
-		if(rows.length == 0){
+		if(rowIds.length == 0){
 			myInformNoty('请至少选择一行数据');
 		}else{
 			var ids ='';
-			for(var s in rows){
-				ids = ids + s +",";
+			for(var i =0; i<rowIds.length; i++){
+				var rowData = $("#jqGrid").jqGrid('getRowData',rowIds[i]);
+				console.info(rowData);
+				ids = ids + rowData.id +",";
 			}
 			param = ids.substring(0, ids.length -1);
 			console.info("ids:" + param);
 			console.info("status:" + $(this).attr('statusValue'));
 			
+			var data = {
+	    		"ids": param,
+	    		"status":$(this).attr('statusValue')
+	    	};
+			
 			//request
 		    $.ajax({
 		    	type: "POST",
 		    	url:  $("#jqGrid").attr('mutiUpdateUrl'),
-		    	data: {
-		    		"ids": param,
-		    		"status":$(this).attr('statusValue'),
-		    	},
-		    	contentType: 'application/json',
+		    	contentType: 'application/json; charset=utf-8',
 		    	dataType: 'json',
+		    	data: JSON.stringify(data),
 		        success: function(data) {
 		        	console.log(data);
 		        	if(data.result){
 		        		jQuery("#jqGrid").trigger("reloadGrid");
-		        		var msg = '更新成功,选择'+data.requestCount+'条更新'+data.updateCount+'条';
+		        		var msg = '更新成功,选择'+data.msg.requestCount+'条更新'+data.msg.updateCount+'条';
 		    			myNoty(msg, 'success', 1500);
 		        	}else{
-		        		var msg = '更新失败,选择'+data.requestCount+'条更新'+data.updateCount+'条';
+		        		var msg = '更新失败,选择'+data.msg.requestCount+'条更新'+data.msg.updateCount+'条';
 		        		myNoty("更新失败", 'error', 1500);
 		        	}
 		        },

@@ -20,8 +20,8 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
 	
 	public int updateMutiStatus(String[] idArr, String status){
-		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId=")
-							.append(status).append("WHERE id in(");
+		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId= ")
+							.append(status).append(" WHERE id in(");
 		for(int i=0 ; i< idArr.length; i++){
 			if(i == idArr.length-1 ){
 				sql.append(idArr[i]);
