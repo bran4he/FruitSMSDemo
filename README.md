@@ -239,6 +239,7 @@ POST: {web_root}/rest/order/query/{weechatId}/{status}
   "value": {value},
   "msg": {list of order}
 }
+```
 
 **sample**
 Request:
