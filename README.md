@@ -36,7 +36,8 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 17. add api of order - 20170405
 18. add api of validate phone - 20170405
 19. add api for user cancle order - 20170406
-
+20. add auth validation for integration api - 20170406
+21. add Spring AOP for log
 - - - 
 
 + ~~Jqgrid调用同一增删改接口 js和前端控制研究和设计~~ -  done #10

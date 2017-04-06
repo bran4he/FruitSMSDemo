@@ -1,4 +1,4 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

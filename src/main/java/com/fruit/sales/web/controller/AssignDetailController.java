@@ -1,4 +1,4 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.controller;
 
 import java.util.Date;
 import java.util.HashMap;

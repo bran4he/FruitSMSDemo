@@ -1,8 +1,5 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.controller;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,30 +20,27 @@ import com.fruit.sales.common.Result;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
-import com.fruit.sales.entity.OrderStatus;
-import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.entity.User;
-import com.fruit.sales.serviceImpl.OrderStatusServiceImpl;
+import com.fruit.sales.service.UserService;
 import com.fruit.sales.web.base.BaseController;
-import com.fruit.sales.web.demo.PersonController;
 
-@RequestMapping("/orderStatus")
+@RequestMapping("/user")
 @Controller
-public class OrderStatusController implements BaseController<OrderStatus>{
+public class UserController implements BaseController<User>{
 
-	private static final Logger logger = LoggerFactory.getLogger(OrderStatusController.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 	@Autowired
-	private OrderStatusServiceImpl service;
+	private UserService service;
 	
+	//规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(){
-		logger.info("goto os index");
-		return "orderStatus";
+		return "user";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public @ResponseBody QueryResult<OrderStatus> list(HttpServletRequest request){
+	public @ResponseBody QueryResult<User> list(HttpServletRequest request){
 		
 		QueryParam queryParam = QueryUtil.getQueryParam(request);
 		
@@ -54,16 +48,16 @@ public class OrderStatusController implements BaseController<OrderStatus>{
 	}
 	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
-	public @ResponseBody List<OrderStatus> loadAll(){
+	public @ResponseBody List<User> loadAll(){
 		return service.listAll();
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public @ResponseBody Result add(@RequestBody OrderStatus os){
-		OrderStatus osNew = service.add(os);
+	public @ResponseBody Result add(@RequestBody User u){
+		User uNew = service.add(u);
 		Map<String, Object> data = new HashMap<String, Object>();
-		if(osNew != null){
-			data.put("data", osNew);
+		if(uNew != null){
+			data.put("data", uNew);
 			return new Result(true, data);
 		}else{
 			return new Result(false, data);
@@ -72,42 +66,26 @@ public class OrderStatusController implements BaseController<OrderStatus>{
 	
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id){
-		OrderStatus os = service.findById(id);
+		User u = service.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = service.delete(os);
+		boolean flag = service.delete(u);
 		if(flag){
-			data.put("data", os);
+			data.put("data", u);
+			return new Result(true, data);
 		}
 		return new Result(flag, data);
 	}
-	
-	
-	
-
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public @ResponseBody Result update(@RequestBody OrderStatus os){
-		boolean flag = service.update(os);
+	public @ResponseBody Result update(@RequestBody User u){
+		boolean flag = service.update(u);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
-			data.put("data", service.findById(os.getId()));
+			data.put("data", service.findById(u.getId()));
 		}
 		return new Result(flag, data);
 	}
 	
 	
-	//test
-	@RequestMapping(value = "data.json", method = RequestMethod.GET)
-	public @ResponseBody Object getJson() throws IOException{
-		
-		String file = PersonController.class.getResource("/os.json").getFile();
-		
-		BufferedReader br = new BufferedReader(new FileReader(file)) ;
-		StringBuilder sb = new StringBuilder();
-		String line = null;
-		while((line = br.readLine()) != null){
-			sb.append(line);
-		}
-		return sb.toString();
-	}
+	
 }

@@ -1,4 +1,4 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,70 +20,77 @@ import com.fruit.sales.common.Result;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
-import com.fruit.sales.entity.FruitConfig;
-import com.fruit.sales.entity.PubConfig;
-import com.fruit.sales.entity.User;
-import com.fruit.sales.service.FruitConfigService;
+import com.fruit.sales.entity.Order;
+import com.fruit.sales.service.AssignService;
+import com.fruit.sales.service.OrderService;
 import com.fruit.sales.web.base.BaseController;
 
-@RequestMapping("/fruitConfig")
 @Controller
-public class FruitConfigController implements BaseController<FruitConfig> {
+@RequestMapping("/order")
+public class OrderController implements BaseController<Order>{
+	
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	
+	@Autowired
+	private OrderService service;
 
 	@Autowired
-	private FruitConfigService service;
+	private AssignService assinService;
 	
-	//规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(){
-		return "fruitConfig";
+		return "order";
 	}
 	
-	
-	@RequestMapping(value = "all", method = RequestMethod.GET)
-	public @ResponseBody List<FruitConfig> loadAll(){
-		return service.listAll();
-	}
-	
+	@Override
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public @ResponseBody QueryResult<FruitConfig> list(HttpServletRequest request){
-		
+	public @ResponseBody QueryResult<Order> list(HttpServletRequest request) {
 		QueryParam queryParam = QueryUtil.getQueryParam(request);
 		
 		return service.list(queryParam);
 	}
-	
+
+	@RequestMapping(value = "all", method = RequestMethod.GET)
+	public @ResponseBody List<Order> loadAll(){
+		return service.listAll();
+	}
+
+	@Override
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public @ResponseBody Result add(@RequestBody FruitConfig fruitConfig){
-		FruitConfig fruitConfigNew = service.add(fruitConfig);
+	public @ResponseBody Result add(@RequestBody Order order){
+		Order orderNew = service.add(order);
 		Map<String, Object> data = new HashMap<String, Object>();
-		if(fruitConfigNew != null){
-			data.put("data", fruitConfigNew);
+		if(orderNew != null){
+			data.put("data", orderNew);
 			return new Result(true, data);
 		}else{
 			return new Result(false, data);
 		}
 	}
-	
+
+
+	@Override
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public @ResponseBody Result update(@RequestBody FruitConfig fruitConfig){
-		boolean flag = service.update(fruitConfig);
+	public @ResponseBody Result update(@RequestBody Order order){
+		boolean flag = service.update(order);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
-			data.put("data", service.findById(fruitConfig.getId()));
+			data.put("data", service.findById(order.getId()));
 		}
 		return new Result(flag, data);
 	}
-	
+
+	@Override
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id){
-		FruitConfig fruitConfig = service.findById(id);
+		Order order = service.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = service.delete(fruitConfig);
+		boolean flag = service.delete(order);
 		if(flag){
-			data.put("data", fruitConfig);
+			data.put("data", order);
+			return new Result(true, data);
 		}
 		return new Result(flag, data);
 	}
-	
+
 }

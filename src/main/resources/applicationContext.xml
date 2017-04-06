@@ -115,4 +115,11 @@
      </mvc:interceptors> 
 
 
+	 <!-- 启动对@AspectJ注解的支持 --> 
+     <!-- proxy-target-class等于true是强制使用cglib代理，proxy-target-class默认是false，如果你的类实现了接口 就走JDK代理，如果没有，走cglib代理  -->
+     <!-- 注：对于单利模式建议使用cglib代理，虽然JDK动态代理比cglib代理速度快，但性能不如cglib -->
+
+     <!--如果不写proxy-target-class="true"这句话也没问题-->
+     <aop:aspectj-autoproxy proxy-target-class="true"/>
+
 </beans>

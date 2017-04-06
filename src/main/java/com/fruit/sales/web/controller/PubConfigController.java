@@ -1,4 +1,4 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,77 +20,68 @@ import com.fruit.sales.common.Result;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
-import com.fruit.sales.entity.Order;
-import com.fruit.sales.service.AssignService;
-import com.fruit.sales.service.OrderService;
+import com.fruit.sales.entity.PubConfig;
+import com.fruit.sales.serviceImpl.PubConfigServiceImpl;
 import com.fruit.sales.web.base.BaseController;
 
+@RequestMapping("/pubConfig")
 @Controller
-@RequestMapping("/order")
-public class OrderController implements BaseController<Order>{
-	
-	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-	
-	@Autowired
-	private OrderService service;
+public class PubConfigController implements BaseController<PubConfig>{
+
+	private static final Logger logger = LoggerFactory.getLogger(PubConfigController.class);
 
 	@Autowired
-	private AssignService assinService;
+	private PubConfigServiceImpl service;
 	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(){
-		return "order";
+		logger.info("goto os pubConfig");
+		return "pubConfig";
 	}
 	
-	@Override
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public @ResponseBody QueryResult<Order> list(HttpServletRequest request) {
+	public @ResponseBody QueryResult<PubConfig> list(HttpServletRequest request){
+		
 		QueryParam queryParam = QueryUtil.getQueryParam(request);
 		
 		return service.list(queryParam);
 	}
-
+	
 	@RequestMapping(value = "all", method = RequestMethod.GET)
-	public @ResponseBody List<Order> loadAll(){
+	public @ResponseBody List<PubConfig> loadAll(){
 		return service.listAll();
 	}
-
-	@Override
+	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public @ResponseBody Result add(@RequestBody Order order){
-		Order orderNew = service.add(order);
+	public @ResponseBody Result add(@RequestBody PubConfig pubCfg){
+		PubConfig pubCfgNew = service.add(pubCfg);
 		Map<String, Object> data = new HashMap<String, Object>();
-		if(orderNew != null){
-			data.put("data", orderNew);
+		if(pubCfgNew != null){
+			data.put("data", pubCfgNew);
 			return new Result(true, data);
 		}else{
 			return new Result(false, data);
 		}
 	}
-
-
-	@Override
+	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public @ResponseBody Result update(@RequestBody Order order){
-		boolean flag = service.update(order);
+	public @ResponseBody Result update(@RequestBody PubConfig pubCfg){
+		boolean flag = service.update(pubCfg);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
-			data.put("data", service.findById(order.getId()));
+			data.put("data", service.findById(pubCfg.getId()));
 		}
 		return new Result(flag, data);
 	}
-
-	@Override
+	
 	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id){
-		Order order = service.findById(id);
+		PubConfig pubCfg = service.findById(id);
 		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = service.delete(order);
+		boolean flag = service.delete(pubCfg);
 		if(flag){
-			data.put("data", order);
-			return new Result(true, data);
+			data.put("data", pubCfg);
 		}
 		return new Result(flag, data);
 	}
-
 }

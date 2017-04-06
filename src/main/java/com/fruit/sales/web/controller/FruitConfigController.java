@@ -1,12 +1,11 @@
-package com.fruit.sales.web;
+package com.fruit.sales.web.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,69 +18,70 @@ import com.fruit.sales.common.Result;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
-import com.fruit.sales.entity.Assign;
-import com.fruit.sales.service.AssignService;
+import com.fruit.sales.entity.FruitConfig;
+import com.fruit.sales.entity.PubConfig;
+import com.fruit.sales.entity.User;
+import com.fruit.sales.service.FruitConfigService;
 import com.fruit.sales.web.base.BaseController;
 
-@RequestMapping("/assign")
+@RequestMapping("/fruitConfig")
 @Controller
-public class AssignController implements BaseController<Assign> {
+public class FruitConfigController implements BaseController<FruitConfig> {
 
-	private static final Logger logger = LoggerFactory.getLogger(AssignController.class);
-	
 	@Autowired
-	private AssignService service;
-
+	private FruitConfigService service;
+	
+	//规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(){
-		return "assign";
+		return "fruitConfig";
 	}
 	
-	@Override
+	
+	@RequestMapping(value = "all", method = RequestMethod.GET)
+	public @ResponseBody List<FruitConfig> loadAll(){
+		return service.listAll();
+	}
+	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public @ResponseBody QueryResult<Assign> list(HttpServletRequest request) {
+	public @ResponseBody QueryResult<FruitConfig> list(HttpServletRequest request){
+		
 		QueryParam queryParam = QueryUtil.getQueryParam(request);
 		
 		return service.list(queryParam);
 	}
-
-
-	@Override
+	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public @ResponseBody Result add(@RequestBody Assign assign){
-		Assign assignNew = service.add(assign);
+	public @ResponseBody Result add(@RequestBody FruitConfig fruitConfig){
+		FruitConfig fruitConfigNew = service.add(fruitConfig);
 		Map<String, Object> data = new HashMap<String, Object>();
-		if(assignNew != null){
-			data.put("data", assignNew);
+		if(fruitConfigNew != null){
+			data.put("data", fruitConfigNew);
 			return new Result(true, data);
 		}else{
 			return new Result(false, data);
 		}
 	}
-
-	@Override
+	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public @ResponseBody Result update(@RequestBody Assign assign){
-		boolean flag = service.update(assign);
+	public @ResponseBody Result update(@RequestBody FruitConfig fruitConfig){
+		boolean flag = service.update(fruitConfig);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
-			data.put("data", service.findById(assign.getId()));
-		}
-		return new Result(flag, data);
-	}
-
-	@Override
-	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
-	public @ResponseBody Result del(@PathVariable String id){
-		Assign assign = service.findById(id);
-		Map<String, Object> data = new HashMap<String, Object>();
-		boolean flag = service.delete(assign);
-		if(flag){
-			data.put("data", assign);
-			return new Result(true, data);
+			data.put("data", service.findById(fruitConfig.getId()));
 		}
 		return new Result(flag, data);
 	}
 	
-
+	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
+	public @ResponseBody Result del(@PathVariable String id){
+		FruitConfig fruitConfig = service.findById(id);
+		Map<String, Object> data = new HashMap<String, Object>();
+		boolean flag = service.delete(fruitConfig);
+		if(flag){
+			data.put("data", fruitConfig);
+		}
+		return new Result(flag, data);
+	}
+	
 }
