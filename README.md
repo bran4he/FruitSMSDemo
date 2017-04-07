@@ -43,11 +43,14 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 23. add api of validate weechatOpenId - 20170406
 24. add quick operation for changing order status - 20170406
 25. 增加查看功能，多列信息是方便查看 - 20170407
+26. 增加order页面的条件搜索功能 -  20170407(updated project screenshot)
+27. 增加assgin页面的条件搜索功能
+28. 增加assigndetail页面的条件搜索功能
 - - - 
 
 ### bug fix
 1. assign page cannot use view function - 20170407
-
+2. user order missing verify of public config of max_order_day_to -  20170407
 
 - - -
 
@@ -381,6 +384,12 @@ Response:
 - - -
 
 # Demo Show
+
+> page with quick operation & criteria search
+
+![Alt text](project20170407.png)
+
+> common page
 
 ![Alt text](project20170329.png)
 

@@ -14,6 +14,45 @@
 	<jsp:include page="header.jsp" flush="true"/>
 
 	<div class="container">
+	
+	<form class="form-inline" id="search">
+	  <div class="form-group">
+	    <label for="statusId">订单状态:</label>
+	    <input type="text" class="form-control hidden" name="statusId" >
+	    <select class="form-control" id="statusId" url="../orderStatus/all" keyName="name" keyValue="id">
+		</select>
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="fruitId">水果名称:</label>
+	    <input type="text" class="form-control hidden" name="fruitId" >
+	    <select class="form-control" id="fruitId" url="../fruitConfig/all" keyName="fruitName" keyValue="id">
+	    </select>
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="contactName">联系人:</label>
+	    <input type="text" class="form-control" name="contactName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="contactPhone">联系人手机:</label>
+	    <input type="text" class="form-control" name="contactPhone" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div style="float: right">
+		  <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
+		  &nbsp;
+		  &nbsp;
+		  <button id="btnClear" type="button" class="btn btn-default">清除</button>
+	  </div>
+	</form>
+	<br>
+	
 	    <table id="jqGrid" twidth="1170" theight="300"
 	    multiselect="true" mutiUpdateUrl="mutiUpdate" viewCaption="查看"
 	    >

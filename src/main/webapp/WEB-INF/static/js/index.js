@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+	//搜索的select和input联调机制
+	$("#search select").each(function(idx, ele){
+		$(ele).on('change', function(){
+			console.info('选择了：'+$(this).val());
+			$(this).prev().val($(this).val());
+		});
+	});
 	
 	
 	$("a[role='menu']").each(function(index, ele){
@@ -557,6 +564,75 @@ function jqGridInit(colNames, colModel, caption){
 //	})
 	;
 }
+
+
+//触发检索
+function bindBtnSearch(){
+	$("#btnSearch").on('click', function(){
+		var searchData = formToJson($("#search"));
+		
+		console.info("searchData:");
+		console.info(searchData);
+//		var searchData = {"statusId": "2"};
+		
+		$("#jqGrid").jqGrid('setGridParam',{
+			search: true,
+			postData:searchData,
+			page: 1
+		})
+		.trigger('reloadGrid');
+		
+	});
+}
+
+//清除检索
+function bindBtnClear(){
+	$("#btnClear").on('click', function(){
+		$("#search input").each(function(idx, ele){
+			$(ele).val('');
+		});
+		$("#search select").each(function(idx, ele){
+			$(ele).val(0);
+		});
+		location.reload();
+	});
+}
+
+
+//检索创建select时加载list
+function initSelect(){
+	
+	$("#search select").each(function(idx, ele){
+		var name = $(this).attr("keyName");
+		var value =$(this).attr("keyValue");
+		var $select = $(ele);
+		$.ajax({
+			type:"GET",
+			dataType:"json",
+			url:$select.attr("url"),
+			success:function(data){
+				console.info(data);
+				$select.append(CreateOpt("请选择一项", "0"));
+				for(var i=0; i< data.length; i++){
+//					console.log(data[i]);
+//					console.log(data[i].id);
+					$select.append(CreateOpt(data[i][name], data[i][value]));
+				}
+			},
+			error: function(){
+				notyCus('记载'+$select.attr("url")+'列表异常, 请联系管理员', 'notification', 2000);
+			}
+		});
+	});
+	
+
+}
+
+//用于检索select创建dom
+function CreateOpt(name, value){
+	return $("<option value='"+value+"'>"+name+"</option>");
+}
+
 
 window.onload = function () {
 	console.log("load index.js...");

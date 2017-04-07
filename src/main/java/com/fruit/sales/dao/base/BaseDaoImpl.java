@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.fruit.sales.common.StringTools;
-import com.fruit.sales.entity.FruitConfig;
 
 /**
  * 实体类名和数据库表名去除（_）后一致，大小写无区别
@@ -187,7 +186,16 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 	public QueryResult<T> findByPageList(QueryParam queryParam) {
 		LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
 		orderby.put(queryParam.getSidx(), queryParam.getSord());
-		return findByPageList(queryParam.getPage(), queryParam.getRows(), orderby);
+		
+		//not search
+		if(StringUtils.equalsIgnoreCase("false", queryParam.get_search())){
+			return findByPageList(queryParam.getPage(), queryParam.getRows(), orderby);
+		}else if(StringUtils.equalsIgnoreCase("true", queryParam.get_search())){
+			return findByPageList(queryParam.getPage(), queryParam.getRows(), queryParam.getSearchMap(), orderby);
+		}
+		
+		logger.info("findByPageList queryParam get_search:{}, and return null", queryParam.get_search());
+		return null;
 	}
     
     @Override  
@@ -423,7 +431,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 			for (Map.Entry<String, String> me : where.entrySet()) {
 				String columnName = me.getKey();
 				String columnValue = me.getValue();
-				sql.append(columnName).append(" ").append(columnValue)
+				sql.append(columnName).append(" LIKE '%").append(columnValue).append("%' ")
 						.append(" AND "); // 没有考虑or的情况
 			}
 			int endIndex = sql.lastIndexOf("AND");
@@ -501,7 +509,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 			for (Map.Entry<String, String> me : where.entrySet()) {
 				String columnName = me.getKey();
 				String columnValue = me.getValue();
-				sql.append(columnName).append(" ").append(columnValue)
+				sql.append(columnName).append(" LIKE '%").append(columnValue).append("%' ")
 						.append(" AND "); // 没有考虑or的情况
 			}
 			int endIndex = sql.lastIndexOf("AND");

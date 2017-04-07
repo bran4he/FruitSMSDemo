@@ -1,5 +1,10 @@
 package com.fruit.sales.dao.base;
 
+import java.util.Map;
+
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class QueryParam {
 
 	//每页数据量
@@ -11,8 +16,17 @@ public class QueryParam {
 	//排序方式
 	private String sord;//desc
 	
+	private String _search = "false";//if search flag
+	
+	private Map<String, String> searchMap;
 	
 	
+	
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
+	}
 	public QueryParam() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -40,6 +54,18 @@ public class QueryParam {
 	}
 	public void setSord(String sord) {
 		this.sord = sord;
+	}
+	public String get_search() {
+		return _search;
+	}
+	public void set_search(String _search) {
+		this._search = _search;
+	}
+	public Map<String, String> getSearchMap() {
+		return searchMap;
+	}
+	public void setSearchMap(Map<String, String> searchMap) {
+		this.searchMap = searchMap;
 	}
 	
 	

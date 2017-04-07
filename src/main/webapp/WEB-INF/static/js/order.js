@@ -112,6 +112,10 @@ $(function(){
 		}
 	});
 	
+	initSelect();
+	bindBtnClear();
+	bindBtnSearch();
+	
 	
 });
 
