@@ -612,7 +612,7 @@ function initSelect(){
 			url:$select.attr("url"),
 			success:function(data){
 				console.info(data);
-				$select.append(CreateOpt("请选择一项", "0"));
+				$select.append(CreateOpt("请选择一项", ""));	//必须设置为空，不然会携带值进入检索条件
 				for(var i=0; i< data.length; i++){
 //					console.log(data[i]);
 //					console.log(data[i].id);

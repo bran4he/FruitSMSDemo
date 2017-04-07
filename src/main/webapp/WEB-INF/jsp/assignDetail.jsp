@@ -14,6 +14,52 @@
 	<jsp:include page="header.jsp" flush="true"/>
 
 	<div class="container">
+	
+	<form class="form-inline" id="search">
+	  <div class="form-group">
+	    <label for="masterName">送礼人:</label>
+	    <input type="text" class="form-control" name="masterName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="masterPhone">送礼人手机:</label>
+	    <input type="text" class="form-control" name="masterPhone" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <br>
+	  <br>
+	  <div class="form-group">
+	    <label for="slaveName">收礼人:</label>
+	    <input type="text" class="form-control" name="slaveName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="slavePhone">收礼人手机:</label>
+	    <input type="text" class="form-control" name="slavePhone" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="isVirtual">虚拟号码:</label>
+	    <input type="text" class="form-control hidden" name="isVirtual" >
+	    <select class="form-control" id="statusId" url="../common/virtualList" keyName="name" keyValue="id">
+		</select>
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div style="float: right">
+		  <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
+		  &nbsp;
+		  &nbsp;
+		  <button id="btnClear" type="button" class="btn btn-default">清除</button>
+	  </div>
+	</form>
+	<br>
+	
+	
 	    <table id="jqGrid" twidth="1170" theight="300"
 	    addCaption="新建" updateCaption="编辑" viewCaption="查看"
 	    >

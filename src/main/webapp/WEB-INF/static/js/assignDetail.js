@@ -41,6 +41,11 @@ $(function(){
 	//页面加载完成之后执行
 	jqGridInit(colNames, colModel, caption);
 	$("#dialog").dialog({ autoOpen: false });
+	
+	//搜索操作相关
+	initSelect();
+	bindBtnClear();
+	bindBtnSearch();
 });
 
 

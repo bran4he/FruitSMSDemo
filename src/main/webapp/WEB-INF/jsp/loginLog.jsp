@@ -14,7 +14,7 @@
 	<jsp:include page="header.jsp" flush="true"/>
 
 	<div class="container">
-	    <table id="jqGrid" twidth="1170" theight="300" viewCaption="查看">
+	    <table id="jqGrid" twidth="1170" theight="300" >
 	     
 	    </table>
 	    <div id="jqGridPager"></div>

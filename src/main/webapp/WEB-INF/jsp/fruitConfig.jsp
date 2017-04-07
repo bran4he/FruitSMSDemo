@@ -14,6 +14,36 @@
 	<jsp:include page="header.jsp" flush="true"/>
 
 	<div class="container">
+	
+		<form class="form-inline" id="search">
+	  <div class="form-group">
+	    <label for="fruitName">水果名字:</label>
+	    <input type="text" class="form-control" name="fruitName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="fruitArea">水果产地:</label>
+	    <input type="text" class="form-control" name="fruitArea" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+  	  <div class="form-group">
+	    <label for="remark">备注信息:</label>
+	    <input type="text" class="form-control" name="remark" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div style="float: right">
+		  <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
+		  &nbsp;
+		  &nbsp;
+		  <button id="btnClear" type="button" class="btn btn-default">清除</button>
+	  </div>
+	</form>
+	<br>
+	
+	
 	    <table id="jqGrid" twidth="1170" theight="300"
 	    addCaption="新建" updateCaption="编辑" deleteCaption="删除" viewCaption="查看"
 	    >

@@ -14,6 +14,54 @@
 	<jsp:include page="header.jsp" flush="true"/>
 
 	<div class="container">
+	
+	<form class="form-inline" id="search">
+	  <div class="form-group">
+	    <label for="slaveName">收礼人姓名:</label>
+	    <input type="text" class="form-control" name="slaveName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="isActive">号码激活:</label>
+	    <input type="text" class="form-control hidden" name="isActive" >
+	    <select class="form-control" id="statusId" url="../common/activeList" keyName="name" keyValue="id">
+		</select>
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <br>
+	  <br>
+	  <div class="form-group">
+	    <label for="slavePhone">收礼人手机:</label>
+	    <input type="text" class="form-control" name="slavePhone" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="isVirtual">虚拟号码:</label>
+	    <input type="text" class="form-control hidden" name="isVirtual" >
+	    <select class="form-control" id="statusId" url="../common/virtualList" keyName="name" keyValue="id">
+		</select>
+	  </div>
+	  &nbsp;
+	  &nbsp;
+  	  <div class="form-group">
+	    <label for="weecharOpenid">微信OpenId:</label>
+	    <input type="text" class="form-control" name="weecharOpenid" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div style="float: right">
+		  <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
+		  &nbsp;
+		  &nbsp;
+		  <button id="btnClear" type="button" class="btn btn-default">清除</button>
+	  </div>
+	</form>
+	<br>
+	
+	
 	    <table id="jqGrid" twidth="1170" theight="300"
 	     viewCaption="查看"
 	    >

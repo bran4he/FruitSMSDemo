@@ -59,6 +59,11 @@ $(function(){
 	jqGridInit(colNames, colModel, caption);
 	$("#dialog").dialog({ autoOpen: false });
 	
+	//搜索操作相关
+	initSelect();
+	bindBtnClear();
+	bindBtnSearch();
+	
 	//快速操作
 	$("#quickOpt button").on('click', function(){
 //		console.info($(this).attr('statusValue'));
@@ -112,9 +117,6 @@ $(function(){
 		}
 	});
 	
-	initSelect();
-	bindBtnClear();
-	bindBtnSearch();
 	
 	
 });

@@ -42,7 +42,6 @@ public class QueryUtil {
 					e -> e.getKey(),
 					e -> String.valueOf(e.getValue()[0])
 		        ));;
-		    
 		   
 		}
 		param.setSearchMap(searchMap);

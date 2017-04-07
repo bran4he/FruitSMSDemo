@@ -62,4 +62,4 @@ select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_O
 
 update T_ORDER set statusId=1 where id in (1,2);
 
-
+select * from  T_ORDER where contactPhone like '%158%';
