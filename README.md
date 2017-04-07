@@ -60,13 +60,13 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 + ~~ORDER设计~~ - done #13
 + ~~系统参数设计~~ - done #11
 + ~~暂时未设计翻页操作，全部使用loadonce=ture设计，后期改进~~ - done #12
-+ setup new ORDER, how to desgin UI and get data from ASSIGN - done
++ ~~setup new ORDER, how to desgin UI and get data from ASSIGN~~ - done
 
 - - -
 
 ## 微信第三方接口的安全性设计
-方案1：AOP
-方案2：Interceptor
++ 方案1：AOP
++ 方案2：Interceptor
 
 说明：
 1. 选择方案2，可以方便的自定义拦截路径，不需要在每一个api上加上注解，直接通过xml配置即可。
@@ -74,7 +74,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 2. 其他请求需要在HTTP请求header上加上Auth属性，属性值为当前weechatOpenId
 
 
-## 接口plan
+## 微信API
 
 
 ### 提供号码是否存在及激活在Assign表里
@@ -297,6 +297,7 @@ Response:
 - - -
 
 ### 查询余额接口
+
 **Request:**
 ```
 GET: {web_root}/rest/assign/checkBalance/{weechatId}
@@ -309,6 +310,7 @@ GET: {web_root}/rest/assign/checkBalance/{weechatId}
   "value": {value},
   "msg": null
 }
+```
 
 **sample**
 Request:
