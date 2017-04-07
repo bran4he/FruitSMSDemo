@@ -22,7 +22,6 @@ import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.web.base.BaseController;
-import com.fruit.sales.web.integration.aop.SystemLog;
 
 @RequestMapping("/assign")
 @Controller

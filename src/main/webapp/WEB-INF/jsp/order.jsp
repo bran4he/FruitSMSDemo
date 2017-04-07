@@ -15,7 +15,7 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
-	    multiselect="true" mutiUpdateUrl="mutiUpdate"
+	    multiselect="true" mutiUpdateUrl="mutiUpdate" viewCaption="查看"
 	    >
 	    </table>
 	    <div id="jqGridPager"></div>

@@ -61,6 +61,50 @@ function formToJson(form){
 	return formObject
 }
 
+//查看时触发【复制jqgrid内容到对话框】
+//setup datetime picker
+function setViewDialogData(rowData){
+	
+	$("#form input, textarea").each(function(idx, ele){
+		//input and remark
+		var name = $(ele).attr('name');
+		if(name){
+			$(ele).val(rowData[name]);
+		}
+		
+		//date time picker
+		var dateFlag = $(ele).attr('dateFlag');
+		if(dateFlag){
+			$(ele).prop("readOnly", true)
+			.datetimepicker({
+				dateFormat: "yy-mm-dd",
+				timeFormat: "HH:mm:ss",
+				showButtonPanel: true,
+				showHour: true,
+				showMinute: true,
+				showSecond: true
+			});
+		}
+		
+	});
+	
+	
+	//根据input初始化checkbox的状态
+	$("#form :checkbox").each(function(idx, ele){
+		console.info($(this).prev().val());
+		
+		if('1' == $(this).prev().val()){
+			$(this).prop('checked', true);
+			$(this).prev().val(1);
+		}else{
+			$(this).prop('checked', false);
+			$(this).prev().val(0);
+		}
+	});
+	
+}
+
+
 //编辑时触发【复制jqgrid内容到对话框】
 //setup datetime picker
 function setDialogData(rowData){
@@ -119,6 +163,11 @@ function setDialogData(rowData){
 		
 	});
 	
+	//class = editForbidden, cannot edit
+	$("#form .editForbidden").each(function(){
+		$(this).prop("readOnly", true);
+	});
+	
 	bindCheckBoxEvt();
 }
 
@@ -163,6 +212,31 @@ function bindCheckBoxEvt(){
 }
 
 
+//初始化【查看对话框】
+function initViewDialog(rowData){
+	console.info(rowData);
+	
+	var opts = {
+			width: $("#dialog").attr('dialogWidth'),
+			height: $("#dialog").attr('dialogHeight'),
+			modal: true,
+			open: setViewDialogData(rowData), //auto set data from jqgrid to dialog
+			close: cleanDialog,	//close auto remove input value
+			buttons: [
+			          {
+			        	  text:'关闭',
+			        	  icons: {
+			        		  primary: "ui-icon-circle-close"
+			        	  },
+			        	  click:btnCancle
+			          }
+			          ]
+
+	};
+	$("#dialog")
+	.dialog(opts)
+	.dialog("open");
+}
 //初始化【编辑对话框】
 function initUpdateDialog(rowData){
 	console.info(rowData);
@@ -226,6 +300,23 @@ function btnAddClick(){
 	$("#dialog")
 		.dialog(opts)
 		.dialog("open");
+}
+
+//点击jqgird【查看】按钮
+function btnViewClick(){
+	
+	var rowId = $("#jqGrid").jqGrid('getGridParam','selrow');
+	console.info("update row:" + rowId);
+	
+	if(!rowId){
+		myInformNoty('请选择一行数据');
+		return false;
+	}
+	
+	console.info("row id:" + rowId);
+	
+	//json data
+	initViewDialog($("#jqGrid").jqGrid('getRowData',rowId));
 }
 
 //点击jqgird【编辑】按钮
@@ -318,6 +409,7 @@ function del(rowId){
 //点击新建和更新窗口的【确认】按钮事件
 function btnOk(){
 	console.log("click ok save btn");
+	
 	//判断是update还是save
 	var idValue = $("#form [name=id]").val();
 	console.log(idValue);
@@ -444,6 +536,15 @@ function jqGridInit(colNames, colModel, caption){
 		})
 	}
 
+	if($("#jqGrid").attr("viewCaption")){
+		jQuery("#jqGrid").jqGrid('navButtonAdd', '#jqGridPager',{
+			id:"view",
+			caption:$("#jqGrid").attr("viewCaption"),
+			buttonicon:"ui-icon-zoomin",
+			onClickButton: btnViewClick,
+			position:"last"
+		})
+	}
 
 //	.jqGrid('navButtonAdd','#jqGridPager',{
 //		id:"refresh",

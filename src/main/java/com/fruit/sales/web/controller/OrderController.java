@@ -94,11 +94,12 @@ public class OrderController implements BaseController<Order>{
 		return new Result(flag, data);
 	}
 	
+//	public @ResponseBody Result mutiUpdateStatus(@RequestBody Map<String,Object> params){
+//	String ids = params.get("ids").toString();
+//	String status = params.get("status").toString();
 	@RequestMapping(value="mutiUpdate", method = RequestMethod.POST)
-	public @ResponseBody Result mutiUpdateStatus(@RequestBody Map<String,Object> params){
-	
-		String ids = params.get("ids").toString();
-		String status = params.get("status").toString();
+	public @ResponseBody Result mutiUpdateStatus(@RequestParam("ids") String ids,
+				@RequestParam("status") String status){
 		
 		logger.info("mutiUpdate, ids:{} and status:{}", ids, status);
 		

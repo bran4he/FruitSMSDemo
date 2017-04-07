@@ -88,9 +88,11 @@ $(function(){
 		    $.ajax({
 		    	type: "POST",
 		    	url:  $("#jqGrid").attr('mutiUpdateUrl'),
-		    	contentType: 'application/json; charset=utf-8',
+//		    	contentType: 'application/json',
 		    	dataType: 'json',
-		    	data: JSON.stringify(data),
+//		    	data: JSON.stringify(data),
+		    	data: data,	//wrong
+//		    	data: "{'ids':" + ids + ", 'status':" + status + "}",
 		        success: function(data) {
 		        	console.log(data);
 		        	if(data.result){

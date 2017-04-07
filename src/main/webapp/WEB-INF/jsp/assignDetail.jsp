@@ -15,7 +15,7 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
-	    addCaption="新建" updateCaption="编辑"
+	    addCaption="新建" updateCaption="编辑" viewCaption="查看"
 	    >
 	    </table>
 	    <div id="jqGridPager"></div>
@@ -59,7 +59,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">unitUpdate</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="unitUpdate" readonly="readonly">
+			      <input type="text" class="form-control" name="unitUpdate" editForbidden="ture">
 			    </div>
 			  </div>
 			  <div class="form-group">

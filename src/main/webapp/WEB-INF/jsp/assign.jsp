@@ -15,6 +15,7 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
+	     viewCaption="查看"
 	    >
 	    </table>
     	<div id="jqGridPager"></div>
