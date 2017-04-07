@@ -46,7 +46,7 @@ maxOrderNum:一单（主单）最多可以下几份，如2份，注意：主单�
 - - - 
 
 ### bug fix
-1. assign pape cannot use view function
+1. assign page cannot use view function - 20170407
 
 
 - - -
