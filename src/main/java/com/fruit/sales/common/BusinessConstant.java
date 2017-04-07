@@ -3,7 +3,8 @@ package com.fruit.sales.common;
 
 public class BusinessConstant {
 
-	public static final String MAX_ORDER_TO_DAY = "ORDER_DAY_TO";
+	public static final String MAX_ORDER_DAY_TO = "ORDER_DAY_TO";
+	//test
 	public static final String MAX_TEST_PARAM = "TEST_PARAM";
 	
 	//assign, salve phone no is or not virtual

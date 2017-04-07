@@ -18,9 +18,11 @@ import com.fruit.sales.dao.OrderDao;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.entity.FruitConfig;
 import com.fruit.sales.entity.Order;
+import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.service.FruitConfigService;
 import com.fruit.sales.service.OrderService;
+import com.fruit.sales.service.PubConfigService;
 import com.fruit.sales.vo.IOrderVO;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.weechat.RestultCode;
@@ -45,6 +47,9 @@ public class IUserOrderService {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private PubConfigService pubConfigService;
 	
 	@Transactional
 	public ReturnResult cancleUserOrder(String orderId) throws JsonProcessingException{
@@ -108,6 +113,13 @@ public class IUserOrderService {
 		
 		int balanceUnitFromAssign = assign.getBalanceUnit();
 		
+		//check max order to day of public config
+		PubConfig pubConfig = pubConfigService.findByName(BusinessConstant.MAX_ORDER_DAY_TO);
+		if(new DateTime().getDayOfMonth() > Integer.valueOf(pubConfig.getValue())){
+			rr.setCode(RestultCode.EXCEPTION.toString());
+			rr.setValue(UserOrderConstant.EXCEED_ORDER_DAY_CFG);
+			return rr;
+		}
 		
 		//check the order date
 		if(fruitConfig.getMaxOrderDay().compareTo(new Date()) < 0){
@@ -132,12 +144,6 @@ public class IUserOrderService {
 			return rr;
 		}
 		
-		//检查用户的库存
-		if(assign.getBalanceUnit() < order.getOrderUnit()){
-			rr.setCode(RestultCode.EXCEPTION.toString());
-			rr.setValue(UserOrderConstant.BALANCE_NOT_ENOUGH);
-			return rr;
-		}
 		
 		//check assign balance unit
 		if(balanceUnitFromAssign < order.getOrderUnit()){

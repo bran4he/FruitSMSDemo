@@ -19,4 +19,6 @@ public interface PubConfigService {
 	boolean delete(PubConfig pubCfg);
 	
 	PubConfig findById(String id);
+	
+	PubConfig findByName(String name);
 }

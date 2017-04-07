@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.dao.PubConfigDao;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
@@ -55,6 +56,12 @@ public class PubConfigServiceImpl implements PubConfigService {
 	@Override
 	public PubConfig findById(String id) {
 		return dao.findById(id);
+	}
+
+	@Override
+	public PubConfig findByName(String name) {
+		// TODO Auto-generated method stub
+		return dao.findByFiled("name", name);
 	}
 
 }
