@@ -28,7 +28,7 @@ public class FruitConfig {
 	private String fruitArea;
 	private Integer maxOrderNum;
 	private Integer maxProvNum;
-	private Integer balanceNum;
+	
 	private String remark;
 	private String extendData;
 
@@ -171,14 +171,5 @@ public class FruitConfig {
 	public void setExtendData(String extendData) {
 		this.extendData = extendData;
 	}
-
-	public Integer getBalanceNum() {
-		return balanceNum;
-	}
-
-	public void setBalanceNum(Integer balanceNum) {
-		this.balanceNum = balanceNum;
-	}
-
 	
 }

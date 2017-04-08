@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8" charset="utf-8">
-	<title>公共参数</title>
+	<title>公共参数管理</title>
 	
 	<jsp:include page="jqgrid-public.jsp" flush="true"/>
 	<jsp:include page="public.jsp" flush="true"/>
@@ -15,7 +15,7 @@
 
 	<div class="container">
 	    <table id="jqGrid" twidth="1170" theight="300"
-	    addCaption="新建" updateCaption="编辑" deleteCaption="删除" viewCaption="查看"
+	    addCaption="新建" updateCaption="编辑" viewCaption="查看"
 	    >
 	    </table>
 	    <div id="jqGridPager"></div>
@@ -39,21 +39,21 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">Name</label>
+			    <label for="lastname" class="col-sm-2 control-label">名称<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="name" readonly="readonly">
+			      <input type="text" class="form-control" name="name" readonly="readonly"  required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">Value</label>
+			    <label for="lastname" class="col-sm-2 control-label">值<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="value">
+			      <input type="text" class="form-control" name="value" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">remark</label>
+			    <label for="lastname" class="col-sm-2 control-label">备注<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <textarea class="form-control" rows="3" name="remark" ></textarea>
+			      <textarea class="form-control" rows="3" name="remark"  required="true"></textarea>
 			    </div>
 			  </div>
 			  

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8" charset="utf-8">
-	<title>assignDetail管理</title>
+	<title>送礼详细管理</title>
 	
 	<jsp:include page="jqgrid-public.jsp" flush="true"/>
 	<jsp:include page="public.jsp" flush="true"/>
@@ -79,7 +79,7 @@
 		  	<div class="ui-widget">
 				<div class="ui-state-error ui-corner-all" style="padding: 0.8em;">
 					<p style="margin: auto"><span class="ui-icon ui-icon-alert" ></span>
-					<strong>slavePhone信息警示:</strong></p>
+					<strong>收礼人手机号码信息警示:</strong></p>
 					<p style="margin: auto" >&nbsp;&nbsp;&nbsp;&nbsp;1.新建时为真实号,编辑时仍为真实,不允许修改为虚拟号</p>
 					<p style="margin: auto">&nbsp;&nbsp;&nbsp;&nbsp;2.新建时为虚拟号,编辑时强制置为真实号码.请务必修改否则取消保存</p>
 				</div>
@@ -97,32 +97,39 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">assignId</label>
+			    <label for="lastname" class="col-sm-2 control-label">收礼人详细ID</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="assignId" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">unitUpdate</label>
+			    <label for="lastname" class="col-sm-2 control-label">增加量<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="unitUpdate" editForbidden="ture">
+			      <input type="text" class="form-control" name="unitUpdate" editForbidden="ture" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">masterPhone</label>
+			    <label for="lastname" class="col-sm-2 control-label">送礼人手机<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="masterPhone">
+			      <input type="text" class="form-control" name="masterPhone" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">masterName</label>
+			    <label for="lastname" class="col-sm-2 control-label">送礼人姓名<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="masterName">
+			      <input type="text" class="form-control" name="masterName" required="true">
 			    </div>
 			  </div>
 			  
+			  
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">收礼人号码<span style="color:red">*</span></label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="slavePhone" required="true">
+			    </div>
+			  </div>
   			  <div class="form-group">
-			    <label for="isVirtual" class="col-sm-2 control-label">isVirtual</label>
+			    <label for="isVirtual" class="col-sm-2 control-label">虚拟号码</label>
 			     <div class="checkbox">
 				     <label>
 						<input type="text" class="form-control" name="isVirtual" readonly="readonly">
@@ -131,22 +138,15 @@
 				     </label>
 				 </div>
 			  </div>
-			  
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">slavePhone</label>
+			    <label for="lastname" class="col-sm-2 control-label">收礼人姓名<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="slavePhone">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">slaveName</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="slaveName">
+			      <input type="text" class="form-control" name="slaveName" required="true">
 			    </div>
 			  </div>
 
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">remark</label>
+			    <label for="lastname" class="col-sm-2 control-label">备注</label>
 			    <div class="col-sm-10">
 			      <textarea class="form-control" rows="3" name="remark" ></textarea>
 			    </div>

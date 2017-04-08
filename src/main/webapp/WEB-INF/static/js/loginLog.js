@@ -1,7 +1,7 @@
 $(function(){
 	//页面加载完成之后执行
 	
-	var colNames = [ 'ID', 'userId', 'username','loginDate', 'loginIP'];//jqGrid的列显示名字
+	var colNames = [ 'ID', '用户ID', '用户名','登录日期', '登录IP'];//jqGrid的列显示名字
 	
 	var colModel = [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
 		             {name : 'id',index : 'id'}, 

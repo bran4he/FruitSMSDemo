@@ -4,6 +4,9 @@ package com.fruit.sales.common;
 public class BusinessConstant {
 
 	public static final String MAX_ORDER_DAY_TO = "ORDER_DAY_TO";
+	public static final String RECEIVER_EFF_YEAR = "RECEIVER_EFF_YEAR";
+	
+	
 	//test
 	public static final String MAX_TEST_PARAM = "TEST_PARAM";
 	
@@ -26,5 +29,9 @@ public class BusinessConstant {
 	
 	public static final String PARAM_NOT_CORRECT = new String("-1");
 	public static final String PROCESS_SUCCESS = new String("0");
+	
+	
+	public static final String DEFAULT_REMARK_DATA = new String("default_remark");
+	public static final String DEFAULT_EXTEND_DATA = new String("{name:value}");
 	
 }

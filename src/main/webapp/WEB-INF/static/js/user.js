@@ -1,7 +1,7 @@
 $(function(){
 	var colNames = [ 'ID', 
-	                 'username', 
-	                 'password', 
+	                 '用户名', 
+	                 '密码', 
 	                 'email', 
 	                 '新建日期',
 	                 '新建人', 
@@ -18,7 +18,7 @@ $(function(){
 		             {name : 'updateDate',index : 'updateDate'}, 
 		             {name : 'updateBy',index : 'updateBy'}
 		           ];
-	var caption = "订单状态参数列表";
+	var caption = "用户列表";
 	//页面加载完成之后执行
 	jqGridInit(colNames, colModel, caption);
 	$("#dialog").dialog({ autoOpen: false });

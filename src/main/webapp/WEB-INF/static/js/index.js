@@ -25,6 +25,15 @@ function unFormateUpdateDate(cellValue, options, rowObject){
     return d.toString('yyyy-MM-dd HH:mm:ss');  
 }
 
+//格式化是和否
+function formateYesOrNo(cellValue, options, rowObject){
+	if(cellValue == '0'){
+		return '否';
+	}
+	return '是';
+}
+
+
 //customized noty
 function myNoty(text, type, timeout){
 	noty({
@@ -195,6 +204,27 @@ function cleanDialog(){
 
 //初始化【新建对话框】
 function initAddDialog(){
+	
+	$("#form input").each(function(idx, ele){
+		
+		//date time picker
+		var dateFlag = $(ele).attr('dateFlag');
+		if(dateFlag){
+			$(ele).prop("readOnly", true)
+				.datetimepicker({
+					dateFormat: "yy-mm-dd",
+					timeFormat: "HH:mm:ss",
+					showButtonPanel: true,
+					showHour: true,
+					showMinute: true,
+					showSecond: true
+				});
+		}
+		
+	});
+	
+	
+	
 	//新建窗口时默认为非虚拟号，即input value=0
 	$("#form :checkbox").each(function(idx, ele){
 		//允许修改，防止编辑时携带的属性仍然在
@@ -436,6 +466,20 @@ function btnOk(){
 		console.log("this is add operation");
 		var postUrl = $("#form").attr('addAction');
 	}
+	
+	//校验必填选项
+	var pass = true;
+	$("#form input, textarea").each(function(idx, ele){
+		if($(ele).attr('required') && !$(ele).val()){
+			pass = false;
+			myNoty($(ele).attr('name') + "是必填项", 'warning', 1500);
+		}
+	});
+	
+	if(!pass){
+		return false;
+	}
+	
 	
     $.ajax({
     	type: "POST",

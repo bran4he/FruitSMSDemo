@@ -1,5 +1,5 @@
 $(function(){
-	var colNames =[ '序列号', '名称', '值','remark', '新建日期','新建人', '更新日期', '更新人' ];
+	var colNames =[ 'ID', '名称', '值','备注', '新建日期','新建人', '更新日期', '更新人' ];
 	var colModel = [
 		             {name : 'id',index : 'id'}, 
 		             {name : 'name',index : 'name'}, 

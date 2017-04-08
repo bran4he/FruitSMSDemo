@@ -1,8 +1,10 @@
 package com.fruit.sales.serviceImpl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.dao.AssignDetailDao;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
@@ -22,28 +24,32 @@ public class AssignDetailServiceImpl implements AssignDetailService {
 	}
 
 	@Override
-	public AssignDetail add(AssignDetail user) {
+	public AssignDetail add(AssignDetail assignDetail) {
 		// TODO Auto-generated method stub
-		user.setId(dao.getNextId());
+		assignDetail.setId(dao.getNextId());
 
-		user.setNewDefaultDateAndBy();
+		if(StringUtils.isEmpty(assignDetail.getRemark())){
+			assignDetail.setRemark(BusinessConstant.DEFAULT_REMARK_DATA);
+		}
+		
+		assignDetail.setNewDefaultDateAndBy();
 
-		dao.save(user);
-		return user;
+		dao.save(assignDetail);
+		return assignDetail;
 	}
 
 	@Override
-	public boolean update(AssignDetail user) {
+	public boolean update(AssignDetail assignDetail) {
 		// TODO Auto-generated method stub
-		user.setUpdateDefaultDateAndBy();
-		dao.update(user);
+		assignDetail.setUpdateDefaultDateAndBy();
+		dao.update(assignDetail);
 		return true;
 	}
 
 	@Override
-	public boolean delete(AssignDetail user) {
+	public boolean delete(AssignDetail assignDetail) {
 		// TODO Auto-generated method stub
-		dao.delete(user);
+		dao.delete(assignDetail);
 		return true;
 	}
 

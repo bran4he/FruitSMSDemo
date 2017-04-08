@@ -19,9 +19,4 @@ insert into T_USER (id, username, password, email) values (null, 'test', 'test',
 
 select * from T_USER;
 
-select * from T_USER where id > 2 and id <15;
-select max(id) from T_USER;
-show create table  T_USER;
-insert into T_USER (id, username, password, email) values (null, 'admin', 'admin', 'admin@admin.com');
-delete from t_user;
 

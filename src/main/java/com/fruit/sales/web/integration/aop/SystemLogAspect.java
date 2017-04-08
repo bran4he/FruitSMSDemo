@@ -10,14 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class SystemLogAspect {
 
 	private  static  final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
 	
 	//Controller层切点  
-//	@Pointcut("execution (* com.fruit.sales.web.controller..*(..))")
+//	@Pointcut("execution (* com.fruit.sales.web.controller..*(..))")//会拦截所有定义的方法
+	@Pointcut("@annotation(com.fruit.sales.web.integration.aop.SystemLog)")		//只针对@annotation
 	public void controllerAspect(){
 		
 	}

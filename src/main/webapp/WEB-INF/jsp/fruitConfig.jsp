@@ -54,7 +54,7 @@
 	
 
 
-	<div id="dialog" title="水果配置参数信息" dialogWidth="850" dialogHeight="520">
+	<div id="dialog" title="水果配置参数" dialogWidth="850" dialogHeight="520">
 	
 	<!-- 面板框 -->
 	<div class="panel panel-default">
@@ -69,55 +69,50 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">fruitName</label>
+			    <label for="lastname" class="col-sm-2 control-label">水果<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="fruitName">
+			      <input type="text" class="form-control" name="fruitName" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">fruitArea</label>
+			    <label for="lastname" class="col-sm-2 control-label">产地<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="fruitArea">
+			      <input type="text" class="form-control" name="fruitArea" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">fruitMonth</label>
+			    <label for="lastname" class="col-sm-2 control-label">月份<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" dateFlag="true" name="fruitMonth">
+			      <input type="text" class="form-control" dateFlag="true" name="fruitMonth" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">maxOrderDay</label>
+			    <label for="lastname" class="col-sm-2 control-label">最大定单日<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" dateFlag="true" name="maxOrderDay">
+			      <input type="text" class="form-control" dateFlag="true" name="maxOrderDay" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">maxOrderNum</label>
+			    <label for="lastname" class="col-sm-2 control-label">一单最大量<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxOrderNum">
+			      <input type="text" class="form-control" name="maxOrderNum" required="true">
+			    </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="lastname" class="col-sm-2 control-label">供应量<span style="color:red">*</span></label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="maxProvNum" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">balanceNum</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="balanceNum" readonly="readonly">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">maxProvNum</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxProvNum">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">remark</label>
+			    <label for="lastname" class="col-sm-2 control-label">备注</label>
 			    <div class="col-sm-10">
 			      <textarea class="form-control" rows="3" name="remark" ></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">extendData</label>
+			    <label for="lastname" class="col-sm-2 control-label">扩展</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="extendData">
 			    </div>

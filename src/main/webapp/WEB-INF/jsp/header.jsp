@@ -25,19 +25,19 @@
         	<a href="#" role="menu">
         	<form action="<%=request.getContextPath()%>/assign/index" method="get">
         	</form>
-        	Assign管理
+        	收礼详细管理
         	</a>
         </li>
         <li>
         	<a href="#" role="menu">
-        		AssignDetail管理
+        		送礼详细管理
         		<form action="<%=request.getContextPath()%>/assignDetail/index" method="get">
         		</form>
         	</a>
         </li>
         <li>
         	<a href="#" role="menu">
-        		Order管理
+        		订单管理
         		<form action="<%=request.getContextPath()%>/order/index" method="get">
         		</form>
         	</a>

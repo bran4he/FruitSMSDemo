@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- jqGrid组件基础样式包-必要 -->
+<!-- jqGrid组件基础样式包-必要 
+-->
 <link rel="stylesheet" href="../static/js/jqgrid/css/ui.jqgrid.css" />
+
 
 <!-- jqGrid主题包-非必要 --> 
 <!-- 在jqgrid/css/css这个目录下还有其他的主题包，可以尝试更换看效果 
-<link rel="stylesheet" href="../static/js/jqgrid/css/css/redmond/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" href="../static/js/jqgrid/css/css/ui-lightness/jquery-ui-1.8.16.custom.css" />
 -->
 
 <!-- jquery插件包-必要 -->

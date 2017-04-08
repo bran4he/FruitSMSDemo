@@ -18,8 +18,6 @@ insert into T_ORDER_STATUS (id, name) values (5,'派送失败');
 
 /*以上初始化和建库脚步*/
 
-insert into T_ORDER_STATUS (id, name) values (null,'dddddd');
 
 select * from T_ORDER_STATUS;
 
-delete from T_ORDER_STATUS;

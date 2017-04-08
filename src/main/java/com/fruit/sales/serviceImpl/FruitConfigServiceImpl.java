@@ -2,9 +2,11 @@ package com.fruit.sales.serviceImpl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.dao.FruitConfigDao;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
@@ -34,6 +36,13 @@ public class FruitConfigServiceImpl implements FruitConfigService {
 		fruitConfig.setId(dao.getNextId());
 		fruitConfig.setNewDefaultDateAndBy();
 		
+		if(StringUtils.isEmpty(fruitConfig.getRemark())){
+			fruitConfig.setRemark(BusinessConstant.DEFAULT_REMARK_DATA);
+		}
+		if(StringUtils.isEmpty(fruitConfig.getExtendData())){
+			fruitConfig.setExtendData(BusinessConstant.DEFAULT_EXTEND_DATA);
+		}
+		
 		dao.save(fruitConfig);
 		return fruitConfig;
 	}
@@ -42,6 +51,13 @@ public class FruitConfigServiceImpl implements FruitConfigService {
 	public boolean update(FruitConfig fruitConfig) {
 		fruitConfig.setUpdateDefaultDateAndBy();
 
+		if(StringUtils.isEmpty(fruitConfig.getRemark())){
+			fruitConfig.setRemark(BusinessConstant.DEFAULT_REMARK_DATA);
+		}
+		if(StringUtils.isEmpty(fruitConfig.getExtendData())){
+			fruitConfig.setExtendData(BusinessConstant.DEFAULT_EXTEND_DATA);
+		}
+		
 		dao.update(fruitConfig);
 		return true;
 	}

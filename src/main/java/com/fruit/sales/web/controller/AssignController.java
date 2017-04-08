@@ -22,6 +22,7 @@ import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.web.base.BaseController;
+import com.fruit.sales.web.integration.aop.SystemLog;
 
 @RequestMapping("/assign")
 @Controller
@@ -37,8 +38,8 @@ public class AssignController implements BaseController<Assign> {
 		return "assign";
 	}
 	
-//	@SystemLog(description="加载list")
 	@Override
+	@SystemLog(description="加载list")
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public @ResponseBody QueryResult<Assign> list(HttpServletRequest request) {
 		QueryParam queryParam = QueryUtil.getQueryParam(request);

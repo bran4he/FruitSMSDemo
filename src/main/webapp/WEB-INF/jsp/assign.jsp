@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8" charset="utf-8">
-	<title>主分配管理</title>
+	<title>收礼人详细管理</title>
 	
 	<jsp:include page="jqgrid-public.jsp" flush="true"/>
 	<jsp:include page="public.jsp" flush="true"/>
@@ -70,7 +70,7 @@
 	</div>
 	<jsp:include page="footer.jsp" flush="true"/> 
 	
-	<div id="dialog" title="水果分配信息" dialogWidth="780" dialogHeight="490">
+	<div id="dialog" title="收礼人信息" dialogWidth="780" dialogHeight="490">
 	
 	<div class="panel panel-default">
 	    <div class="panel-body">
@@ -83,14 +83,20 @@
 			      <input type="text" class="form-control" name="id" readonly="readonly">
 			    </div>
 			  </div>
+  			  <div class="form-group">
+			    <label for="slaveName" class="col-sm-2 control-label">收礼人姓名</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="slaveName">
+			    </div>
+			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">slavePhone</label>
+			    <label for="lastname" class="col-sm-2 control-label">收礼人手机</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="slavePhone">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="isVirtual" class="col-sm-2 control-label">isVirtual</label>
+			    <label for="isVirtual" class="col-sm-2 control-label">虚拟号码</label>
 			     <div class="checkbox">
 			     <label>
 					<input type="text" class="form-control" name="isVirtual" readonly="readonly">
@@ -99,7 +105,7 @@
 				 </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="isVirtual" class="col-sm-2 control-label">isActive</label>
+			    <label for="isVirtual" class="col-sm-2 control-label">号码激活</label>
 			     <div class="checkbox">
 			     <label>
 					<input type="text" class="form-control" name="isActive" readonly="readonly">
@@ -107,50 +113,45 @@
 			     </label>
 				 </div>
 			  </div>
+
 			  <div class="form-group">
-			    <label for="slaveName" class="col-sm-2 control-label">slaveName</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="slaveName">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">initialUnit</label>
+			    <label for="lastname" class="col-sm-2 control-label">初始量</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="initialUnit">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">balanceUnit</label>
+			    <label for="lastname" class="col-sm-2 control-label">余额</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="balanceUnit">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">weecharOpenid</label>
+			    <label for="lastname" class="col-sm-2 control-label">微信OpenId</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="weecharOpenid" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">effectivePeriod</label>
+			    <label for="lastname" class="col-sm-2 control-label">生效期(年)</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="effectivePeriod">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">expireDate</label>
+			    <label for="lastname" class="col-sm-2 control-label">过期时间</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="expireDate" dateFlag="true" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">remark</label>
+			    <label for="lastname" class="col-sm-2 control-label">备注</label>
 			    <div class="col-sm-10">
 			      <textarea class="form-control" rows="3" name="remark" ></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">extendData</label>
+			    <label for="lastname" class="col-sm-2 control-label">扩展</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="extendData">
 			    </div>

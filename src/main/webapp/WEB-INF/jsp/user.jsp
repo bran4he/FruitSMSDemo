@@ -39,21 +39,21 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">username</label>
+			    <label for="lastname" class="col-sm-2 control-label">用户名<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="username">
+			      <input type="text" class="form-control" name="username" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">password</label>
+			    <label for="lastname" class="col-sm-2 control-label">密码<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="password">
+			      <input type="text" class="form-control" name="password" required="true">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">email</label>
+			    <label for="lastname" class="col-sm-2 control-label">email<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="email">
+			      <input type="text" class="form-control" name="email" required="true">
 			    </div>
 			  </div>
 			  

@@ -60,12 +60,12 @@ public class AssignAndDetailService {
 				assign.setBalanceUnit(ad.getUnitUpdate());
 				assign.setInitialUnit(ad.getUnitUpdate());
 				
+				//default move to add
+//				assign.setEffectivePeriod(BusinessConstant.ASSIGN_DEF_EFF_PERIOD);
 				//default
-				assign.setEffectivePeriod(BusinessConstant.ASSIGN_DEF_EFF_PERIOD);
-				//default
-				Date date = new Date(); 
-				DateTime dateTime = new DateTime(date).plusYears(assign.getEffectivePeriod());
-				assign.setExpireDate(dateTime.toDate());
+//				Date date = new Date(); 
+//				DateTime dateTime = new DateTime(date).plusYears(assign.getEffectivePeriod());
+//				assign.setExpireDate(dateTime.toDate());
 				
 				//default
 				assign.setExtendData("");

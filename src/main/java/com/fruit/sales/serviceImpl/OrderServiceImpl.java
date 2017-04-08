@@ -2,10 +2,12 @@ package com.fruit.sales.serviceImpl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.dao.OrderDao;
 import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
@@ -27,6 +29,10 @@ public class OrderServiceImpl implements OrderService {
 	public Order add(Order order) {
 		// TODO Auto-generated method stub
 		order.setId(dao.getNextId());
+		
+		if(StringUtils.isEmpty(order.getRemark())){
+			order.setRemark(BusinessConstant.DEFAULT_REMARK_DATA);
+		}
 		
 		order.setNewDefaultDateAndBy();
 		

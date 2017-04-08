@@ -29,14 +29,14 @@ alter table T_ASSIGN AUTO_INCREMENT=1;
 
 insert into T_ASSIGN
 	values
-(1, '15692132432' ,0, 'slave', 0,
+(1, '15692132432' ,0, '156name', 0,
 	10, 5, 'xxxxxxxxx', 3, '2020-03-20', 
 	'remark', 'ext data', 
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 insert into T_ASSIGN
 	values
-(2, '2' ,0, 'slave', 1,
+(2, '2' ,0, 'slaveName', 1,
 	10, 10, 'xxxxxxxxx', 3, '2020-03-20', 
 	'remark', 'ext data', 
 	'2017-03-02', 'admin','2017-03-02', 'admin');

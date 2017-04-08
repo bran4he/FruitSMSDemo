@@ -1,26 +1,27 @@
 $(function(){
 	var colNames = [ 'ID', 
-	                 'statusId', 
-	                 'assignId', 
-	                 'orderUnit', 
-	                 'fruitId', 
-	                 'fruitName', 
+	                 '收礼人详细ID', 
+	                 '订单状态ID', 
+	                 '订单状态', 
+	                 '水果ID', 
+	                 '水果', 
+	                 '订单量', 
 	                 
 	                 
 	                 
-	                 'planDeliveryDate', 
-	                 'address', 
-	                 'contactName', 
-	                 'contactPhone', 
-	                 'deliveryDate', 
-	                 'deliveryBy', 
-	                 'deliveryRemark', 
-	                 'finishDate', 
-	                 'finishBy', 
-	                 'finishRemark', 
+	                 '计划送达时间', 
+	                 '地址', 
+	                 '联系人', 
+	                 '联系电话', 
+	                 '送达时间', 
+	                 '送达人', 
+	                 '送达备注', 
+	                 '结束时间', 
+	                 '结束人', 
+	                 '结束备注', 
 	                 
-	                 'remark', 
-	                 'extendData', 
+	                 '备注', 
+	                 '扩展', 
 	                 
 	                 '新建日期',
 	                 '新建人', 
@@ -29,11 +30,13 @@ $(function(){
 	                 ];
 	var colModel = [
 		             {name : 'id',index : 'id'}, 
-		             {name : 'statusId',index : 'statusId'}, 
 		             {name : 'assignId',index : 'assignId'}, 
-		             {name : 'orderUnit',index : 'orderUnit'}, 
-		             {name : 'fruitId',index : 'fruitId'}, 
+		             {name : 'statusId',formatter: formateOrderStatus}, 
+		             {name : 'statusId',index : 'statusId', hidden:true}, 
+		             
+		             {name : 'fruitId',index : 'fruitId', hidden:true}, 
 		             {name : 'fruitName',index : 'fruitName'}, 
+		             {name : 'orderUnit',index : 'orderUnit'}, 
 		             
 		             {name : 'planDeliveryDate',index : 'planDeliveryDate'}, 
 		             {name : 'address',index : 'address'}, 
@@ -47,14 +50,14 @@ $(function(){
 		             {name : 'finishRemark',index : 'finishRemark'}, 
 		             
 		             {name : 'remark',index : 'remark'}, 
-		             {name : 'extendData',index : 'extendData'}, 
+		             {name : 'extendData',index : 'extendData', hidden:true}, 
 		             
 		             {name : 'insertDate',index : 'insertDate'}, 
 		             {name : 'insertBy',index : 'insertBy'}, 
 		             {name : 'updateDate',index : 'updateDate'}, 
 		             {name : 'updateBy',index : 'updateBy'}
 		           ];
-	var caption = "Order列表";
+	var caption = "订单列表";
 	//页面加载完成之后执行
 	jqGridInit(colNames, colModel, caption);
 	$("#dialog").dialog({ autoOpen: false });
@@ -121,7 +124,53 @@ $(function(){
 	
 });
 
-
+//格式化订单状态
+function formateOrderStatus(cellValue, options, rowObject){
+	console.log("cellValue: " + cellValue);
+	switch(cellValue){
+	case "1":
+		return "待派送";
+		break;
+	case "2":
+		return "派送中";
+		break;
+	case "3":
+		return "派送成功";
+		break;
+	case "4":
+		return "用户取消";
+		break;
+	case "5":
+		return "派送失败";
+		break;
+	default:
+		return "未定义"; 
+	}
+	
+/*	ajax不通过
+ * $.ajax({
+		type:"GET",
+		async: false,//同步
+		dataType:"json",
+		url:"../orderStatus/all",
+		success:function(data){
+			console.info(data);
+			for(var i=0; i< data.length; i++){
+				console.log(data[i].id);
+				console.log(data[i].id == cellValue);
+				console.log(data[i].name);
+				if(data[i].id == cellValue){
+					return data[i].name;
+				}
+			}
+			return "未定义";
+		},
+		error: function(){
+			notyCus('加载orderStatus/all列表异常, 请联系管理员', 'notification', 2000);
+		}
+	});*/
+	
+}
 
 
 

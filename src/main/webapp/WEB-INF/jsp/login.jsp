@@ -5,6 +5,10 @@
 	<meta http-equiv="Content-Type" content="text/html; UTF-8">
 
 	<script type="text/javascript" src="../static/js/jquery/jquery-1.10.0-min.js"></script>
+	<!-- 
+	<script type="text/javascript" src="../static/js/jquery.validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="../static/js/jquery.validate/localization/messages_zh.min.js"></script>
+	 -->
 
 	<!-- noty -->
 	<script type="text/javascript" src="../static/js/noty/packaged/jquery.noty.packaged.min.js"></script>
