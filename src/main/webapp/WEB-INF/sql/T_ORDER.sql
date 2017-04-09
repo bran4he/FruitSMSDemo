@@ -39,7 +39,7 @@ alter table T_ORDER AUTO_INCREMENT=1;
 
 insert into T_ORDER
 	values
-(	null, 2, 1, 1, 'apple0', 5,
+(	null, 2, 1, 1, 'apple', 5,
 	'2017-04-02', '中国上海市淞沪路270号创智天地广场3号楼','王小二','15888888888',
 	'2017-04-12', 'JD李大宝','货到付款',
 	'2017-04-13', '张小妹', '放在前台',
@@ -50,3 +50,8 @@ insert into T_ORDER
 
 select * from T_ORDER;
 
+
+
+/*
+select *, max(orderUnit) from T_ORDER where fruitId = 1;
+*/

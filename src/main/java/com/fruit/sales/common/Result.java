@@ -6,6 +6,8 @@ public class Result {
 
 	private boolean result;
 	private Map<String, Object> msg;
+	//和前端约定错误信息
+	private String code;
 	
 	public boolean isResult() {
 		return result;
@@ -26,6 +28,12 @@ public class Result {
 	}
 	public Result() {
 		// TODO Auto-generated constructor stub
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	

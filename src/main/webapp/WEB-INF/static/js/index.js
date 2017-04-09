@@ -498,7 +498,11 @@ function btnOk(){
         		myNoty('保存成功', 'success', 1500);
         	}else{
         		console.warn("更新失败！");
-        		myNoty('保存失败', 'error', 1500);
+        		if(data.code){
+        			myNoty(data.code + ',保存失败', 'error', 2000);
+        		}else{
+        			myNoty('保存失败', 'error', 1500);
+        		}
         		
         	}
         },

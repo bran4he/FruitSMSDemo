@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.fruit.sales.common.OrderConstant;
@@ -69,4 +71,30 @@ public class OrderDao extends BaseDaoImpl<Order>{
 		
 		return lst;
 	}
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	public Order findMaxOrderUnitByFruitId(String fruitId){
+		StringBuffer sql = new StringBuffer("select *, max(orderUnit)as maxUnit from T_ORDER where fruitId = ");
+		sql.append(fruitId).append(" ");
+		
+		List<Order> lst = jdbcTemplate.query(sql.toString(), (resultSet, rowNum) -> {
+			Order order = new Order();
+			//TODO 暂时只存放几个属性，业务需要时再加
+			order.setId(resultSet.getString("id"));
+			order.setOrderUnit(resultSet.getInt("orderUnit"));
+			order.setFruitId(resultSet.getString("fruitId"));
+			order.setFruitName(resultSet.getString("fruitName"));
+			
+			return order;
+		});
+		
+		if(lst != null){
+			return lst.get(0);
+		}
+		return null;
+		
+	}
+	
 }

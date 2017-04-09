@@ -21,9 +21,8 @@ import com.fruit.sales.dao.base.QueryParam;
 import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.FruitConfig;
-import com.fruit.sales.entity.PubConfig;
-import com.fruit.sales.entity.User;
 import com.fruit.sales.service.FruitConfigService;
+import com.fruit.sales.serviceImpl.OrderServiceImpl;
 import com.fruit.sales.web.base.BaseController;
 
 @RequestMapping("/fruitConfig")
@@ -34,6 +33,9 @@ public class FruitConfigController implements BaseController<FruitConfig> {
 	
 	@Autowired
 	private FruitConfigService service;
+	
+	@Autowired
+	private OrderServiceImpl orderService;
 	
 	//规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
@@ -72,7 +74,22 @@ public class FruitConfigController implements BaseController<FruitConfig> {
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public @ResponseBody Result update(@RequestBody FruitConfig fruitConfig){
+		
+		logger.info("update fruitConfig:\n{}", fruitConfig);
+		
+		//检查更新的最大可定数量不能小于已产生订单的最大订单量
+		int maxOrderUnit = orderService.findMaxOrderUnitByFruitId(fruitConfig.getId());
+		logger.info("update and get maxOrderUnit from orders:{}", maxOrderUnit);
+		
+		if(maxOrderUnit > fruitConfig.getMaxOrderNum()){
+			Result rr = new Result();
+			rr.setResult(false);
+			rr.setCode("最大可定数量小于已存在的订单");
+			return rr;
+		}
+		
 		boolean flag = service.update(fruitConfig);
+		
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(flag){
 			data.put("data", service.findById(fruitConfig.getId()));
