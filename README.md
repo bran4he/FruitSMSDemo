@@ -53,6 +53,7 @@ a demo for fruit sales management system
 32. 备注改为非必填字段，后台判断是否为空，为空时置为默认备注  -20170408
 33. 修改jqgrid显示如激活、虚拟号、订单状态为真实字面意义，隐藏原来关联的id -20170408
 34. 增加AOP注解方式输出系统日志   -20170408
+35. 更新页面的显示信息，更为正式和商业
 - - - 
 
 ### bug fix
@@ -220,7 +221,7 @@ BODY
     "address": "中国上海市淞沪路270号创智天地广场3号楼",
     "contactName": "王小二",
     "contactPhone": "15888888888",
-    "remark":"remakr"
+    "remark":"remark"
   }
 ```
 

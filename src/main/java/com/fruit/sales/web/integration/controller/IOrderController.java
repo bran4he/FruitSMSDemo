@@ -86,11 +86,19 @@ public class IOrderController {
 			Assign assign = assinService.findByWeechatId(weechatId);
 			
 			if(null != assign){
-				rr = iUserOrderService.order(assign, order);
+				
+				//用户是否激活
+				if(assign.getIsActive().equals(BusinessConstant.NOT_ACTIVE)){
+					rr.setCode(RestultCode.EXCEPTION.toString());
+					rr.setValue(UserOrderConstant.USER_NOT_ACTIVE);
+				}else{
+					rr = iUserOrderService.order(assign, order);
+				}
+				
 			}else{
 				//用户验证未通过
 				rr.setCode(RestultCode.FAIL.toString());
-				rr.setValue(UserOrderConstant.USER_NOT_AUTH);
+				rr.setValue(UserOrderConstant.USER_NOT_EXIST);
 			}
 			
 		}else{

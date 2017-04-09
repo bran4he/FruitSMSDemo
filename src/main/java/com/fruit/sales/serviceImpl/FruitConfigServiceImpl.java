@@ -36,11 +36,16 @@ public class FruitConfigServiceImpl implements FruitConfigService {
 		fruitConfig.setId(dao.getNextId());
 		fruitConfig.setNewDefaultDateAndBy();
 		
+		
+		
 		if(StringUtils.isEmpty(fruitConfig.getRemark())){
 			fruitConfig.setRemark(BusinessConstant.DEFAULT_REMARK_DATA);
 		}
 		if(StringUtils.isEmpty(fruitConfig.getExtendData())){
 			fruitConfig.setExtendData(BusinessConstant.DEFAULT_EXTEND_DATA);
+		}
+		if(null == fruitConfig.getMaxProvNum()){
+			fruitConfig.setMaxProvNum(BusinessConstant.DEFAULT_FRUIT_MAX_PROV);
 		}
 		
 		dao.save(fruitConfig);
