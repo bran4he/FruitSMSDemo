@@ -27,8 +27,8 @@ import com.fruit.sales.service.OrderService;
 import com.fruit.sales.service.PubConfigService;
 import com.fruit.sales.vo.IOrderVO;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
-import com.fruit.sales.weechat.RestultCode;
-import com.fruit.sales.weechat.ReturnResult;
+import com.fruit.sales.wechat.RestultCode;
+import com.fruit.sales.wechat.ReturnResult;
 
 @Service
 public class IUserOrderService {
@@ -55,6 +55,7 @@ public class IUserOrderService {
 	
 	@Autowired
 	private PubConfigService pubConfigService;
+
 	
 	@Transactional
 	public ReturnResult cancleUserOrder(String orderId) throws JsonProcessingException{
@@ -201,6 +202,23 @@ public class IUserOrderService {
 		setDefaultOrderParams(order);
 		
 		logger.info("order before save: \n{}", order);
+		
+		//save user common address
+		OrderAddress addr = new OrderAddress();
+		addr.setAddress(order.getAddress());
+		addr.setContactName(order.getContactName());
+		addr.setContactPhone(order.getContactPhone());
+		addr.setWechatOpenid(assign.getWechatOpenid());
+		
+		List<OrderAddress> addrLst = orderAddressService.findByOpenId(assign.getWechatOpenid());
+		if(addrLst.size()>0){
+			long count = addrLst.stream().filter(add -> add.equals(addr)).count();
+			if(count == 0){
+				orderAddressService.add(addr);
+			}
+		}else{
+			orderAddressService.add(addr);
+		}
 		
 		service.add(order);
 		

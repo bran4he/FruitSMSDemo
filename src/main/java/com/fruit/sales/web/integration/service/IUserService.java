@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
-import com.fruit.sales.weechat.RestultCode;
-import com.fruit.sales.weechat.ReturnResult;
+import com.fruit.sales.wechat.RestultCode;
+import com.fruit.sales.wechat.ReturnResult;
 
 @Service
 public class IUserService {

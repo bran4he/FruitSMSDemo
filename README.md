@@ -373,7 +373,7 @@ Response:
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "[{\"id\":\"1\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactPhone\":\"15888888888\",\"wechatOpenid\":\"QWERTYUIOP\"}]"
+  "msg": "[{\"id\":\"1\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"张晓霞\",\"contactPhone\":\"15888888888\",\"wechatOpenid\":\"QWERTYUIOP\"},{\"id\":\"2\",\"address\":\"中国上海市大渡河路138弄长风公园\",\"contactName\":\"李大庄\",\"contactPhone\":\"13056721342\",\"wechatOpenid\":\"QWERTYUIOP\"}]"
 }
 ```
 

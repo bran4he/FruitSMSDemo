@@ -28,7 +28,7 @@ $(function(){
 		             {name : 'slaveName',index : 'slaveName'}, 
 		             {name : 'isActive',index : 'isActive',formatter:  formateYesOrNo}, 
 		             {name : 'isActive', hidden:true}, 
-		             {name : 'weecharOpenid',index : 'weecharOpenid'}, 
+		             {name : 'wechatOpenid',index : 'wechatOpenid'}, 
 		             
 		             {name : 'initialUnit',index : 'initialUnit'}, 
 		             {name : 'balanceUnit',index : 'balanceUnit'}, 

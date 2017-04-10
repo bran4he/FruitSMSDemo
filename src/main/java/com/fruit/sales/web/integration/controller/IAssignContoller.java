@@ -13,9 +13,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
-import com.fruit.sales.weechat.RegisterStatus;
-import com.fruit.sales.weechat.RestultCode;
-import com.fruit.sales.weechat.ReturnResult;
+import com.fruit.sales.wechat.RegisterStatus;
+import com.fruit.sales.wechat.RestultCode;
+import com.fruit.sales.wechat.ReturnResult;
 
 @Controller
 @RequestMapping("/rest/assign")
@@ -26,7 +26,7 @@ public class IAssignContoller {
 	@Autowired
 	private AssignService assinService;
 	
-	@RequestMapping(value="checkBalance/{weechatId}", method = RequestMethod.GET)
+	@RequestMapping(value="checkBalance/{wechatId}", method = RequestMethod.GET)
 	public @ResponseBody ReturnResult checkAssignBalance(@PathVariable String wechatId) throws JsonProcessingException{
 		
 		logger.info("checkAssignBalance, wechatId:{}", wechatId);

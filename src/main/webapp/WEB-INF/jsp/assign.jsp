@@ -47,8 +47,8 @@
 	  &nbsp;
 	  &nbsp;
   	  <div class="form-group">
-	    <label for="weecharOpenid">微信OpenId:</label>
-	    <input type="text" class="form-control" name="weecharOpenid" >
+	    <label for="wechatOpenid">微信OpenId:</label>
+	    <input type="text" class="form-control" name="wechatOpenid" >
 	  </div>
 	  &nbsp;
 	  &nbsp;
@@ -129,7 +129,7 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">微信OpenId</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="weecharOpenid" readonly="readonly">
+			      <input type="text" class="form-control" name="wechatOpenid" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">

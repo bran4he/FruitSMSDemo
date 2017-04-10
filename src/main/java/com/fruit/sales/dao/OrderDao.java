@@ -40,7 +40,7 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	
 	public List<IOrderVO> iQueryUserOrder(String wechatId, String status){
 		
-		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.wechatOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id ");
+		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.wechatOpenid as wechatOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id ");
 		
 		sql.append("WHERE wechatOpenid='").append(wechatId).append("' ");
 		

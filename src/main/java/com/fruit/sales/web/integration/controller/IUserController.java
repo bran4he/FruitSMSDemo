@@ -16,9 +16,9 @@ import com.fruit.sales.entity.Assign;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.web.integration.common.UserConstant;
 import com.fruit.sales.web.integration.service.IUserService;
-import com.fruit.sales.weechat.RegisterStatus;
-import com.fruit.sales.weechat.RestultCode;
-import com.fruit.sales.weechat.ReturnResult;
+import com.fruit.sales.wechat.RegisterStatus;
+import com.fruit.sales.wechat.RestultCode;
+import com.fruit.sales.wechat.ReturnResult;
 
 @Controller
 @RequestMapping("/rest/user")

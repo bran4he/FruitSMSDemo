@@ -20,7 +20,7 @@ public class BusinessConstant {
 	public static final Integer IS_ACTIVE = new Integer(1);
 	
 	
-	//default weechat openid for inital setup
+	//default wechat openid for inital setup
 	public static final String DEFAULT_WECHAT_ID = "NA";
 	
 	//default effective period

@@ -8,10 +8,9 @@ public class OrderAddress {
 	private String id;	
 	
 	private String address;
+	private String contactName;
 	private String contactPhone;
 	private String wechatOpenid;
-	
-	
 	
 	
 	@Override
@@ -20,8 +19,9 @@ public class OrderAddress {
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result
+				+ ((contactName == null) ? 0 : contactName.hashCode());
+		result = prime * result
 				+ ((contactPhone == null) ? 0 : contactPhone.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((wechatOpenid == null) ? 0 : wechatOpenid.hashCode());
 		return result;
@@ -41,16 +41,16 @@ public class OrderAddress {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
+		if (contactName == null) {
+			if (other.contactName != null)
+				return false;
+		} else if (!contactName.equals(other.contactName))
+			return false;
 		if (contactPhone == null) {
 			if (other.contactPhone != null)
 				return false;
 		} else if (!contactPhone.equals(other.contactPhone))
 			return false;
-//		if (id == null) {
-//			if (other.id != null)
-//				return false;
-//		} else if (!id.equals(other.id))
-//			return false;
 		if (wechatOpenid == null) {
 			if (other.wechatOpenid != null)
 				return false;
@@ -100,5 +100,14 @@ public class OrderAddress {
 	public void setWechatOpenid(String wechatOpenid) {
 		this.wechatOpenid = wechatOpenid;
 	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+	
 	
 }

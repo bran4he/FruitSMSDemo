@@ -1,4 +1,4 @@
-package com.fruit.sales.weechat;
+package com.fruit.sales.wechat;
 
 public enum RestultCode {
 

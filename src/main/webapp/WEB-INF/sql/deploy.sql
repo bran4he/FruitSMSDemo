@@ -9,7 +9,7 @@ CREATE TABLE `T_ASSIGN` (
 `initialUnit` int(10) NOT NULL,
 `balanceUnit` int(10) NOT NULL,
 
-`weecharOpenid` VARCHAR(100),
+`wechatOpenid` VARCHAR(100),
 
 `effectivePeriod` int(10) NOT NULL,
 `expireDate` timestamp NOT NULL,

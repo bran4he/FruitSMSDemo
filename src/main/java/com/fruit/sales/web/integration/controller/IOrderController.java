@@ -19,8 +19,8 @@ import com.fruit.sales.service.AssignService;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.web.integration.service.IUserOrderService;
 import com.fruit.sales.web.integration.service.IUserService;
-import com.fruit.sales.weechat.RestultCode;
-import com.fruit.sales.weechat.ReturnResult;
+import com.fruit.sales.wechat.RestultCode;
+import com.fruit.sales.wechat.ReturnResult;
 
 @Controller
 @RequestMapping("/rest/order")
