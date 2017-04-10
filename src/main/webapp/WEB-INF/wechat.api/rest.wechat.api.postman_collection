@@ -1,0 +1,47 @@
+{
+	"id": "572dd2c5-86a1-192a-7116-a260245cf434",
+	"name": "login",
+	"description": "",
+	"order": [
+		"6d0a9d17-e7e1-53e5-ea31-1e227f0a5a96"
+	],
+	"folders": [],
+	"timestamp": 1490190840399,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "6d0a9d17-e7e1-53e5-ea31-1e227f0a5a96",
+			"headers": "",
+			"url": "http://localhost:8080/fruit/login/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "admin",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "admin",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1490237470674,
+			"name": "login",
+			"description": "",
+			"collectionId": "572dd2c5-86a1-192a-7116-a260245cf434",
+			"responses": []
+		}
+	]
+}
