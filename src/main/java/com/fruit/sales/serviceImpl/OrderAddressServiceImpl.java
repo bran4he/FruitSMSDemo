@@ -22,6 +22,7 @@ public class OrderAddressServiceImpl implements OrderAddressService {
 
 	@Override
 	public OrderAddress add(OrderAddress orderAddress) {
+		orderAddress.setId(dao.getNextId());
 		dao.save(orderAddress);
 		return orderAddress;
 	}

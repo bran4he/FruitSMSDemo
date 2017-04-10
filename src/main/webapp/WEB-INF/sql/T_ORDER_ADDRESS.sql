@@ -14,6 +14,3 @@ insert into T_ORDER_ADDRESS values (1, '中国上海市淞沪路270号创智天�
 insert into T_ORDER_ADDRESS values (2, '中国上海市大渡河路138弄长风公园', '李大庄', '13056721342', 'QWERTYUIOP');
 
 /*以上初始化和建库脚步*/
-
-select * from T_ORDER_ADDRESS;
-SELECT * FROM T_ORDER_ADDRESS WHERE wechatOpenid='QWERTYUIOP';

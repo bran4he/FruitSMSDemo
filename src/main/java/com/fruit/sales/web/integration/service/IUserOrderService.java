@@ -205,6 +205,7 @@ public class IUserOrderService {
 		
 		//save user common address
 		OrderAddress addr = new OrderAddress();
+		addr.setId(null);
 		addr.setAddress(order.getAddress());
 		addr.setContactName(order.getContactName());
 		addr.setContactPhone(order.getContactPhone());

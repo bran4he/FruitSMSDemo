@@ -8,11 +8,9 @@ CREATE TABLE `T_ASSIGN_DETAIL` (
 `masterPhone` VARCHAR(100) ,
 `masterName` VARCHAR(100) ,
 
-
 `slavePhone` VARCHAR(100) ,
 `slaveName` VARCHAR(100) ,
 `isVirtual` tinyint(1),	/*是否是虚拟号码，0-No, 1-Yes*/
-
 
 `remark` VARCHAR(200),
 

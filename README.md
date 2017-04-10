@@ -55,14 +55,14 @@ a demo for fruit sales management system
 34. 增加AOP注解方式输出系统日志   -20170408
 35. 更新页面的显示信息，更为正式和商业   -20170409
 36. 增加逻辑：保存水果配置时，最大可定数量小于已存在的订单   -20170409
-37. 自动保存微信端下单时的地址信息，关联到openId
+37. 自动保存微信端下单时的地址信息，关联到openId - 20170410
 38. 收礼人下单时提供列表，并提供删除功能相关接口 - 20170410
 - - - 
 
 ### bug fix
 1. assign page cannot use view function - 20170407
 2. user order missing verify of public config of max_order_day_to -  20170407
-
+3. fix user order and save common address, should getNextId for entity to save - 20170410
 - - -
 
 ### function design
