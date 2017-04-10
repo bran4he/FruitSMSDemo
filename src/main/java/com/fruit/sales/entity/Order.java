@@ -18,6 +18,11 @@ public class Order{
 
 	//fk
 	private String statusId;
+	
+	private String slaveName;
+	private String slavePhone;
+	
+	
 	//fk
 	private String assignId;
 	
@@ -262,5 +267,22 @@ public class Order{
 	public void setFruitName(String fruitName) {
 		this.fruitName = fruitName;
 	}
+
+	public String getSlaveName() {
+		return slaveName;
+	}
+
+	public void setSlaveName(String slaveName) {
+		this.slaveName = slaveName;
+	}
+
+	public String getSlavePhone() {
+		return slavePhone;
+	}
+
+	public void setSlavePhone(String slavePhone) {
+		this.slavePhone = slavePhone;
+	}
+	
 	
 }

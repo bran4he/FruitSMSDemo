@@ -16,6 +16,34 @@
 	<div class="container">
 	
 	<form class="form-inline" id="search">
+	
+	  <div class="form-group">
+	    <label for="slaveName">收礼人:</label>
+	    <input type="text" class="form-control" name="slaveName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="slavePhone">收礼人手机:</label>
+	    <input type="text" class="form-control" name="slavePhone" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <br>
+	  <br>
+	  
+	  <div class="form-group">
+	    <label for="contactName">联系人:</label>
+	    <input type="text" class="form-control" name="contactName" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
+	  <div class="form-group">
+	    <label for="contactPhone">联系人手机:</label>
+	    <input type="text" class="form-control" name="contactPhone" >
+	  </div>
+	  &nbsp;
+	  &nbsp;
 	  <div class="form-group">
 	    <label for="statusId">订单状态:</label>
 	    <input type="text" class="form-control hidden" name="statusId" >
@@ -32,18 +60,6 @@
 	  </div>
 	  &nbsp;
 	  &nbsp;
-	  <div class="form-group">
-	    <label for="contactName">联系人:</label>
-	    <input type="text" class="form-control" name="contactName" >
-	  </div>
-	  &nbsp;
-	  &nbsp;
-	  <div class="form-group">
-	    <label for="contactPhone">联系人手机:</label>
-	    <input type="text" class="form-control" name="contactPhone" >
-	  </div>
-	  &nbsp;
-	  &nbsp;
 	  <div style="float: right">
 		  <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
 		  &nbsp;
@@ -53,7 +69,7 @@
 	</form>
 	<br>
 	
-	    <table id="jqGrid" twidth="1170" theight="300"
+	    <table id="jqGrid" twidth="1170" theight="280"
 	    multiselect="true" mutiUpdateUrl="mutiUpdate" viewCaption="查看"
 	    >
 	    </table>
@@ -80,109 +96,121 @@
 		  <form class="form-horizontal" role="form" id="form" 
 		  	addAction="add" updateAction="update" deleteAction="delete">
 			  <div class="form-group">
-			    <label for="firstname" class="col-sm-2 control-label">ID</label>
+			    <label for="id" class="col-sm-2 control-label">ID</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="id" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">订单状态ID</label>
+			    <label for="statusId" class="col-sm-2 control-label">订单状态ID</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="statusId">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">收礼人详细ID</label>
+			    <label for="assignId" class="col-sm-2 control-label">收礼人详细ID</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="assignId">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">水果ID</label>
+			    <label for="slaveName" class="col-sm-2 control-label">收礼人姓名</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="slaveName">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="slavePhone" class="col-sm-2 control-label">收礼人电话</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="slavePhone">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="fruitId" class="col-sm-2 control-label">水果ID</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="fruitId">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">水果</label>
+			    <label for="fruitName" class="col-sm-2 control-label">水果</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="fruitName">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">订单量</label>
+			    <label for="orderUnit" class="col-sm-2 control-label">订单量</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="orderUnit">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">计划送达时间</label>
+			    <label for="planDeliveryDate" class="col-sm-2 control-label">计划送达时间</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" dateFlag="true" name="planDeliveryDate">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">地址</label>
+			    <label for="address" class="col-sm-2 control-label">地址</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="address">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">联系人</label>
+			    <label for="contactName" class="col-sm-2 control-label">联系人</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="contactName">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">联系电话</label>
+			    <label for="contactPhone" class="col-sm-2 control-label">联系电话</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="contactPhone">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">送达时间</label>
+			    <label for="deliveryDate" class="col-sm-2 control-label">送达时间</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" dateFlag="true" name="deliveryDate">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">送达人</label>
+			    <label for="deliveryBy" class="col-sm-2 control-label">送达人</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="deliveryBy">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">送达备注</label>
+			    <label for="deliveryRemark" class="col-sm-2 control-label">送达备注</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="deliveryRemark">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">结束时间</label>
+			    <label for="finishDate" class="col-sm-2 control-label">结束时间</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" dateFlag="true" name="finishDate">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">结束人</label>
+			    <label for="finishBy" class="col-sm-2 control-label">结束人</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="finishBy">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">结束备注</label>
+			    <label for="finishRemark" class="col-sm-2 control-label">结束备注</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="finishRemark">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">备注</label>
+			    <label for="remark" class="col-sm-2 control-label">备注</label>
 			    <div class="col-sm-10">
 			      <textarea class="form-control" rows="3" name="remark" ></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="lastname" class="col-sm-2 control-label">扩展</label>
+			    <label for="extendData" class="col-sm-2 control-label">扩展</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="extendData">
 			    </div>

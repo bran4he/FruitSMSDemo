@@ -3,6 +3,9 @@ CREATE TABLE `T_ORDER` (
 `id` int(10) NOT NULL AUTO_INCREMENT, 
 
 `statusId` int(5) NOT NULL,
+`slaveName`	VARCHAR(100),
+`slavePhone`	VARCHAR(100),
+
 `assignId` int(10) NOT NULL,
 `fruitId`	int(10) NOT NULL,
 `fruitName`	VARCHAR(100) NOT NULL,
@@ -39,7 +42,7 @@ alter table T_ORDER AUTO_INCREMENT=1;
 
 insert into T_ORDER
 	values
-(	null, 2, 1, 1, 'apple', 5,
+(	null, 2,'收礼人小何', '15692132432',  1, 1, 'apple', 5,
 	'2017-04-02', '中国上海市淞沪路270号创智天地广场3号楼','王小二','15888888888',
 	'2017-04-12', '京东李大宝','货到付款',
 	'2017-04-13', '张小妹', '放在前台',

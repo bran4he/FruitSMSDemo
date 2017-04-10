@@ -1,6 +1,10 @@
 $(function(){
 	var colNames = [ 'ID', 
-	                 '收礼人详细ID', 
+	                 '收礼人详细ID',
+	                 '收礼人姓名',
+	                 '收礼人电话',
+	                 
+	                 
 	                 '订单状态ID', 
 	                 '订单状态', 
 	                 '水果ID', 
@@ -30,7 +34,10 @@ $(function(){
 	                 ];
 	var colModel = [
 		             {name : 'id',index : 'id'}, 
-		             {name : 'assignId',index : 'assignId'}, 
+		             {name : 'assignId',index : 'assignId', hidden:true}, 
+		             {name : 'slaveName',index : 'slaveName'}, 
+		             {name : 'slavePhone',index : 'slavePhone'}, 
+		             
 		             {name : 'statusId',formatter: formateOrderStatus}, 
 		             {name : 'statusId',index : 'statusId', hidden:true}, 
 		             

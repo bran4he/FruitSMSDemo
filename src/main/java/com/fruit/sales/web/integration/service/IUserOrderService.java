@@ -196,6 +196,8 @@ public class IUserOrderService {
 		
 		//save order
 		order.setAssignId(assign.getId());
+		order.setSlaveName(assign.getSlaveName());
+		order.setSlavePhone(assign.getSlavePhone());
 		order.setStatusId(OrderConstant.WAIT_FOR);
 		order.setPlanDeliveryDate(new DateTime().plusDays(7).toDate());
 		
