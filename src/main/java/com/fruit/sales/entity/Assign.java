@@ -23,7 +23,7 @@ public class Assign {
 	private Integer initialUnit;
 	private Integer balanceUnit;
 	
-	private String weecharOpenid;
+	private String wechatOpenid;
 	
 	private Integer effectivePeriod;
 	@JsonSerialize(using = DateJsonSerializer.class)
@@ -112,12 +112,12 @@ public class Assign {
 		this.balanceUnit = balanceUnit;
 	}
 
-	public String getWeecharOpenid() {
-		return weecharOpenid;
+	public String getWechatOpenid() {
+		return wechatOpenid;
 	}
 
-	public void setWeecharOpenid(String weecharOpenid) {
-		this.weecharOpenid = weecharOpenid;
+	public void setWechatOpenid(String wechatOpenid) {
+		this.wechatOpenid = wechatOpenid;
 	}
 
 	public Integer getEffectivePeriod() {

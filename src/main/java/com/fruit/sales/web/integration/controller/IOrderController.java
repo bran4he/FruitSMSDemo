@@ -41,7 +41,7 @@ public class IOrderController {
 	@RequestMapping(value="cancleOrder/{orderId}", method = RequestMethod.GET)
 	public @ResponseBody ReturnResult cancleOrder(@PathVariable String orderId) throws JsonProcessingException{
 		
-		logger.info("cancleOrder, weechatId:{} and orderId:{}", orderId);
+		logger.info("cancleOrder, wechatId:{} and orderId:{}", orderId);
 		ReturnResult rr = new ReturnResult();
 		
 		if(StringUtils.isNotEmpty(orderId)){
@@ -56,14 +56,14 @@ public class IOrderController {
 	}
 	
 	
-	@RequestMapping(value="query/{weechatId}/{status}", method = RequestMethod.GET)
-	public @ResponseBody ReturnResult queryOrder(@PathVariable String weechatId, @PathVariable String status) throws JsonProcessingException{
-		logger.info("queryOrder, weechatId:{} and status:{}", weechatId, status);
+	@RequestMapping(value="query/{wechatId}/{status}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult queryOrder(@PathVariable String wechatId, @PathVariable String status) throws JsonProcessingException{
+		logger.info("queryOrder, wechatId:{} and status:{}", wechatId, status);
 		ReturnResult rr = new ReturnResult();
 		
-		if(StringUtils.isNotEmpty(weechatId) && StringUtils.isNotEmpty(status)){
+		if(StringUtils.isNotEmpty(wechatId) && StringUtils.isNotEmpty(status)){
 			
-			rr = iUserOrderService.queryUserOrder(weechatId, status);
+			rr = iUserOrderService.queryUserOrder(wechatId, status);
 			
 		}else{
 			rr.setCode(RestultCode.FAIL.toString());
@@ -74,16 +74,46 @@ public class IOrderController {
 		
 	}
 	
+	@RequestMapping(value="queryAddress/{wechatId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult queryOrderAddress(@PathVariable String wechatId) throws JsonProcessingException{
+		logger.info("queryOrderAddress, wechatId:{}", wechatId);
+		ReturnResult rr = new ReturnResult();
+		
+		if(StringUtils.isNotEmpty(wechatId)){
+			rr = iUserOrderService.queryUserAddress(wechatId);
+		}else{
+			rr.setCode(RestultCode.FAIL.toString());
+			rr.setValue(BusinessConstant.PARAM_NOT_CORRECT);
+		}
+		
+		return rr;
+	}
+	
+	@RequestMapping(value="delAddress/{addressId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult deleteOrderAddress(@PathVariable String addressId) throws JsonProcessingException{
+		logger.info("deleteOrderAddress, addressId:{}", addressId);
+		ReturnResult rr = new ReturnResult();
+		
+		if(StringUtils.isNotEmpty(addressId)){
+			rr = iUserOrderService.deleteUserAddress(addressId);
+		}else{
+			rr.setCode(RestultCode.FAIL.toString());
+			rr.setValue(BusinessConstant.PARAM_NOT_CORRECT);
+		}
+		
+		return rr;
+	}
 	
 	
-	@RequestMapping(value="userOrder/{weechatId}", method = RequestMethod.POST)
-	public @ResponseBody ReturnResult userOrder(@RequestBody Order order, @PathVariable String weechatId) throws JsonProcessingException{
-		logger.info("user order, get weechatId:{}, and order:\n{}", weechatId, order);
+	
+	@RequestMapping(value="userOrder/{wechatId}", method = RequestMethod.POST)
+	public @ResponseBody ReturnResult userOrder(@RequestBody Order order, @PathVariable String wechatId) throws JsonProcessingException{
+		logger.info("user order, get wechatId:{}, and order:\n{}", wechatId, order);
 		
 		ReturnResult rr = new ReturnResult();
 		
-		if(StringUtils.isNotEmpty(weechatId)){
-			Assign assign = assinService.findByWeechatId(weechatId);
+		if(StringUtils.isNotEmpty(wechatId)){
+			Assign assign = assinService.findByWechatId(wechatId);
 			
 			if(null != assign){
 				

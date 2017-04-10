@@ -23,7 +23,7 @@ public class IOrderVO {
 	
 	//fk
 	private String assignId;
-	private String weecharOpenid;
+	private String wechatOpenid;
 	
 	
 	private Integer orderUnit;
@@ -278,12 +278,12 @@ public class IOrderVO {
 		this.statusValue = statusValue;
 	}
 
-	public String getWeecharOpenid() {
-		return weecharOpenid;
+	public String getWechatOpenid() {
+		return wechatOpenid;
 	}
 
-	public void setWeecharOpenid(String weecharOpenid) {
-		this.weecharOpenid = weecharOpenid;
+	public void setWechatOpenid(String wechatOpenid) {
+		this.wechatOpenid = wechatOpenid;
 	}
 
 }

@@ -21,7 +21,7 @@ public class BusinessConstant {
 	
 	
 	//default weechat openid for inital setup
-	public static final String DEFAULT_WEECHAT_ID = "NA";
+	public static final String DEFAULT_WECHAT_ID = "NA";
 	
 	//default effective period
 	public static final Integer ASSIGN_DEF_EFF_PERIOD = new Integer(1);

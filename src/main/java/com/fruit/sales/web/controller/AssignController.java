@@ -39,7 +39,7 @@ public class AssignController implements BaseController<Assign> {
 	}
 	
 	@Override
-	@SystemLog(description="加载list")
+	@SystemLog(description="加载收礼人list")
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public @ResponseBody QueryResult<Assign> list(HttpServletRequest request) {
 		QueryParam queryParam = QueryUtil.getQueryParam(request);

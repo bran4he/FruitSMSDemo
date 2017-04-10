@@ -14,7 +14,7 @@ alter table T_USER AUTO_INCREMENT=1;
 
 /*初始化admin用户*/
 insert into T_USER (id, username, password, email) values (1, 'admin', 'admin', 'admin@admin.com');
-insert into T_USER (id, username, password, email) values (null, 'test', 'test', 'test@test.com');
+insert into T_USER (id, username, password, email) values (2, 'test', 'test', 'test@test.com');
 /*以上初始化和建库脚步*/
 
 select * from T_USER;

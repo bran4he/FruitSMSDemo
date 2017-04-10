@@ -76,7 +76,7 @@ public class AssignAndDetailService {
 				//add real phone
 				assign.setSlavePhone(phone);
 				//default
-				assign.setWeecharOpenid(BusinessConstant.DEFAULT_WEECHAT_ID);
+				assign.setWechatOpenid(BusinessConstant.DEFAULT_WECHAT_ID);
 				
 				Assign assignNew = assignService.add(assign);
 				
@@ -116,7 +116,7 @@ public class AssignAndDetailService {
 				//temp data
 				assign.setSlavePhone("tempPhoneNo");
 				//default
-				assign.setWeecharOpenid(BusinessConstant.DEFAULT_WEECHAT_ID);
+				assign.setWechatOpenid(BusinessConstant.DEFAULT_WECHAT_ID);
 				
 				Assign assignNew = assignService.add(assign);
 				

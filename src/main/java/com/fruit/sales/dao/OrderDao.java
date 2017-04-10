@@ -38,11 +38,11 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	
 	
 	
-	public List<IOrderVO> iQueryUserOrder(String weechatId, String status){
+	public List<IOrderVO> iQueryUserOrder(String wechatId, String status){
 		
-		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.weecharOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id ");
+		StringBuffer sql = new StringBuffer("select oo.*, os.name as statusValue , aa.wechatOpenid as weecharOpenid from T_ORDER oo join T_ASSIGN aa on oo.assignId = aa.id join T_ORDER_STATUS os on oo.statusId = os.id ");
 		
-		sql.append("WHERE weecharOpenid='").append(weechatId).append("' ");
+		sql.append("WHERE wechatOpenid='").append(wechatId).append("' ");
 		
 		if(!StringUtils.equalsIgnoreCase(OrderConstant.ALL, status)){
 			sql.append("AND oo.statusId = ").append(status).append(" ");
@@ -64,7 +64,7 @@ public class OrderDao extends BaseDaoImpl<Order>{
 			
 			iOrderVO.setStatusId(resultSet.getString("statusId"));
 			iOrderVO.setStatusValue(resultSet.getString("statusValue"));
-			iOrderVO.setWeecharOpenid(resultSet.getString("weecharOpenid"));
+			iOrderVO.setWechatOpenid(resultSet.getString("wechatOpenid"));
 			
 			return iOrderVO;
 		});

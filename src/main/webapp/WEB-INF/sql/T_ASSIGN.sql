@@ -9,7 +9,7 @@ CREATE TABLE `T_ASSIGN` (
 `initialUnit` int(10) NOT NULL,
 `balanceUnit` int(10) NOT NULL,
 
-`weecharOpenid` VARCHAR(100),
+`wechatOpenid` VARCHAR(100),
 
 `effectivePeriod` int(10) NOT NULL,
 `expireDate` timestamp NOT NULL,
@@ -29,15 +29,15 @@ alter table T_ASSIGN AUTO_INCREMENT=1;
 
 insert into T_ASSIGN
 	values
-(1, '15692132432' ,0, '156name', 0,
-	10, 5, 'xxxxxxxxx', 3, '2020-03-20', 
+(1, '15692132432' ,0, '收礼人小何', 0,
+	10, 5, 'QWERTYUIOP', 3, '2020-03-20', 
 	'remark', 'ext data', 
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 insert into T_ASSIGN
 	values
-(2, '2' ,0, 'slaveName', 1,
-	10, 10, 'xxxxxxxxx', 3, '2020-03-20', 
+(2, '2' ,0, '虚拟收礼人lee', 1,
+	10, 10, 'NA', 3, '2020-03-20', 
 	'remark', 'ext data', 
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 

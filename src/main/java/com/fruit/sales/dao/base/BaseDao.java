@@ -9,6 +9,7 @@ public interface BaseDao<T> extends Serializable{
 	
 	T findByFiled(String filedName, String fileValue);
 	
+	public List<T> findListByFiled(String filedName, String fileValue);
 	
 	/**
 	 * 获取最大的id，方便插入新对象时设置id+1

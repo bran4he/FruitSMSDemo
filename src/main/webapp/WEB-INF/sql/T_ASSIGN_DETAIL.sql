@@ -29,15 +29,15 @@ alter table T_ASSIGN_DETAIL AUTO_INCREMENT=1;
 insert into T_ASSIGN_DETAIL
 	values
 (1, 1, 10,
-'12345678901', 'master', '15692132432' , 'slave', 0, 
-	'remark',
+'13045610339', '送礼人小张', '15692132432' , '收礼人小何', 0, 
+	'小张来打电话给我们',
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 insert into T_ASSIGN_DETAIL
 	values
 (2, 1, 10,
-'12345678901', 'master', '2' , 'slave', 1,
-	'虚拟号码',
+'18712367445', '送礼人小李', '2' , '虚拟收礼人lee', 1,
+	'收礼人是虚拟号码',
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 /*以上初始化和建库脚步*/

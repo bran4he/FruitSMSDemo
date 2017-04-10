@@ -76,7 +76,7 @@ public class AssignServiceImpl implements AssignService{
 	}
 
 	@Override
-	public Assign findByWeechatId(String weechatId) {
-		return dao.findByFiled("weecharOpenid", weechatId);
+	public Assign findByWechatId(String wechatId) {
+		return dao.findByFiled("wechatOpenid", wechatId);
 	}
 }

@@ -27,11 +27,11 @@ public class IAssignContoller {
 	private AssignService assinService;
 	
 	@RequestMapping(value="checkBalance/{weechatId}", method = RequestMethod.GET)
-	public @ResponseBody ReturnResult checkAssignBalance(@PathVariable String weechatId) throws JsonProcessingException{
+	public @ResponseBody ReturnResult checkAssignBalance(@PathVariable String wechatId) throws JsonProcessingException{
 		
-		logger.info("checkAssignBalance, weechatId:{}", weechatId);
+		logger.info("checkAssignBalance, wechatId:{}", wechatId);
 		
-		Assign assign = assinService.findByWeechatId(weechatId);
+		Assign assign = assinService.findByWechatId(wechatId);
 		
 		ReturnResult rr = new ReturnResult();
 		

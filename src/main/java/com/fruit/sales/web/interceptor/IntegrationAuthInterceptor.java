@@ -30,7 +30,7 @@ public class IntegrationAuthInterceptor implements HandlerInterceptor {
 		String auth =  request.getHeader("Auth");
 		logger.info("IntegrationAuthInterceptor request URI: {} with Auth:{} in header", url, auth);
 		
-		Assign assign = assinService.findByWeechatId(auth);
+		Assign assign = assinService.findByWechatId(auth);
 		if(null != assign){
 			return true;
 		}else{

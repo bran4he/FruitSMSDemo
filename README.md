@@ -41,7 +41,7 @@ a demo for fruit sales management system
 20. add auth validation for integration api - 20170406
 21. add Spring AOP for log
 22. slavePhone有条件性编辑来保持系统逻辑简单 - 20170406
-23. add api of validate weechatOpenId - 20170406
+23. add api of validate wechatOpenId - 20170406
 24. add quick operation for changing order status - 20170406
 25. 增加查看功能，多列信息是方便查看 - 20170407
 26. 增加order页面的条件搜索功能 -  20170407(updated project screenshot)
@@ -53,8 +53,10 @@ a demo for fruit sales management system
 32. 备注改为非必填字段，后台判断是否为空，为空时置为默认备注  -20170408
 33. 修改jqgrid显示如激活、虚拟号、订单状态为真实字面意义，隐藏原来关联的id -20170408
 34. 增加AOP注解方式输出系统日志   -20170408
-35. 更新页面的显示信息，更为正式和商业
-36. 增加逻辑：保存水果配置时，最大可定数量小于已存在的订单
+35. 更新页面的显示信息，更为正式和商业   -20170409
+36. 增加逻辑：保存水果配置时，最大可定数量小于已存在的订单   -20170409
+37. 自动保存微信端下单时的地址信息，关联到openId
+38. 收礼人下单时提供列表，并提供删除功能相关接口 - 20170410
 - - - 
 
 ### bug fix
@@ -83,7 +85,7 @@ a demo for fruit sales management system
 说明：
 1. 选择方案2，可以方便的自定义拦截路径，不需要在每一个api上加上注解，直接通过xml配置即可。
 2. rest/user/register/用户注册激活请求不需要认证
-2. 其他请求需要在HTTP请求header上加上Auth属性，属性值为当前weechatOpenId
+2. 其他请求需要在HTTP请求header上加上Auth属性，属性值为当前wechatOpenId
 
 
 ## 微信API
@@ -118,17 +120,17 @@ GET  fruit/rest/user/validatePhone/1588888888
 
 - - -
 
-### 校验weechatOpenId的状态
+### 校验wechatOpenId的状态
 **Request:**
 ```
-URL: {web_root}/rest/user/validateWeechatId/{weechatId}
+URL: {web_root}/rest/user/validateWechatId/{wechatId}
 ```
 > 其他同上
 
-### 激活手机号码并关联存储weechatOpenId
+### 激活手机号码并关联存储wechatOpenId
 **Request:**
 ```
-URL: {web_root}/rest/user/register/{phone}/{weechatOpenId}
+URL: {web_root}/rest/user/register/{phone}/{wechatOpenId}
 ```
 
 **Response**
@@ -167,7 +169,7 @@ GET  fruit/rest/user/register/1588888888/QWERTYUIOP
 ### 下订单接口
 **Request:**
 ```
-POST: {web_root}/rest/order/userOrder/{weechatOpenID}
+POST: {web_root}/rest/order/userOrder/{wechatOpenID}
 BODY:
 {JSON DATA}
 ```
@@ -248,7 +250,7 @@ Response:
 ### 我的订单查询接口，使用条件过滤
 **Request:**
 ```
-POST: {web_root}/rest/order/query/{weechatId}/{status}
+POST: {web_root}/rest/order/query/{wechatId}/{status}
 ```
 **status**
 ```
@@ -278,7 +280,7 @@ Response:
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "[{\"id\":\"1\",\"statusId\":null,\"statusValue\":\"派送中\",\"assignId\":null,\"weecharOpenid\":\"QWERTYUIOP\",\"orderUnit\":5,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remark\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null},{\"id\":\"2\",\"statusId\":null,\"statusValue\":\"待派送\",\"assignId\":null,\"weecharOpenid\":\"QWERTYUIOP\",\"orderUnit\":1,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remakr\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
+  "msg": "[{\"id\":\"1\",\"statusId\":null,\"statusValue\":\"派送中\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderUnit\":5,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remark\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null},{\"id\":\"2\",\"statusId\":null,\"statusValue\":\"待派送\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderUnit\":1,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remakr\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
 }
 ```
 
@@ -319,7 +321,7 @@ Response:
 
 **Request:**
 ```
-GET: {web_root}/rest/assign/checkBalance/{weechatId}
+GET: {web_root}/rest/assign/checkBalance/{wechatId}
 ```
 
 **Response**
@@ -340,6 +342,68 @@ Response:
 {
   "code": "SUCCESS",
   "value": "5",
+  "msg": null
+}
+```
+
+- - -
+
+### 查询下单人常用地址列表接口
+
+**Request:**
+```
+GET: {web_root}/rest/order/queryAddress/{wechatId}
+```
+
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": {address list}
+}
+```
+
+**sample**
+Request:
+GET fruit/rest/order/queryAddress/QWERTYUIOP
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "[{\"id\":\"1\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactPhone\":\"15888888888\",\"wechatOpenid\":\"QWERTYUIOP\"}]"
+}
+```
+
+- - -
+
+### 下单人删除常用地址列表接口
+
+**Request:**
+```
+GET: {web_root}/rest/order/delAddress/{addressId}
+```
+
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": null
+}
+```
+
+**sample**
+Request:
+GET fruit/rest/order/delAddress/1
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
   "msg": null
 }
 ```

@@ -53,11 +53,11 @@ public class IUserController {
 		return rr;
 	}
 	
-	@RequestMapping(value="validateWeechatId/{weechatId}", method = RequestMethod.GET)
-	public @ResponseBody ReturnResult checkWeechatIdStatus(@PathVariable String weechatId){
-		Assign assign = assignService.findByWeechatId(weechatId);
+	@RequestMapping(value="validateWechatId/{wechatId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult checkWechatIdStatus(@PathVariable String wechatId){
+		Assign assign = assignService.findByWechatId(wechatId);
 		
-		logger.info("validate weechatId and get assign:\n{}", assign);
+		logger.info("validate wechatId and get assign:\n{}", assign);
 		
 		ReturnResult rr = new ReturnResult();
 		
@@ -74,16 +74,16 @@ public class IUserController {
 		return rr;
 	}
 
-	@RequestMapping(value="register/{phone}/{weechatOpenId}", method = RequestMethod.GET)
-	public @ResponseBody ReturnResult registerUser(@PathVariable String phone, @PathVariable String weechatOpenId) throws JsonProcessingException{
-		logger.info("registerUser with phone:{} and weechatOpenId:{}", phone, weechatOpenId);
+	@RequestMapping(value="register/{phone}/{wechatOpenId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult registerUser(@PathVariable String phone, @PathVariable String wechatOpenId) throws JsonProcessingException{
+		logger.info("registerUser with phone:{} and wechatOpenId:{}", phone, wechatOpenId);
 		
 		ReturnResult rr = new ReturnResult();
 		
-		if(StringUtils.isNotEmpty(phone) && StringUtils.isNotEmpty(weechatOpenId)){
+		if(StringUtils.isNotEmpty(phone) && StringUtils.isNotEmpty(wechatOpenId)){
 			Assign assign = assignService.findBySlavePhone(phone);
 			if(null != assign){
-				rr = IUserService.registerUser(assign, weechatOpenId);
+				rr = IUserService.registerUser(assign, wechatOpenId);
 			}else{
 				//user not exists
 				rr.setCode(RestultCode.FAIL.toString());

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -149,7 +150,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 		String sql = "SELECT * FROM " + simpleName
 				+ " WHERE id=?";
 		RowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(entityClass);
-		return jdbcTemplate.query(sql, rowMapper, id).get(0);
+		List<T> lst = jdbcTemplate.query(sql, rowMapper, id);
+		if(null != lst && lst.size() > 0){
+			return lst.get(0);
+		}else{
+			return null;
+		}
 	}
 
     @Override  
@@ -523,14 +529,23 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 
 	@Override
 	public T findByFiled(String filedName, String fileValue) {
+		List<T> lst = findListByFiled(filedName, fileValue);
+		if(lst.size()> 0){
+			return lst.get(0);
+		}
+		return null;
+	}
+	
+	@Override
+	public List<T> findListByFiled(String filedName, String fileValue) {
 		String sql = "SELECT * FROM " + simpleName
 				+ " WHERE " + filedName + "=?";
 		RowMapper<T> rowMapper = BeanPropertyRowMapper.newInstance(entityClass);
 		List<T> lst = jdbcTemplate.query(sql, rowMapper, fileValue);
 		if(null != lst && lst.size()> 0){
-			return lst.get(0);
+			return lst;
 		}
-		return null;
+		return new ArrayList<T>();
 	}
 
 

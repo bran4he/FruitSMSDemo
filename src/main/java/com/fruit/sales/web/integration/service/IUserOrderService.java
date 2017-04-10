@@ -18,9 +18,11 @@ import com.fruit.sales.dao.OrderDao;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.entity.FruitConfig;
 import com.fruit.sales.entity.Order;
+import com.fruit.sales.entity.OrderAddress;
 import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.service.FruitConfigService;
+import com.fruit.sales.service.OrderAddressService;
 import com.fruit.sales.service.OrderService;
 import com.fruit.sales.service.PubConfigService;
 import com.fruit.sales.vo.IOrderVO;
@@ -44,6 +46,9 @@ public class IUserOrderService {
 	
 	@Autowired
 	private OrderDao orderDao;
+	
+	@Autowired
+	private OrderAddressService orderAddressService;
 	
 	@Autowired
 	private OrderService orderService;
@@ -74,10 +79,10 @@ public class IUserOrderService {
 		return rr;
 	}
 	
-	public ReturnResult queryUserOrder(String weechatId, String status) throws JsonProcessingException{
+	public ReturnResult queryUserOrder(String wechatId, String status) throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
 		
-		List<IOrderVO> orderLst = orderDao.iQueryUserOrder(weechatId, status);
+		List<IOrderVO> orderLst = orderDao.iQueryUserOrder(wechatId, status);
 		ObjectMapper mapper = new ObjectMapper();  
         String orderJson =  mapper.writeValueAsString(orderLst);
 		rr.setMsg(orderJson);
@@ -88,7 +93,34 @@ public class IUserOrderService {
 		return rr;
 	}
 	
+	public ReturnResult queryUserAddress(String wechatId) throws JsonProcessingException{
+		ReturnResult rr = new ReturnResult();
+		
+		List<OrderAddress> addressLst = orderAddressService.findByOpenId(wechatId);
+		ObjectMapper mapper = new ObjectMapper();  
+        String orderJson =  mapper.writeValueAsString(addressLst);
+		rr.setMsg(orderJson);
+		
+		rr.setCode(RestultCode.SUCCESS.toString());
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+		
+		return rr;
+	}
 	
+	public ReturnResult deleteUserAddress(String addressId) throws JsonProcessingException{
+		ReturnResult rr = new ReturnResult();
+		
+		boolean flag = orderAddressService.deleteById(addressId);
+		
+		if(flag){
+			rr.setCode(RestultCode.SUCCESS.toString());
+			rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+		}else{
+			rr.setCode(RestultCode.EXCEPTION.toString());
+		}
+		
+		return rr;
+	}
 
 	
 	private void setDefaultOrderParams(Order order){

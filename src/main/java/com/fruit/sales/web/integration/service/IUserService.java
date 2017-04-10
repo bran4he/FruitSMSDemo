@@ -19,10 +19,10 @@ public class IUserService {
 	private AssignService assignService;
 	
 	@Transactional
-	public ReturnResult registerUser(Assign assign, String weecharOpenid) throws JsonProcessingException{
+	public ReturnResult registerUser(Assign assign, String wechatOpenid) throws JsonProcessingException{
 		
 		ReturnResult rr = new ReturnResult();
-		assign.setWeecharOpenid(weecharOpenid);
+		assign.setWechatOpenid(wechatOpenid);
 		assign.setIsActive(BusinessConstant.IS_ACTIVE);		//set active
 		assignService.update(assign);
 		
