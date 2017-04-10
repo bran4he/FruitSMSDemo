@@ -1,47 +1,35 @@
 {
-	"id": "572dd2c5-86a1-192a-7116-a260245cf434",
-	"name": "login",
+	"id": "8ae42eb2-e2b2-2154-8876-efdf315c9f86",
+	"name": "fruitConfig",
 	"description": "",
 	"order": [
-		"6d0a9d17-e7e1-53e5-ea31-1e227f0a5a96"
+		"c187528a-688a-be01-0730-6ae6d4cee1ec"
 	],
 	"folders": [],
-	"timestamp": 1490190840399,
+	"timestamp": 1490685646252,
 	"owner": 0,
 	"remoteLink": "",
 	"public": false,
 	"requests": [
 		{
-			"id": "6d0a9d17-e7e1-53e5-ea31-1e227f0a5a96",
+			"id": "c187528a-688a-be01-0730-6ae6d4cee1ec",
 			"headers": "",
-			"url": "http://localhost:8080/fruit/login/login",
-			"preRequestScript": null,
+			"url": "http://localhost:8080/fruit/fruitConfig/all",
 			"pathVariables": {},
-			"method": "POST",
-			"data": [
-				{
-					"key": "username",
-					"value": "admin",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "password",
-					"value": "admin",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "8ae42eb2-e2b2-2154-8876-efdf315c9f86",
+			"data": null,
+			"dataMode": "params",
+			"name": "all",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1490685674446,
 			"version": 2,
+			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1490237470674,
-			"name": "login",
-			"description": "",
-			"collectionId": "572dd2c5-86a1-192a-7116-a260245cf434",
-			"responses": []
+			"helperAttributes": {}
 		}
 	]
 }
