@@ -104,6 +104,7 @@
             <mvc:mapping path="/rest/**" />
             <!-- exclude register -->
             <mvc:exclude-mapping path="/rest/user/register/**" />
+            <mvc:exclude-mapping path="/rest/user/validatePhone/**" />
             
             <mvc:exclude-mapping path="/static/**" />
 			

@@ -2,6 +2,11 @@
 a demo for fruit sales management system
 
 
+# 部署
+1. 填写jdbc.properties中c3p0.password=，注意不要commit这个密码
+2. 注释或删除jdbc.properties中#local c3p0的相关配置
+3. 替换war包的jdbc.properties，或者直接mvn clean package -Dmaven.test.skip=true
+
 # Issues
 
 ## T_FRUIT_CONFIG
@@ -59,14 +64,14 @@ a demo for fruit sales management system
 38. 收礼人下单时提供列表，并提供删除功能相关接口 - 20170410
 39. 订单管理页面支持收礼人姓名和收礼人手机号查询功能 - 20170410
 40. 使用c3p0数据库连接池代替DBCP，解决新浪SAE数据库默认设置max_wait=10s导致connection关闭却仍然存在pool里，引发的查询失效问题。 - 20170411
-
+41. 增加部署说明 - 20170411
 - - - 
 
 ### bug fix
 1. assign page cannot use view function - 20170407
 2. user order missing verify of public config of max_order_day_to -  20170407
 3. fix user order and save common address, should getNextId for entity to save - 20170410
-4. user login record save date time without HH:mm:ss
+4. user login record save date time(db) but query/list without HH:mm:ss - done
 - - -
 
 ### function design

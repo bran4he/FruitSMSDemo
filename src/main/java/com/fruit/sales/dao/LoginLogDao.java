@@ -40,7 +40,8 @@ public class LoginLogDao extends BaseDaoImpl<LoginLog>{
 			LoginLogVO vo = new LoginLogVO();
 			vo.setId(resultSet.getString("id"));
 			vo.setUserId(resultSet.getString("userId"));
-			vo.setLoginDate(resultSet.getDate("loginDate"));
+			//fix page not show minutes and seconds
+			vo.setLoginDate(resultSet.getTimestamp("loginDate"));
 			vo.setLoginIP(resultSet.getString("loginIP"));
 			vo.setUsername(resultSet.getString("username"));
 			return vo;
