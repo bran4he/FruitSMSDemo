@@ -58,12 +58,15 @@ a demo for fruit sales management system
 37. 自动保存微信端下单时的地址信息，关联到openId - 20170410
 38. 收礼人下单时提供列表，并提供删除功能相关接口 - 20170410
 39. 订单管理页面支持收礼人姓名和收礼人手机号查询功能 - 20170410
+40. 使用c3p0数据库连接池代替DBCP，解决新浪SAE数据库默认设置max_wait=10s导致connection关闭却仍然存在pool里，引发的查询失效问题。 - 20170411
+
 - - - 
 
 ### bug fix
 1. assign page cannot use view function - 20170407
 2. user order missing verify of public config of max_order_day_to -  20170407
 3. fix user order and save common address, should getNextId for entity to save - 20170410
+4. user login record save date time without HH:mm:ss
 - - -
 
 ### function design

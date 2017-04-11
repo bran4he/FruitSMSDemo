@@ -681,6 +681,13 @@ function CreateOpt(name, value){
 	return $("<option value='"+value+"'>"+name+"</option>");
 }
 
+function notyCus(text, type, timeout){
+	noty({
+		text: text,
+		type: type,
+		timeout: timeout
+	});	
+}
 
 window.onload = function () {
 	console.log("load index.js...");
