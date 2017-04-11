@@ -7,9 +7,8 @@ a demo for fruit sales management system
 2. 注释或删除jdbc.properties中#local c3p0的相关配置
 3. 替换war包的jdbc.properties，或者直接mvn clean package -Dmaven.test.skip=true
 
-# Issues
+# Requirement
 
-## T_FRUIT_CONFIG
 + fruitMonth:水果上架的月份
 + maxOrderDay:可以触发下单（主单）操作的最晚日期，限制为当月的某号，如25号
 + maxProvNum:此批次水果最大可提供份数（水果都是按份数计算） -  **暂时不对此做限制**
@@ -65,13 +64,14 @@ a demo for fruit sales management system
 39. 订单管理页面支持收礼人姓名和收礼人手机号查询功能 - 20170410
 40. 使用c3p0数据库连接池代替DBCP，解决新浪SAE数据库默认设置max_wait=10s导致connection关闭却仍然存在pool里，引发的查询失效问题。 - 20170411
 41. 增加部署说明 - 20170411
+42. 暂时允许第三方跨域请求微信API controller: @CrossOrigin(origins = "*") or mvc:cors - 20170411
 - - - 
 
 ### bug fix
 1. assign page cannot use view function - 20170407
 2. user order missing verify of public config of max_order_day_to -  20170407
 3. fix user order and save common address, should getNextId for entity to save - 20170410
-4. user login record save date time(db) but query/list without HH:mm:ss - done
+4. user login record save date time(db) but query/list without HH:mm:ss - 20170411
 - - -
 
 ### function design
