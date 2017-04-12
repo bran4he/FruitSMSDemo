@@ -3,6 +3,7 @@ package com.fruit.sales.web.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class IntegrationAuthInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
+		
+		if(StringUtils.equalsAnyIgnoreCase("OPTIONS", request.getMethod())){
+			logger.info("IntegrationAuthInterceptor request OPTION and PASS it!");
+			return true;
+		}
 		
 		String url = request.getRequestURI();
 		String auth =  request.getHeader("Auth");

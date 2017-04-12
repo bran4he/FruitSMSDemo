@@ -65,7 +65,8 @@ a demo for fruit sales management system
 40. 使用c3p0数据库连接池代替DBCP，解决新浪SAE数据库默认设置max_wait=10s导致connection关闭却仍然存在pool里，引发的查询失效问题。 - 20170411
 41. 增加部署说明 - 20170411
 42. 暂时允许第三方跨域请求微信API controller: @CrossOrigin(origins = "*") or mvc:cors - 20170411
-43. 增加微信查询水果列表接口 - 20170411
+43. 增加微信查询水果列表接口 - 20170412
+
 - - - 
 
 ### bug fix
@@ -73,6 +74,7 @@ a demo for fruit sales management system
 2. user order missing verify of public config of max_order_day_to -  20170407
 3. fix user order and save common address, should getNextId for entity to save - 20170410
 4. user login record save date time(db) but query/list without HH:mm:ss - 20170411
+5. fix jquery ajax with CORS issue - 20170412
 - - -
 
 ### function design
