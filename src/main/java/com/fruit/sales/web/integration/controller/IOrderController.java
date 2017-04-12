@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.fruit.sales.web.integration.service.IUserService;
 import com.fruit.sales.wechat.RestultCode;
 import com.fruit.sales.wechat.ReturnResult;
 
+//@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/rest/order")
 public class IOrderController {

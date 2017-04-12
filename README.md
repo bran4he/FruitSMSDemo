@@ -65,6 +65,7 @@ a demo for fruit sales management system
 40. 使用c3p0数据库连接池代替DBCP，解决新浪SAE数据库默认设置max_wait=10s导致connection关闭却仍然存在pool里，引发的查询失效问题。 - 20170411
 41. 增加部署说明 - 20170411
 42. 暂时允许第三方跨域请求微信API controller: @CrossOrigin(origins = "*") or mvc:cors - 20170411
+43. 增加微信查询水果列表接口 - 20170411
 - - - 
 
 ### bug fix
@@ -414,6 +415,37 @@ Response:
   "code": "SUCCESS",
   "value": "0",
   "msg": null
+}
+```
+
+- - -
+
+### 查询水果列表接口
+
+**Request:**
+```
+GET: {web_root}/rest/fruit/listFruit
+```
+
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": {list of fruit}
+}
+```
+
+**sample**
+Request:
+GET fruit/rest/fruit/listFruit
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "[{\"id\":\"1\",\"fruitName\":\"apple\",\"fruitMonth\":\"2017-03-02 00:00:00\",\"maxOrderDay\":\"2017-04-25 00:00:00\",\"fruitArea\":\"shanghai\",\"maxOrderNum\":5,\"maxProvNum\":99,\"remark\":\"this is remark\",\"extendData\":\"{name:\"tom\"}\",\"insertDate\":\"2017-03-02 00:00:00\",\"updateDate\":\"2017-03-02 00:00:00\",\"insertBy\":\"admin\",\"updateBy\":\"admin\"},{\"id\":\"2\",\"fruitName\":\"香蕉\",\"fruitMonth\":\"2017-02-02 00:00:00\",\"maxOrderDay\":\"2017-02-25 00:00:00\",\"fruitArea\":\"shanghai\",\"maxOrderNum\":5,\"maxProvNum\":99,\"remark\":\"this is remark\",\"extendData\":\"{name:\"jack\"}\",\"insertDate\":\"2017-02-02 00:00:00\",\"updateDate\":\"2017-02-02 00:00:00\",\"insertBy\":\"admin\",\"updateBy\":\"admin\"},{\"id\":\"3\",\"fruitName\":\"芒果\",\"fruitMonth\":\"2017-04-10 00:00:00\",\"maxOrderDay\":\"2017-04-29 00:00:00\",\"fruitArea\":\"菲律宾\",\"maxOrderNum\":2,\"maxProvNum\":100,\"remark\":\"default_remark\",\"extendData\":\"{name:value}\",\"insertDate\":\"2017-04-10 15:04:55\",\"updateDate\":\"2017-04-10 15:04:55\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}]"
 }
 ```
 
