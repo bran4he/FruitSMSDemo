@@ -67,7 +67,9 @@ a demo for fruit sales management system
 42. 暂时允许第三方跨域请求微信API controller: @CrossOrigin(origins = "*") or mvc:cors - 20170411
 43. 增加微信查询水果列表接口 - 20170412
 44. 增加微信查询当前月份水果列表接口 - 20170413
-45. 后台水果配置页面增加显示当前月份水果功能 - 
+45. 后台水果配置页面增加显示当前月份水果功能  - 
+46. 微信接口增加一单多水果的功能 - 20170413
+47. 后台准备设计方法，显示一单多水果功能的展示 - 
 
 - - - 
 
@@ -231,15 +233,25 @@ order data(success)
 ```
 POST  fruit/order/userOrder/QWERTYUIOP
 BODY 
-  {
-    "fruitId": 1,
-    "fruitName": "apple0",
-    "orderUnit": 1,
-    "address": "中国上海市淞沪路270号创智天地广场3号楼",
-    "contactName": "王小二",
-    "contactPhone": "15888888888",
-    "remark":"remark"
-  }
+{
+    "fruitList": [
+        {
+            "fruitId": 1,
+            "fruitName": "apple",
+            "orderUnit": 2
+        },
+        {
+            "fruitId": 2,
+            "fruitName": "香蕉",
+            "orderUnit": 3
+        }
+    ],
+    "assignId": null,
+    "address": "浦东新区新桥镇",
+    "contactName": "jacky chen",
+    "contactPhone": "15689065432",
+    "remark": "记录下"
+}
 ```
 
 Response:
@@ -248,7 +260,7 @@ Response:
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "{\"id\":\"2\",\"statusId\":\"1\",\"assignId\":\"1\",\"orderUnit\":1,\"fruitId\":\"1\",\"fruitName\":\"apple0\",\"planDeliveryDate\":\"2017-04-12 14:50:28\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":\"2017-04-12 14:50:28\",\"deliveryBy\":\"DeliveryBy\",\"deliveryRemark\":\"DeliveryRemark\",\"finishDate\":\"2017-04-12 14:50:28\",\"finishBy\":\"FinishBy\",\"finishRemark\":\"FinishRemark\",\"remark\":\"remakr\",\"extendData\":\"extdata\",\"insertDate\":\"2017-04-05 14:50:28\",\"updateDate\":\"2017-04-05 14:50:28\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}"
+  "msg": "{\"id\":\"2\",\"statusId\":\"1\",\"slaveName\":\"收礼人小何\",\"slavePhone\":\"15692132432\",\"assignId\":\"1\",\"planDeliveryDate\":\"2017-04-20 16:41:03\",\"address\":\"浦东新区新桥镇\",\"contactName\":\"jacky chen\",\"contactPhone\":\"15689065432\",\"deliveryDate\":\"2017-04-20 16:41:03\",\"deliveryBy\":\"DeliveryBy\",\"deliveryRemark\":\"DeliveryRemark\",\"finishDate\":\"2017-04-20 16:41:03\",\"finishBy\":\"FinishBy\",\"finishRemark\":\"FinishRemark\",\"remark\":\"记录下\",\"extendData\":\"extdata\",\"insertDate\":\"2017-04-13 16:41:03\",\"updateDate\":\"2017-04-13 16:41:03\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}"
 }
 
 //fail

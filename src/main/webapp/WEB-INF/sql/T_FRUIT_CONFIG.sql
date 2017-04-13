@@ -29,7 +29,7 @@ insert into T_FRUIT_CONFIG
 	'this is remark', '{name:"tom"}','2017-03-02', 'admin','2017-03-02', 'admin');
 insert into T_FRUIT_CONFIG 
 	values 
-(null, '香蕉', 'shanghai','2017-02-02', '2017-02-25',5, 99,
+(null, '香蕉', 'shanghai','2017-02-02', '2017-04-25',5, 99,
 	'this is remark', '{name:"jack"}','2017-02-02', 'admin','2017-02-02', 'admin');
 /*以上初始化和建库脚步*/
 

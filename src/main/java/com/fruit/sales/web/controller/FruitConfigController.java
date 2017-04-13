@@ -22,6 +22,7 @@ import com.fruit.sales.dao.base.QueryResult;
 import com.fruit.sales.dao.base.QueryUtil;
 import com.fruit.sales.entity.FruitConfig;
 import com.fruit.sales.service.FruitConfigService;
+import com.fruit.sales.serviceImpl.OrderDetailServiceImpl;
 import com.fruit.sales.serviceImpl.OrderServiceImpl;
 import com.fruit.sales.web.base.BaseController;
 
@@ -36,6 +37,9 @@ public class FruitConfigController implements BaseController<FruitConfig> {
 	
 	@Autowired
 	private OrderServiceImpl orderService;
+	
+	@Autowired
+	private OrderDetailServiceImpl orderDetailService;
 	
 	//规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
@@ -78,7 +82,7 @@ public class FruitConfigController implements BaseController<FruitConfig> {
 		logger.info("update fruitConfig:\n{}", fruitConfig);
 		
 		//检查更新的最大可定数量不能小于已产生订单的最大订单量
-		int maxOrderUnit = orderService.findMaxOrderUnitByFruitId(fruitConfig.getId());
+		int maxOrderUnit = orderDetailService.findMaxOrderUnitByFruitId(fruitConfig.getId());
 		logger.info("update and get maxOrderUnit from orders:{}", maxOrderUnit);
 		
 		if(maxOrderUnit > fruitConfig.getMaxOrderNum()){

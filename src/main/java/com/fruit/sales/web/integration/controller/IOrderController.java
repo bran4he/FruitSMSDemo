@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fruit.sales.common.BusinessConstant;
+import com.fruit.sales.dto.UserOrder;
 import com.fruit.sales.entity.Assign;
-import com.fruit.sales.entity.Order;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.web.integration.service.IUserOrderService;
@@ -109,8 +108,8 @@ public class IOrderController {
 	
 	
 	@RequestMapping(value="userOrder/{wechatId}", method = RequestMethod.POST)
-	public @ResponseBody ReturnResult userOrder(@RequestBody Order order, @PathVariable String wechatId) throws JsonProcessingException{
-		logger.info("user order, get wechatId:{}, and order:\n{}", wechatId, order);
+	public @ResponseBody ReturnResult userOrder(@RequestBody UserOrder userOrder, @PathVariable String wechatId) throws JsonProcessingException{
+		logger.info("user order, get wechatId:{}, and order:\n{}", wechatId, userOrder);
 		
 		ReturnResult rr = new ReturnResult();
 		
@@ -124,7 +123,7 @@ public class IOrderController {
 					rr.setCode(RestultCode.EXCEPTION.toString());
 					rr.setValue(UserOrderConstant.USER_NOT_ACTIVE);
 				}else{
-					rr = iUserOrderService.order(assign, order);
+					rr = iUserOrderService.order(assign, userOrder);
 				}
 				
 			}else{

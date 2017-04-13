@@ -7,9 +7,9 @@ $(function(){
 	                 
 	                 '订单状态ID', 
 	                 '订单状态', 
-	                 '水果ID', 
-	                 '水果', 
-	                 '订单量', 
+//	                 '水果ID', 
+//	                 '水果', 
+//	                 '订单量', 
 	                 
 	                 
 	                 
@@ -41,9 +41,9 @@ $(function(){
 		             {name : 'statusId',formatter: formateOrderStatus}, 
 		             {name : 'statusId',index : 'statusId', hidden:true}, 
 		             
-		             {name : 'fruitId',index : 'fruitId', hidden:true}, 
-		             {name : 'fruitName',index : 'fruitName'}, 
-		             {name : 'orderUnit',index : 'orderUnit'}, 
+//		             {name : 'fruitId',index : 'fruitId', hidden:true}, 
+//		             {name : 'fruitName',index : 'fruitName'}, 
+//		             {name : 'orderUnit',index : 'orderUnit'}, 
 		             
 		             {name : 'planDeliveryDate',index : 'planDeliveryDate'}, 
 		             {name : 'address',index : 'address'}, 

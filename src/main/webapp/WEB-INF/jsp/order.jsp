@@ -52,6 +52,7 @@
 	  </div>
 	  &nbsp;
 	  &nbsp;
+	  <!-- 技术原因不能搜索水果
 	  <div class="form-group">
 	    <label for="fruitId">水果名称:</label>
 	    <input type="text" class="form-control hidden" name="fruitId" >
@@ -60,6 +61,7 @@
 	  </div>
 	  &nbsp;
 	  &nbsp;
+	   -->
 	  <div style="float: right">
 		  <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
 		  &nbsp;
@@ -125,6 +127,8 @@
 			      <input type="text" class="form-control" name="slavePhone">
 			    </div>
 			  </div>
+			  
+			  <!-- 
 			  <div class="form-group">
 			    <label for="fruitId" class="col-sm-2 control-label">水果ID</label>
 			    <div class="col-sm-10">
@@ -143,6 +147,9 @@
 			      <input type="text" class="form-control" name="orderUnit">
 			    </div>
 			  </div>
+			   -->
+			   
+			   
 			  <div class="form-group">
 			    <label for="planDeliveryDate" class="col-sm-2 control-label">计划送达时间</label>
 			    <div class="col-sm-10">

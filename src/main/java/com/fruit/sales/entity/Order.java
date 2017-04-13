@@ -26,11 +26,11 @@ public class Order{
 	//fk
 	private String assignId;
 	
-	private Integer orderUnit;
+//	private Integer orderUnit;
 	
 	//fk
-	private String fruitId;
-	private String fruitName;
+//	private String fruitId;
+//	private String fruitName;
 	
 	@JsonSerialize(using = DateJsonSerializer.class)
 	@JsonDeserialize(using = DateJsonDeserializer.class)
@@ -244,29 +244,29 @@ public class Order{
 		this.extendData = extendData;
 	}
 
-	public Integer getOrderUnit() {
-		return orderUnit;
-	}
-
-	public void setOrderUnit(Integer orderUnit) {
-		this.orderUnit = orderUnit;
-	}
-
-	public String getFruitId() {
-		return fruitId;
-	}
-
-	public void setFruitId(String fruitId) {
-		this.fruitId = fruitId;
-	}
-
-	public String getFruitName() {
-		return fruitName;
-	}
-
-	public void setFruitName(String fruitName) {
-		this.fruitName = fruitName;
-	}
+//	public Integer getOrderUnit() {
+//		return orderUnit;
+//	}
+//
+//	public void setOrderUnit(Integer orderUnit) {
+//		this.orderUnit = orderUnit;
+//	}
+//
+//	public String getFruitId() {
+//		return fruitId;
+//	}
+//
+//	public void setFruitId(String fruitId) {
+//		this.fruitId = fruitId;
+//	}
+//
+//	public String getFruitName() {
+//		return fruitName;
+//	}
+//
+//	public void setFruitName(String fruitName) {
+//		this.fruitName = fruitName;
+//	}
 
 	public String getSlaveName() {
 		return slaveName;

@@ -1,5 +1,7 @@
 show databases;
 
+drop database eBaoDemo;
+
 CREATE DATABASE eBaoDemo;
 
 use eBaoDemo;

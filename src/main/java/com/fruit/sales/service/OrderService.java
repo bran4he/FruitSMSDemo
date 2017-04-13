@@ -22,5 +22,5 @@ public interface OrderService {
 	
 	int updateMutiStatus(String[] idArr, String status);
 	
-	int findMaxOrderUnitByFruitId(String fruitId);
+	
 }

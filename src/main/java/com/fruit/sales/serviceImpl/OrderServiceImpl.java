@@ -70,13 +70,5 @@ public class OrderServiceImpl implements OrderService {
 		return count;
 	}
 
-	@Override
-	public int findMaxOrderUnitByFruitId(String fruitId) {
-		Order order =  dao.findMaxOrderUnitByFruitId(fruitId);
-		if(null == order){
-			return 0;
-		}else{
-			return order.getOrderUnit();
-		}
-	}
+
 }

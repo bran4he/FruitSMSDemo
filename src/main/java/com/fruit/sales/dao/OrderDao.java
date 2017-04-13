@@ -72,29 +72,6 @@ public class OrderDao extends BaseDaoImpl<Order>{
 		return lst;
 	}
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
-	public Order findMaxOrderUnitByFruitId(String fruitId){
-		StringBuffer sql = new StringBuffer("select *, max(orderUnit)as maxUnit from T_ORDER where fruitId = ");
-		sql.append(fruitId).append(" ");
-		
-		List<Order> lst = jdbcTemplate.query(sql.toString(), (resultSet, rowNum) -> {
-			Order order = new Order();
-			//TODO 暂时只存放几个属性，业务需要时再加
-			order.setId(resultSet.getString("id"));
-			order.setOrderUnit(resultSet.getInt("orderUnit"));
-			order.setFruitId(resultSet.getString("fruitId"));
-			order.setFruitName(resultSet.getString("fruitName"));
-			
-			return order;
-		});
-		
-		if(lst != null){
-			return lst.get(0);
-		}
-		return null;
-		
-	}
+
 	
 }
