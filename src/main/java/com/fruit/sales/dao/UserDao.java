@@ -19,14 +19,11 @@ public class UserDao extends BaseDaoImpl<User>{
 
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
 	public User findUserByName(String username){
 		User user = null;
 		String sql = "select * from T_USER where username = ? ";
 		
-		List<User> lst = (List<User>) jdbcTemplate.query(sql, new Object[]{username}, new UserRowMapper());
+		List<User> lst = (List<User>) getJdbcTemplate().query(sql, new Object[]{username}, new UserRowMapper());
 		logger.info("find user by username:{} and get result:{}", username, lst);
 		if(lst != null && lst.size()>0){
 			user = lst.get(0);

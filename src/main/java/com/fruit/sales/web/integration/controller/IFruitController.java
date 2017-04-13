@@ -26,10 +26,10 @@ public class IFruitController {
 	private FruitConfigService service;
 	
 	@RequestMapping(value = "listFruit", method = RequestMethod.GET)
-	public @ResponseBody ReturnResult listFruit() throws JsonProcessingException{
+	public @ResponseBody ReturnResult listCurrentMonthFruit() throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
 		
-		List<FruitConfig> lst = service.listAll();
+		List<FruitConfig> lst = service.listCurrentMonthFruit();
 		
 		rr.setCode(RestultCode.SUCCESS.toString());
 		rr.setValue(BusinessConstant.PROCESS_SUCCESS);

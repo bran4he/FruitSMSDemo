@@ -78,4 +78,9 @@ public class FruitConfigServiceImpl implements FruitConfigService {
 		return dao.findById(id);
 	}
 
+	@Override
+	public List<FruitConfig> listCurrentMonthFruit() {
+		return dao.listCurrentMonthFruit();
+	}
+
 }

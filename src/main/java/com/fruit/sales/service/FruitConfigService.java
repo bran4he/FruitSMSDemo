@@ -12,6 +12,8 @@ public interface FruitConfigService {
 	
 	List<FruitConfig> listAll();
 	
+	List<FruitConfig> listCurrentMonthFruit();
+	
 	FruitConfig add(FruitConfig fruitConfig);
 	
 	boolean update(FruitConfig fruitConfig);

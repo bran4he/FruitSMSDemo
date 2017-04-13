@@ -17,9 +17,6 @@ public class LoginLogDao extends BaseDaoImpl<LoginLog>{
 
 	private static final long serialVersionUID = -3451574326191666390L;
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
 	
 	public QueryResult<LoginLogVO> findByVOPageList(QueryParam queryParam) {
 		StringBuffer sql = new StringBuffer("select log.*, u.username from T_LOGIN_LOG log join T_USER u on log.userId = u.id ");
@@ -36,7 +33,7 @@ public class LoginLogDao extends BaseDaoImpl<LoginLog>{
 		
 		sql.append(orderBy).append(limit);
 		
-		List<LoginLogVO> lst = jdbcTemplate.query(sql.toString(), (resultSet, rowNum) -> {
+		List<LoginLogVO> lst = getJdbcTemplate().query(sql.toString(), (resultSet, rowNum) -> {
 			LoginLogVO vo = new LoginLogVO();
 			vo.setId(resultSet.getString("id"));
 			vo.setUserId(resultSet.getString("userId"));
@@ -49,7 +46,7 @@ public class LoginLogDao extends BaseDaoImpl<LoginLog>{
 		
 		
 		String Sqlcount = "select count(*) from T_LOGIN_LOG";
-		int count = jdbcTemplate.queryForObject(Sqlcount, Integer.class);
+		int count = getJdbcTemplate().queryForObject(Sqlcount, Integer.class);
 		
 		return new QueryResult<LoginLogVO>(lst, count, pageNo, pageSize);
 	}
@@ -61,7 +58,7 @@ public class LoginLogDao extends BaseDaoImpl<LoginLog>{
 	 */
 	public List<LoginLogVO> findAllVO(){
 		String sql = "select log.*, u.username from T_LOGIN_LOG log join T_USER u on log.userId = u.id order by log.id";
-		List<LoginLogVO> lst = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+		List<LoginLogVO> lst = getJdbcTemplate().query(sql, (resultSet, rowNum) -> {
 			LoginLogVO vo = new LoginLogVO();
 			vo.setId(resultSet.getString("id"));
 			vo.setUserId(resultSet.getString("userId"));

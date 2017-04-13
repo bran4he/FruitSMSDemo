@@ -35,7 +35,7 @@ insert into T_FRUIT_CONFIG
 
 select * from T_FRUIT_CONFIG;
 
-
+select * from T_FRUIT_CONFIG where date_format(fruitMonth,'%Y-%m')=date_format(now(),'%Y-%m');
 
 
 

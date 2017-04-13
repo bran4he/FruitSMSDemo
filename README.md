@@ -66,6 +66,8 @@ a demo for fruit sales management system
 41. 增加部署说明 - 20170411
 42. 暂时允许第三方跨域请求微信API controller: @CrossOrigin(origins = "*") or mvc:cors - 20170411
 43. 增加微信查询水果列表接口 - 20170412
+44. 增加微信查询当前月份水果列表接口 - 20170413
+45. 后台水果配置页面增加显示当前月份水果功能 - 
 
 - - - 
 
