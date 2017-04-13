@@ -1,3 +1,22 @@
+/* drop table*/
+drop table if exists T_ASSIGN_DETAIL;
+
+drop table if exists T_ORDER;
+drop table if exists T_ORDER_DETAIL;
+drop table if exists T_ORDER_STATUS;
+drop table if exists T_FRUIT_CONFIG;
+
+
+drop table if exists T_ASSIGN;
+
+drop table if exists T_ORDER_ADDRESS;
+drop table if exists T_PUB_CONFIG;
+
+drop table if exists T_LOGIN_LOG;
+drop table if exists T_USER;
+
+
+/* add data */
 drop table if exists T_USER;
 CREATE TABLE `T_USER` (
 `id` int(10) NOT NULL AUTO_INCREMENT, 
@@ -113,11 +132,11 @@ alter table T_FRUIT_CONFIG AUTO_INCREMENT=1;
 
 insert into T_FRUIT_CONFIG 
 	values 
-(1, 'apple', 'shanghai','2017-03-02', '2017-04-25',5, 99, 
+(1, 'apple', 'shanghai','2017-04-02', '2017-04-25',5, 99, 
 	'this is remark', '{name:"tom"}','2017-03-02', 'admin','2017-03-02', 'admin');
 insert into T_FRUIT_CONFIG 
 	values 
-(null, '香蕉', 'shanghai','2017-02-02', '2017-02-25',5, 99,
+(null, '香蕉', 'shanghai','2017-04-02', '2017-04-25',5, 99,
 	'this is remark', '{name:"jack"}','2017-02-02', 'admin','2017-02-02', 'admin');
 /*以上初始化和建库脚步*/
 
@@ -217,10 +236,6 @@ CREATE TABLE `T_ORDER` (
 `slavePhone`	VARCHAR(100),
 
 `assignId` int(10) NOT NULL,
-`fruitId`	int(10) NOT NULL,
-`fruitName`	VARCHAR(100) NOT NULL,
-
-`orderUnit` int(10) NOT NULL,
 
 `planDeliveryDate` timestamp NOT NULL,
 `address` VARCHAR(100) NOT NULL,
@@ -245,14 +260,13 @@ CREATE TABLE `T_ORDER` (
 
 PRIMARY KEY(`id`),
 foreign key(`statusId`) references T_ORDER_STATUS(`id`), 
-foreign key(`assignId`) references T_ASSIGN(`id`),
-foreign key(`fruitId`) references T_FRUIT_CONFIG(`id`)
+foreign key(`assignId`) references T_ASSIGN(`id`)
 );
 alter table T_ORDER AUTO_INCREMENT=1;
 
 insert into T_ORDER
 	values
-(	null, 2,'收礼人小何', '15692132432',  1, 1, 'apple', 5,
+(	null, 2,'收礼人小何', '15692132432',  1, 
 	'2017-04-02', '中国上海市淞沪路270号创智天地广场3号楼','王小二','15888888888',
 	'2017-04-12', '京东李大宝','货到付款',
 	'2017-04-13', '张小妹', '放在前台',
@@ -260,14 +274,29 @@ insert into T_ORDER
 	'2017-03-02', 'admin','2017-03-02', 'admin');
 
 /*以上初始化和建库脚步*/
+drop table if exists T_ORDER_DETAIL;
+CREATE TABLE `T_ORDER_DETAIL` (
+`id` int(10) NOT NULL AUTO_INCREMENT, 
 
+`fruitId`	int(10) NOT NULL,
+`fruitName`	VARCHAR(100) NOT NULL,
 
+`orderId` int(5) NOT NULL,
+`orderUnit` int(10) NOT NULL,
 
+`insertDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+`insertBy` VARCHAR(20) default 'admin',
+`updateDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+`updateBy` VARCHAR(20) default 'admin',
 
+PRIMARY KEY(`id`),
+foreign key(`orderId`) references T_ORDER(`id`), 
+foreign key(`fruitId`) references T_FRUIT_CONFIG(`id`)
+);
+alter table T_ORDER AUTO_INCREMENT=1;
 
+/*以上初始化和建库脚步*/
 
-
-
-
-
-
+insert into T_ORDER_DETAIL 
+	values
+(null, 1, 'apple', 1, 5,'2017-04-02', 'admin','2017-04-02', 'admin');

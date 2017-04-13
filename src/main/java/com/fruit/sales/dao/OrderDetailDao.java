@@ -17,8 +17,10 @@ import com.fruit.sales.entity.OrderDetail;
 @Repository
 public class OrderDetailDao extends BaseDaoImpl<OrderDetail> {
 
+	private static final long serialVersionUID = -2208659801591106429L;
+
 	public int findMaxOrderUnitByFruitId(String fruitId){
-		StringBuffer sql = new StringBuffer("select max(orderUnit)as maxUnit from T_ORDER_DETAIL where fruitId = ");
+		StringBuffer sql = new StringBuffer("select max(orderUnit)as maxUnit from T_ORDER_DETAIL where fruitId = ? ");
 		return getJdbcTemplate().queryForObject(sql.toString(), Integer.class, new Object[]{fruitId});
 	}
 	
