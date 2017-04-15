@@ -545,7 +545,13 @@ function jqGridInit(colNames, colModel, caption){
 				viewrecords : true,
 				multiselect: $("#jqGrid").attr('multiselect'),//多选
 //				loadonce:true,
-				caption : caption //表格的标题名字
+				caption : caption, //表格的标题名字,
+				ondblClickRow: function(rowId,iRow,iCol,e){
+					console.info('ondblClickRow:' + rowId );
+					if($("#jqGrid").attr('ondblClickRow')){
+						initCustomDialog($("#jqGrid").jqGrid('getRowData',rowId));
+					}
+				}
 			});
 	
 	jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager', 

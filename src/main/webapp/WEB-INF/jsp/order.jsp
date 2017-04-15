@@ -73,7 +73,7 @@
 	
 	    <table id="jqGrid" twidth="1170" theight="280"
 	    multiselect="true" mutiUpdateUrl="mutiUpdate" viewCaption="查看"
-	    customCaption="订单详细"
+	    customCaption="订单详细" ondblClickRow="true"
 	    
 	    >
 	    </table>

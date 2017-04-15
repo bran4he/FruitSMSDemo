@@ -12,7 +12,6 @@ $(function(){
 //	                 '订单量', 
 	                 
 	                 
-	                 
 	                 '计划送达时间', 
 	                 '地址', 
 	                 '联系人', 
@@ -68,6 +67,16 @@ $(function(){
 	
 	//页面加载完成之后执行
 	jqGridInit(colNames, colModel, caption);
+	
+//	jQuery("#jqGrid").jqGrid({
+//		//双击行时触发。
+//		//rowid：当前行id；iRow：当前行索引位置；iCol：当前单元格位置索引；e:event对象
+//		ondblClickRow: function(rowId,iRow,iCol,e){
+//			console.info('ondblClickRow:' + rowId );
+//			initCustomDialog($("#jqGrid").jqGrid('getRowData',rowId));
+//		}
+//	});
+	
 	$("#dialog").dialog({ autoOpen: false });
 	$("#customDialog").dialog({ autoOpen: false });
 	
