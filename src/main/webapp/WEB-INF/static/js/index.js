@@ -600,6 +600,15 @@ function jqGridInit(colNames, colModel, caption){
 			position:"last"
 		})
 	}
+	if($("#jqGrid").attr("customCaption")){
+		jQuery("#jqGrid").jqGrid('navButtonAdd', '#jqGridPager',{
+			id:"custom",
+			caption:$("#jqGrid").attr("customCaption"),
+			buttonicon:"ui-icon-cart",
+			onClickButton: btnCustomClick,
+			position:"last"
+		})
+	}
 
 //	.jqGrid('navButtonAdd','#jqGridPager',{
 //		id:"refresh",

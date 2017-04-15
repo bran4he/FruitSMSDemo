@@ -73,6 +73,8 @@
 	
 	    <table id="jqGrid" twidth="1170" theight="280"
 	    multiselect="true" mutiUpdateUrl="mutiUpdate" viewCaption="查看"
+	    customCaption="订单详细"
+	    
 	    >
 	    </table>
 	    <div id="jqGridPager"></div>
@@ -237,6 +239,35 @@
     	<div class="panel-footer">面板脚注</div>
 	     -->
 	</div>
+	
+	<!-- 订单详细信息 -->
+	<div id="customDialog" title="订单详细" dialogWidth="780" dialogHeight="490">
+	
+		<div class="panel panel-default">
+		    <div class="panel-body">
+		    	<table class="table table-hover">
+		    		<caption>订单水果明细表</caption>
+		    		<thead>
+			    		<tr>
+			    			<td>ID</td>
+			    			<td>水果ID</td>
+			    			<td>水果名</td>
+			    			<td>订单量</td>
+			    		<tr>
+		    		</thead>
+		    		<tbody id="cutomeBody">
+			    		<!-- 
+			    		<tr>
+			    			<td>3</td>
+			    			<td>2</td>
+			    			<td>香蕉</td>
+			    			<td>3</td>
+			    		</tr>
+			    		 -->
+		    		</tbody>
+		    	</table>
+		    </div>
+		</div>
 		
 	</div>
 

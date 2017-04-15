@@ -65,9 +65,11 @@ $(function(){
 		             {name : 'updateBy',index : 'updateBy'}
 		           ];
 	var caption = "订单列表";
+	
 	//页面加载完成之后执行
 	jqGridInit(colNames, colModel, caption);
 	$("#dialog").dialog({ autoOpen: false });
+	$("#customDialog").dialog({ autoOpen: false });
 	
 	//搜索操作相关
 	initSelect();
@@ -130,6 +132,84 @@ $(function(){
 	
 	
 });
+
+//点击订单详细按钮
+function btnCustomClick(){
+	var rowId = $("#jqGrid").jqGrid('getGridParam','selrow');
+	console.info("update row:" + rowId);
+	
+	if(!rowId){
+		myInformNoty('请选择一行数据');
+		return false;
+	}
+	
+	console.info("row id:" + rowId);
+	
+	//json data
+	initCustomDialog($("#jqGrid").jqGrid('getRowData',rowId));
+}
+
+function initCustomDialog(rowData){
+	console.info(rowData);
+	
+	var opts = {
+			width: $("#customDialog").attr('dialogWidth'),
+			height: $("#customDialog").attr('dialogHeight'),
+			modal: true,
+			open: setCustomDialogData(rowData),
+			close: cleanCustomDialog,	//clean #cutomeBody data
+			buttons: [
+			          {
+			        	  text:'关闭',
+			        	  icons: {
+			        		  primary: "ui-icon-circle-close"
+			        	  },
+			        	  click: function (){
+			        		  $("#customDialog").dialog('close');
+			        	  }
+			          }
+			          ]
+
+	};
+	$("#customDialog")
+	.dialog(opts)
+	.dialog("open");
+}
+
+function cleanCustomDialog(){
+	console.log("cleanCustomDialog");
+	$("#cutomeBody").html("");
+}
+
+
+function setCustomDialogData(rowData){
+	console.log("setCustomDialogData");
+	
+	$.ajax({
+		type:"GET",
+		dataType:"json",
+		url:"../orderDetail/detail/" + rowData.id,
+		success:function(data){
+			console.info(data);
+			var msg = data.msg.data;
+			var trs ="";
+			for(var i=0; i< msg.length; i++){
+				console.log(msg[i]);
+				var tr = "<tr><td>"
+						+ msg[i].id + "</td><td>"
+						+ msg[i].fruitId + "</td><td>"
+						+ msg[i].fruitName + "</td><td>"
+						+ msg[i].orderUnit + "</td></tr>";
+				trs = trs + tr;
+			}
+			$("#cutomeBody").html(trs);
+		},
+		error: function(){
+			notyCus('加载/orderDetail/detail/列表异常, 请联系管理员', 'notification', 2000);
+		}
+	});
+	
+}
 
 //格式化订单状态
 function formateOrderStatus(cellValue, options, rowObject){
