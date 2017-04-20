@@ -1,7 +1,10 @@
 package com.fruit.sales.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fruit.sales.entity.OrderDetail;
+import com.fruit.sales.vo.IOrderDetailVO;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +23,8 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	private static final long serialVersionUID = 5068479458247623935L;
 
 	private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
-	
+
+
 	public int updateMutiStatus(String[] idArr, String status){
 		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId= ")
 							.append(status).append(" WHERE id in(");
@@ -55,8 +59,12 @@ public class OrderDao extends BaseDaoImpl<Order>{
 		List<IOrderVO> lst = getJdbcTemplate().query(sql.toString(),(resultSet, rowNum) ->{
 			IOrderVO iOrderVO = new IOrderVO();
 			iOrderVO.setId(resultSet.getString("id"));
-			iOrderVO.setFruitName(resultSet.getString("fruitName"));
-			iOrderVO.setOrderUnit(resultSet.getInt("orderUnit"));
+//			iOrderVO.setFruitName(resultSet.getString("fruitName"));
+//			iOrderVO.setOrderUnit(resultSet.getInt("orderUnit"));
+
+//			List<IOrderDetailVO> orderDetail = new ArrayList<>();
+//			iOrderVO.setOrderDetail(orderDetail);
+
 			iOrderVO.setAddress(resultSet.getString("address"));
 			iOrderVO.setContactName(resultSet.getString("contactName"));
 			iOrderVO.setContactPhone(resultSet.getString("contactPhone"));
@@ -68,7 +76,7 @@ public class OrderDao extends BaseDaoImpl<Order>{
 			
 			return iOrderVO;
 		});
-		
+
 		return lst;
 	}
 	

@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fruit.sales.dao.OrderDetailDao;
+import com.fruit.sales.vo.IOrderDetailVO;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -52,7 +54,10 @@ public class IUserOrderService {
 	
 	@Autowired
 	private OrderDao orderDao;
-	
+
+    @Autowired
+    private OrderDetailDao orderDetailDaoDao;
+
 	@Autowired
 	private OrderAddressService orderAddressService;
 	
@@ -93,11 +98,25 @@ public class IUserOrderService {
 		
 		return rr;
 	}
-	
+
+	private List<IOrderVO> queryOrderDetail(List<IOrderVO> orderLst){
+		orderLst.stream().forEach(it -> {
+
+			List<OrderDetail> orderDetailLst = orderDetailDaoDao.findListByFiled("orderId", it.getId());
+            it.setOrderDetail(orderDetailLst);
+    });
+
+		return orderLst;
+	}
+
 	public ReturnResult queryUserOrder(String wechatId, String status) throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
 		
 		List<IOrderVO> orderLst = orderDao.iQueryUserOrder(wechatId, status);
+
+		//add order detail info
+		orderLst = queryOrderDetail(orderLst);
+
 		ObjectMapper mapper = new ObjectMapper();  
         String orderJson =  mapper.writeValueAsString(orderLst);
 		rr.setMsg(orderJson);

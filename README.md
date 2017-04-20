@@ -79,6 +79,7 @@ a demo for fruit sales management system
 3. fix user order and save common address, should getNextId for entity to save - 20170410
 4. user login record save date time(db) but query/list without HH:mm:ss - 20170411
 5. fix jquery ajax with CORS issue - 20170412
+6. fix bug of cannot query order from wechat
 - - -
 
 ### function design
@@ -299,14 +300,14 @@ POST: {web_root}/rest/order/query/{wechatId}/{status}
 
 **sample**
 Request:
-GET fruit/rest/order/query/QWERTYUIOP/0
+GET fruit/rest/order/query/QWERTYUIOP/1
 
 Response:
 ```
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "[{\"id\":\"1\",\"statusId\":null,\"statusValue\":\"派送中\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderUnit\":5,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remark\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null},{\"id\":\"2\",\"statusId\":null,\"statusValue\":\"待派送\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderUnit\":1,\"fruitId\":null,\"fruitName\":\"apple0\",\"planDeliveryDate\":null,\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"王小二\",\"contactPhone\":\"15888888888\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"remakr\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
+  "msg": "[{\"id\":\"2\",\"statusId\":\"1\",\"statusValue\":\"待派送\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderDetail\":[{\"id\":\"2\",\"orderId\":\"2\",\"orderUnit\":2,\"fruitId\":\"1\",\"fruitName\":\"apple\",\"insertDate\":\"2017-04-13 00:00:00\",\"updateDate\":\"2017-04-13 00:00:00\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"},{\"id\":\"3\",\"orderId\":\"2\",\"orderUnit\":3,\"fruitId\":\"2\",\"fruitName\":\"香蕉\",\"insertDate\":\"2017-04-13 00:00:00\",\"updateDate\":\"2017-04-13 00:00:00\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}],\"planDeliveryDate\":null,\"address\":\"浦东新区新桥镇\",\"contactName\":\"jacky chen\",\"contactPhone\":\"15689065432\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"记录下\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
 }
 ```
 

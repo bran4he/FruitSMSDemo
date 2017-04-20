@@ -55,4 +55,5 @@ public class OrderDetailDao extends BaseDaoImpl<OrderDetail> {
 		}
 		return sumCount;
 	}
+
 }

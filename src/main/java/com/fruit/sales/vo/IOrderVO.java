@@ -1,7 +1,9 @@
 package com.fruit.sales.vo;
 
 import java.util.Date;
+import java.util.List;
 
+import com.fruit.sales.entity.OrderDetail;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -24,14 +26,23 @@ public class IOrderVO {
 	//fk
 	private String assignId;
 	private String wechatOpenid;
-	
-	
-	private Integer orderUnit;
-	
-	//fk
-	private String fruitId;
-	private String fruitName;
-	
+
+	private List<OrderDetail> orderDetail;
+
+	//
+//	private Integer orderUnit;
+//	private String fruitId;
+//	private String fruitName;
+
+
+	public List<OrderDetail> getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(List<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+
 	@JsonSerialize(using = DateJsonSerializer.class)
 	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date planDeliveryDate;
@@ -244,30 +255,6 @@ public class IOrderVO {
 
 	public void setExtendData(String extendData) {
 		this.extendData = extendData;
-	}
-
-	public Integer getOrderUnit() {
-		return orderUnit;
-	}
-
-	public void setOrderUnit(Integer orderUnit) {
-		this.orderUnit = orderUnit;
-	}
-
-	public String getFruitId() {
-		return fruitId;
-	}
-
-	public void setFruitId(String fruitId) {
-		this.fruitId = fruitId;
-	}
-
-	public String getFruitName() {
-		return fruitName;
-	}
-
-	public void setFruitName(String fruitName) {
-		this.fruitName = fruitName;
 	}
 
 	public String getStatusValue() {
