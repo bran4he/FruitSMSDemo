@@ -73,7 +73,20 @@ public class OrderDao extends BaseDaoImpl<Order>{
 			iOrderVO.setStatusId(resultSet.getString("statusId"));
 			iOrderVO.setStatusValue(resultSet.getString("statusValue"));
 			iOrderVO.setWechatOpenid(resultSet.getString("wechatOpenid"));
-			
+
+			iOrderVO.setDeliveryBy(resultSet.getString("deliveryBy"));
+			iOrderVO.setDeliveryDate(resultSet.getTimestamp("deliveryDate"));
+			iOrderVO.setDeliveryRemark(resultSet.getString("deliveryRemark"));
+			iOrderVO.setPlanDeliveryDate(resultSet.getTimestamp("planDeliveryDate"));
+			iOrderVO.setFinishBy(resultSet.getString("finishBy"));
+			iOrderVO.setFinishDate(resultSet.getTimestamp("finishDate"));
+			iOrderVO.setFinishRemark(resultSet.getString("finishRemark"));
+
+			iOrderVO.setInsertBy(resultSet.getString("insertBy"));
+			iOrderVO.setInsertDate(resultSet.getTimestamp("insertDate"));
+			iOrderVO.setUpdateBy(resultSet.getString("updateBy"));
+			iOrderVO.setUpdateDate(resultSet.getTimestamp("updateDate"));
+
 			return iOrderVO;
 		});
 

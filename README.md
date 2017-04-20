@@ -71,6 +71,7 @@ a demo for fruit sales management system
 46. 微信接口增加一单多水果的功能 - 20170413
 47. 后台准备设计方法，显示一单多水果功能的展示 - 20170415
 48. 双击订单显示订单详细 - 20170415
+49. 格式化和标准化订单查询信息 - 20170420
 - - - 
 
 ### bug fix
@@ -79,7 +80,7 @@ a demo for fruit sales management system
 3. fix user order and save common address, should getNextId for entity to save - 20170410
 4. user login record save date time(db) but query/list without HH:mm:ss - 20170411
 5. fix jquery ajax with CORS issue - 20170412
-6. fix bug of cannot query order from wechat
+6. fix bug of cannot query order from wechat - 20170420
 - - -
 
 ### function design
@@ -307,7 +308,7 @@ Response:
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "[{\"id\":\"2\",\"statusId\":\"1\",\"statusValue\":\"待派送\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderDetail\":[{\"id\":\"2\",\"orderId\":\"2\",\"orderUnit\":2,\"fruitId\":\"1\",\"fruitName\":\"apple\",\"insertDate\":\"2017-04-13 00:00:00\",\"updateDate\":\"2017-04-13 00:00:00\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"},{\"id\":\"3\",\"orderId\":\"2\",\"orderUnit\":3,\"fruitId\":\"2\",\"fruitName\":\"香蕉\",\"insertDate\":\"2017-04-13 00:00:00\",\"updateDate\":\"2017-04-13 00:00:00\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}],\"planDeliveryDate\":null,\"address\":\"浦东新区新桥镇\",\"contactName\":\"jacky chen\",\"contactPhone\":\"15689065432\",\"deliveryDate\":null,\"deliveryBy\":null,\"deliveryRemark\":null,\"finishDate\":null,\"finishBy\":null,\"finishRemark\":null,\"remark\":\"记录下\",\"extendData\":null,\"insertDate\":null,\"updateDate\":null,\"insertBy\":null,\"updateBy\":null}]"
+  "msg": "[{\"id\":\"2\",\"statusId\":\"1\",\"statusValue\":\"待派送\",\"assignId\":null,\"wechatOpenid\":\"QWERTYUIOP\",\"orderDetail\":[{\"id\":\"2\",\"orderUnit\":2,\"fruitId\":\"1\",\"fruitName\":\"apple\"},{\"id\":\"3\",\"orderUnit\":3,\"fruitId\":\"2\",\"fruitName\":\"香蕉\"}],\"planDeliveryDate\":\"2017-04-20 16:41:03\",\"address\":\"浦东新区新桥镇\",\"contactName\":\"jacky chen\",\"contactPhone\":\"15689065432\",\"deliveryDate\":\"2017-04-20 16:41:03\",\"deliveryBy\":\"DeliveryBy\",\"deliveryRemark\":\"DeliveryRemark\",\"finishDate\":\"2017-04-20 16:41:03\",\"finishBy\":\"FinishBy\",\"finishRemark\":\"FinishRemark\",\"remark\":\"记录下\",\"extendData\":null,\"insertDate\":\"2017-04-13 16:41:03\",\"updateDate\":\"2017-04-13 16:41:03\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}]"
 }
 ```
 

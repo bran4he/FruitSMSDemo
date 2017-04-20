@@ -1,5 +1,6 @@
 package com.fruit.sales.web.integration.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -100,11 +101,26 @@ public class IUserOrderService {
 	}
 
 	private List<IOrderVO> queryOrderDetail(List<IOrderVO> orderLst){
+
 		orderLst.stream().forEach(it -> {
+            ArrayList<IOrderDetailVO> orderDetailVOLst = new ArrayList<IOrderDetailVO>(10);
 
 			List<OrderDetail> orderDetailLst = orderDetailDaoDao.findListByFiled("orderId", it.getId());
-            it.setOrderDetail(orderDetailLst);
-    });
+
+			for (OrderDetail od : orderDetailLst) {
+                IOrderDetailVO odvo = new IOrderDetailVO();
+                odvo.setId(od.getId());
+                odvo.setFruitId(od.getFruitId());
+                odvo.setFruitName(od.getFruitName());
+                odvo.setOrderUnit(od.getOrderUnit());
+
+                orderDetailVOLst.add(odvo);
+
+            }
+            it.setOrderDetail(orderDetailVOLst);
+
+        });
+
 
 		return orderLst;
 	}

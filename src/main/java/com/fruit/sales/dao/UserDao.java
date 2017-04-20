@@ -22,7 +22,7 @@ public class UserDao extends BaseDaoImpl<User>{
 	public User findUserByName(String username){
 		User user = null;
 		String sql = "select * from T_USER where username = ? ";
-		
+
 		List<User> lst = (List<User>) getJdbcTemplate().query(sql, new Object[]{username}, new UserRowMapper());
 		logger.info("find user by username:{} and get result:{}", username, lst);
 		if(lst != null && lst.size()>0){

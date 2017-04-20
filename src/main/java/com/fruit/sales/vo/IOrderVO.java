@@ -27,7 +27,7 @@ public class IOrderVO {
 	private String assignId;
 	private String wechatOpenid;
 
-	private List<OrderDetail> orderDetail;
+	private List<IOrderDetailVO> orderDetail;
 
 	//
 //	private Integer orderUnit;
@@ -35,11 +35,11 @@ public class IOrderVO {
 //	private String fruitName;
 
 
-	public List<OrderDetail> getOrderDetail() {
+	public List<IOrderDetailVO> getOrderDetail() {
 		return orderDetail;
 	}
 
-	public void setOrderDetail(List<OrderDetail> orderDetail) {
+	public void setOrderDetail(List<IOrderDetailVO> orderDetail) {
 		this.orderDetail = orderDetail;
 	}
 
