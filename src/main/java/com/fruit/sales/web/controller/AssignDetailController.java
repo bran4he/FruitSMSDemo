@@ -5,6 +5,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fruit.sales.common.BusinessConstant;
+import com.fruit.sales.common.MessageTool;
+import com.fruit.sales.entity.PubConfig;
+import com.fruit.sales.service.PubConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +44,9 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 	@Autowired
 	private AssignAndDetailService assignAndDetailService;
 
+	@Autowired
+	private PubConfigService pubConfigService;
+
 	// 规定命名，每个模块的首页
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index() {
@@ -62,7 +69,13 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 		
 		AssignDetail adNew = null;
 		adNew = assignAndDetailService.handleActiveAdd(ad);
-		
+
+		if(BusinessConstant.NOT_VIRTUAL.equals(adNew.getIsVirtual())) {
+			//TODO send msg
+			logger.info("send sms to phone:{}", adNew.getSlavePhone());
+			MessageTool.sendMessage(getMsgUrl(), adNew.getSlavePhone(), getMsgContent());
+		}
+
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (adNew != null) {
 			data.put("data", adNew);
@@ -72,7 +85,16 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 		}
 	}
 
-	
+	private String getMsgUrl(){
+		PubConfig pubConfig = pubConfigService.findByName(BusinessConstant.WECHAT_SERVER_URL);
+		return pubConfig.getValue();
+	}
+
+	private String getMsgContent(){
+		PubConfig pubConfig = pubConfigService.findByName(BusinessConstant.RECIVER_SMS_CONTENT);
+		return pubConfig.getValue();
+	}
+
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id) {
 //		AssignDetail u = service.findById(id);

@@ -31,6 +31,7 @@ insert into T_FRUIT_CONFIG
 	values 
 (null, '香蕉', 'shanghai','2017-02-02', '2017-04-25',5, 99,
 	'this is remark', '{name:"jack"}','2017-02-02', 'admin','2017-02-02', 'admin');
+
 /*以上初始化和建库脚步*/
 
 select * from T_FRUIT_CONFIG;

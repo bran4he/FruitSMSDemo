@@ -3,10 +3,12 @@ package com.fruit.sales.common;
 
 public class BusinessConstant {
 
+	//pubic conifg key
 	public static final String MAX_ORDER_DAY_TO = "ORDER_DAY_TO";
 	public static final String RECEIVER_EFF_YEAR = "RECEIVER_EFF_YEAR";
-	
-	
+	public static final String WECHAT_SERVER_URL = "WECHAT_SERVER_URL";
+	public static final String RECIVER_SMS_CONTENT = "RECIVER_SMS_CONTENT";
+
 	//test
 	public static final String MAX_TEST_PARAM = "TEST_PARAM";
 	
