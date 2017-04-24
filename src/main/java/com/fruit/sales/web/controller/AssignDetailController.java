@@ -72,7 +72,7 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 
 		if(BusinessConstant.NOT_VIRTUAL.equals(adNew.getIsVirtual())) {
 			//TODO send msg
-			logger.info("send sms to phone:{}", adNew.getSlavePhone());
+			logger.info("prepare send sms to phone:{}", adNew.getSlavePhone());
 			MessageTool.sendMessage(getMsgUrl(), adNew.getSlavePhone(), getMsgContent());
 		}
 

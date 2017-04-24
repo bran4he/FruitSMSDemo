@@ -1,8 +1,13 @@
 package com.fruit.sales.common;
 
-import com.fruit.sales.entity.PubConfig;
-import com.fruit.sales.service.PubConfigService;
-import com.fruit.sales.web.integration.controller.IOrderController;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.http.Consts;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -12,14 +17,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by chundong.hcd on 2017/4/23.
@@ -31,22 +28,17 @@ public class MessageTool {
 
     private static final String MSG_API = "/integrationsms";
 
-
     public static void sendMessage(String server, String phone, String content){
 
-        StringBuilder reqUrl = null;
-
-        reqUrl = new StringBuilder("")
+         StringBuilder reqUrl = new StringBuilder("")
                 .append(server)
                 .append(MSG_API);
 
-
         sendPost(reqUrl.toString(), phone, content);
-
     }
 
 
-    public static String sendPost(String url, String phone, String content){
+    public static void sendPost(String url, String phone, String content){
 
         logger.info("send msg to:{} through url:{} with content:{}", phone, url, content);
 
@@ -66,12 +58,12 @@ public class MessageTool {
         } finally {
             try {
                 httpclient.close();
+                logger.info("send sms success: {}", phone);
             } catch (IOException ek) {
                 ek.printStackTrace();
             }
         }
 
-        return "";
     }
 
 
