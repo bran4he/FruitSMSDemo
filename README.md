@@ -440,12 +440,13 @@ Response:
 
 - - -
 
+
 ### 查询水果列表接口
 
 **Request:**
 ```
 GET: {web_root}/rest/fruit/listFruit
-``
+```
 **Response**
 ```
 {
@@ -475,7 +476,7 @@ Response:
 **Request:**
 ```
 GET: {web_root}/rest/pub/maxOrderDay
-``
+```
 **Response**
 ```
 {
