@@ -73,6 +73,7 @@ a demo for fruit sales management system
 48. 双击订单显示订单详细 - 20170415
 49. 格式化和标准化订单查询信息 - 20170420
 50. 增加短信调用接口，调用微信端的接口在用户获得分配水果时接收提醒短信 - 20170424
+51. 增加查询最大可订单日的微信端接口 - 20170426
 - - - 
 
 ### bug fix
@@ -444,8 +445,7 @@ Response:
 **Request:**
 ```
 GET: {web_root}/rest/fruit/listFruit
-```
-
+``
 **Response**
 ```
 {
@@ -466,6 +466,36 @@ Response:
   "value": "0",
   "msg": "[{\"id\":\"1\",\"fruitName\":\"apple\",\"fruitMonth\":\"2017-03-02 00:00:00\",\"maxOrderDay\":\"2017-04-25 00:00:00\",\"fruitArea\":\"shanghai\",\"maxOrderNum\":5,\"maxProvNum\":99,\"remark\":\"this is remark\",\"extendData\":\"{name:\"tom\"}\",\"insertDate\":\"2017-03-02 00:00:00\",\"updateDate\":\"2017-03-02 00:00:00\",\"insertBy\":\"admin\",\"updateBy\":\"admin\"},{\"id\":\"2\",\"fruitName\":\"香蕉\",\"fruitMonth\":\"2017-02-02 00:00:00\",\"maxOrderDay\":\"2017-02-25 00:00:00\",\"fruitArea\":\"shanghai\",\"maxOrderNum\":5,\"maxProvNum\":99,\"remark\":\"this is remark\",\"extendData\":\"{name:\"jack\"}\",\"insertDate\":\"2017-02-02 00:00:00\",\"updateDate\":\"2017-02-02 00:00:00\",\"insertBy\":\"admin\",\"updateBy\":\"admin\"},{\"id\":\"3\",\"fruitName\":\"芒果\",\"fruitMonth\":\"2017-04-10 00:00:00\",\"maxOrderDay\":\"2017-04-29 00:00:00\",\"fruitArea\":\"菲律宾\",\"maxOrderNum\":2,\"maxProvNum\":100,\"remark\":\"default_remark\",\"extendData\":\"{name:value}\",\"insertDate\":\"2017-04-10 15:04:55\",\"updateDate\":\"2017-04-10 15:04:55\",\"insertBy\":\"unknown\",\"updateBy\":\"unknown\"}]"
 }
+```
+
+- - -
+
+### 查询最大可订单日(当月)
+
+**Request:**
+```
+GET: {web_root}/rest/pub/maxOrderDay
+``
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": {max order day}
+}
+```
+
+**sample**
+Request:
+GET fruit/rest/pub/maxOrderDay
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "25"
+ }
 ```
 
 - - -

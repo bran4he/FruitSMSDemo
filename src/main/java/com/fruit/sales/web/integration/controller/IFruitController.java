@@ -37,7 +37,6 @@ public class IFruitController {
 		ObjectMapper mapper = new ObjectMapper();  
         String orderJson =  mapper.writeValueAsString(lst);
 		rr.setMsg(orderJson);
-		rr.setMsg(orderJson);
 		
 		return rr;
 	}
