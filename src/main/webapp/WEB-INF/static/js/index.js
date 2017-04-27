@@ -18,11 +18,26 @@ $(document).ready(function(){
 	
 });
 
+function setDatepicker($ele) {
+    $ele.prop("readOnly", true)
+        // .datetimepicker({
+            // dateFormat: "yy-mm-dd",
+            // timeFormat: "HH:mm:ss",
+            // showButtonPanel: false,
+            // showHour: true,
+            // showMinute: true,
+            // showSecond: true
+        // });
+    .datepicker({
+
+    });
+}
 
 //日期反格式化  - 公用方法
 function unFormateUpdateDate(cellValue, options, rowObject){  
     var d = new Date(cellValue);
-    return d.toString('yyyy-MM-dd HH:mm:ss');  
+    // return d.toString('yyyy-MM-dd HH:mm:ss');
+    return d.toString('yyyy-MM-dd');
 }
 
 //格式化是和否
@@ -91,15 +106,7 @@ function setViewDialogData(rowData){
 		//date time picker
 		var dateFlag = $(ele).attr('dateFlag');
 		if(dateFlag){
-			$(ele).prop("readOnly", true)
-			.datetimepicker({
-				dateFormat: "yy-mm-dd",
-				timeFormat: "HH:mm:ss",
-				showButtonPanel: true,
-				showHour: true,
-				showMinute: true,
-				showSecond: true
-			});
+			setDatepicker($(ele));
 		}
 		
 	});
@@ -135,15 +142,7 @@ function setDialogData(rowData){
 		//date time picker
 		var dateFlag = $(ele).attr('dateFlag');
 		if(dateFlag){
-			$(ele).prop("readOnly", true)
-				.datetimepicker({
-					dateFormat: "yy-mm-dd",
-					timeFormat: "HH:mm:ss",
-					showButtonPanel: true,
-					showHour: true,
-					showMinute: true,
-					showSecond: true
-				});
+            setDatepicker($(ele));
 		}
 		
 	});
@@ -210,15 +209,7 @@ function initAddDialog(){
 		//date time picker
 		var dateFlag = $(ele).attr('dateFlag');
 		if(dateFlag){
-			$(ele).prop("readOnly", true)
-				.datetimepicker({
-					dateFormat: "yy-mm-dd",
-					timeFormat: "HH:mm:ss",
-					showButtonPanel: true,
-					showHour: true,
-					showMinute: true,
-					showSecond: true
-				});
+			setDatepicker($(ele));
 		}
 		
 	});

@@ -2,6 +2,7 @@ package com.fruit.sales.entity;
 
 import java.util.Date;
 
+import com.fruit.sales.common.DateTimeJsonSerializer;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -15,7 +16,8 @@ public class LoginLog {
 	private String id;
 	private String userId;
 	
-	@JsonSerialize(using = DateJsonSerializer.class)
+//	@JsonSerialize(using = DateJsonSerializer.class)
+	@JsonSerialize(using = DateTimeJsonSerializer.class)
 	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date loginDate;
 	

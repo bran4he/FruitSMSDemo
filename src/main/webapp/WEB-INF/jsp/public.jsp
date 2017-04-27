@@ -11,10 +11,12 @@
 <!-- datepicker-zh -->
 <script type="text/javascript" src="../static/css/jquery-ui/i18n/datepicker-zh-CN.js"></script>
 
+<!--
 <link rel="stylesheet" href="../static/css/jquery-ui/jquery-ui-timepicker-addon.css" rel="stylesheet">
 <script type="text/javascript" src="../static/css/jquery-ui/jquery-ui-timepicker-addon.min.js"></script>
-<script type="text/javascript" src="../static/css/jquery-ui/i18n/jquery-ui-timepicker-zh-CN.min.js"></script>
 
+<script type="text/javascript" src="../static/css/jquery-ui/i18n/jquery-ui-timepicker-zh-CN.min.js"></script>
+-->
 
 <!-- noty -->
 <script type="text/javascript" src="../static/js/noty/packaged/jquery.noty.packaged.min.js"></script>

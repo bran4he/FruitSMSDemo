@@ -3,3 +3,5 @@
 .project
 .springBeans
 /.settings/
+/.idea/
+sms-demo.iml
