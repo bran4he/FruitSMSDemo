@@ -38,6 +38,7 @@ import com.fruit.sales.vo.IOrderVO;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.wechat.RestultCode;
 import com.fruit.sales.wechat.ReturnResult;
+import org.springframework.util.Assert;
 
 @Service
 public class IUserOrderService {
@@ -71,11 +72,26 @@ public class IUserOrderService {
 	@Autowired
 	private PubConfigService pubConfigService;
 
-	
+
+	/**
+	 * validate order status, only wait for delivery status can be canceled.
+	 *
+	 * @param orderId
+	 * @return
+	 */
+	private void validateOrder(String orderId) {
+		Order order = orderService.findById(orderId);
+
+		Assert.notNull(order);
+		Assert.isTrue(StringUtils.equals(OrderConstant.WAIT_FOR, order.getStatusId()));
+	}
+
 	@Transactional
 	public ReturnResult cancleUserOrder(String orderId) throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
-		
+
+		validateOrder(orderId);
+
 		Order order = orderService.findById(orderId);
 		order.setStatusId(OrderConstant.CUSTOMER_CANCLE);
 		orderService.update(order);
