@@ -9,6 +9,10 @@ public class BusinessConstant {
 	public static final String WECHAT_SERVER_URL = "WECHAT_SERVER_URL";
 	public static final String RECIVER_SMS_CONTENT = "RECIVER_SMS_CONTENT";
 
+	//default address
+	public static final Integer DEFAULT_ADDRESS = new Integer(1);
+	public static final Integer NOT_DEFAULT_ADDRESS = new Integer(0);
+
 	//test
 	public static final String MAX_TEST_PARAM = "TEST_PARAM";
 	

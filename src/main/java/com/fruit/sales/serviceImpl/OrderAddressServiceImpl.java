@@ -2,12 +2,14 @@ package com.fruit.sales.serviceImpl;
 
 import java.util.List;
 
+import com.fruit.sales.common.BusinessConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fruit.sales.dao.OrderAddressDao;
 import com.fruit.sales.entity.OrderAddress;
 import com.fruit.sales.service.OrderAddressService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderAddressServiceImpl implements OrderAddressService {
@@ -44,5 +46,12 @@ public class OrderAddressServiceImpl implements OrderAddressService {
 		return (findById(id) != null)? false : true;
 	}
 
-
+	@Override
+	@Transactional
+	public void setDefaultAddr(String wechatOpenid, String addrId) {
+		dao.setAddrToNotDefault(wechatOpenid);
+		OrderAddress addr = dao.findById(addrId);
+		addr.setDefaultAddr(BusinessConstant.DEFAULT_ADDRESS);
+		dao.update(addr);
+	}
 }

@@ -1,26 +1,23 @@
 package com.fruit.sales.web.integration.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fruit.sales.common.BusinessConstant;
+import com.fruit.sales.dto.UserOrder;
+import com.fruit.sales.entity.Assign;
+import com.fruit.sales.entity.OrderAddress;
+import com.fruit.sales.service.AssignService;
+import com.fruit.sales.service.OrderAddressService;
+import com.fruit.sales.web.integration.common.UserOrderConstant;
+import com.fruit.sales.web.integration.service.IUserOrderService;
+import com.fruit.sales.wechat.RestultCode;
+import com.fruit.sales.wechat.ReturnResult;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fruit.sales.common.BusinessConstant;
-import com.fruit.sales.dto.UserOrder;
-import com.fruit.sales.entity.Assign;
-import com.fruit.sales.service.AssignService;
-import com.fruit.sales.web.integration.common.UserOrderConstant;
-import com.fruit.sales.web.integration.service.IUserOrderService;
-import com.fruit.sales.web.integration.service.IUserService;
-import com.fruit.sales.wechat.RestultCode;
-import com.fruit.sales.wechat.ReturnResult;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 //@CrossOrigin(origins = "*")
 @Controller
@@ -34,9 +31,10 @@ public class IOrderController {
 
 	@Autowired
 	private AssignService assinService;
-	
+
+
 	@Autowired
-	private IUserService iUserService;
+	private OrderAddressService orderAddressService;
 	
 	
 	@RequestMapping(value="cancleOrder/{orderId}", method = RequestMethod.GET)
@@ -104,7 +102,21 @@ public class IOrderController {
 		
 		return rr;
 	}
-	
+
+	@RequestMapping(value="defaultAddr/{wechatId}/{addrId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult ConfigDefaultAddr(@PathVariable String wechatId, @PathVariable String addrId) {
+		ReturnResult rr = new ReturnResult();
+
+		OrderAddress orderAddr = orderAddressService.findById(addrId);
+		Assert.notNull(orderAddr, "cannot find this address by id:" + addrId);
+
+		orderAddressService.setDefaultAddr(wechatId, addrId);
+
+		rr.setCode(RestultCode.SUCCESS.toString());
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+		rr.setMsg(null);
+		return rr;
+	}
 	
 	
 	@RequestMapping(value="userOrder/{wechatId}", method = RequestMethod.POST)

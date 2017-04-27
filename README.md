@@ -75,6 +75,8 @@ a demo for fruit sales management system
 50. 增加短信调用接口，调用微信端的接口在用户获得分配水果时接收提醒短信 - 20170424
 51. 增加查询最大可订单日的微信端接口 - 20170426
 52. 简化页面格式选择，只显示yyyy-MM-dd(只保留登录日志精确到时分秒) - 20170427
+53. 新增defaultAddr字段，用于标识用户的默认地址，用于自动填充 - 20170427
+
 - - - 
 
 ### bug fix
@@ -84,6 +86,8 @@ a demo for fruit sales management system
 4. user login record save date time(db) but query/list without HH:mm:ss - 20170411
 5. fix jquery ajax with CORS issue - 20170412
 6. fix bug of cannot query order from wechat - 20170420
+7. fix bug that user can cancel canceled orders - 20170427
+
 - - -
 
 ### function design
@@ -379,7 +383,9 @@ Response:
 
 - - -
 
-### 查询下单人常用地址列表接口
+### 查询下单人常用地址列表接口（增加默认地址标志位）
+
+>defaultAddr:1是默认地址，0是非默认地址，一个用户只能有一个默认地址。
 
 **Request:**
 ```
@@ -404,7 +410,7 @@ Response:
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "[{\"id\":\"1\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"张晓霞\",\"contactPhone\":\"15888888888\",\"wechatOpenid\":\"QWERTYUIOP\"},{\"id\":\"2\",\"address\":\"中国上海市大渡河路138弄长风公园\",\"contactName\":\"李大庄\",\"contactPhone\":\"13056721342\",\"wechatOpenid\":\"QWERTYUIOP\"}]"
+  "msg": "[{\"id\":\"1\",\"address\":\"中国上海市淞沪路270号创智天地广场3号楼\",\"contactName\":\"张晓霞\",\"contactPhone\":\"15888888888\",\"wechatOpenid\":\"QWERTYUIOP\",\"defaultAddr\":1},{\"id\":\"2\",\"address\":\"中国上海市大渡河路138弄长风公园\",\"contactName\":\"李大庄\",\"contactPhone\":\"13056721342\",\"wechatOpenid\":\"QWERTYUIOP\",\"defaultAddr\":0},{\"id\":\"3\",\"address\":\"美国华盛顿州金色大街\",\"contactName\":\"jack\",\"contactPhone\":\"01088888\",\"wechatOpenid\":\"QWERTYUIOP\",\"defaultAddr\":0}]"
 }
 ```
 
@@ -501,6 +507,35 @@ Response:
 ```
 
 - - -
+
+### 设置默认地址
+
+**Request:**
+```
+GET: {web_root}/rest/order/defaultAddr/{wechatId}/{addrId}
+```
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": null
+}
+```
+
+**sample**
+Request:
+GET fruit/rest/order/defaultAddr/QWERTYUIOP/1
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": null
+}
+```
+
 
 ## Assign
 

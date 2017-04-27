@@ -82,8 +82,9 @@ public class IUserOrderService {
 	private void validateOrder(String orderId) {
 		Order order = orderService.findById(orderId);
 
-		Assert.notNull(order);
-		Assert.isTrue(StringUtils.equals(OrderConstant.WAIT_FOR, order.getStatusId()));
+		Assert.notNull(order, "cannot find this order with id:" + orderId);
+		Assert.isTrue(StringUtils.equals(OrderConstant.WAIT_FOR, order.getStatusId()),
+				"order status:" + order.getStatusId()+", but only wait_for order(1) can be canceled!");
 	}
 
 	@Transactional
@@ -140,6 +141,8 @@ public class IUserOrderService {
 
 		return orderLst;
 	}
+
+
 
 	public ReturnResult queryUserOrder(String wechatId, String status) throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
@@ -317,6 +320,8 @@ public class IUserOrderService {
 		addr.setContactName(newOrder.getContactName());
 		addr.setContactPhone(newOrder.getContactPhone());
 		addr.setWechatOpenid(assign.getWechatOpenid());
+		//default not
+		addr.setDefaultAddr(BusinessConstant.NOT_DEFAULT_ADDRESS);
 		
 		List<OrderAddress> addrLst = orderAddressService.findByOpenId(assign.getWechatOpenid());
 		if(addrLst.size()>0){

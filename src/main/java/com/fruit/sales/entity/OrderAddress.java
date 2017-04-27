@@ -11,52 +11,30 @@ public class OrderAddress {
 	private String contactName;
 	private String contactPhone;
 	private String wechatOpenid;
-	
-	
+
+	/**is default address, and default is 0-No**/
+	private Integer defaultAddr;
+
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result
-				+ ((contactName == null) ? 0 : contactName.hashCode());
-		result = prime * result
-				+ ((contactPhone == null) ? 0 : contactPhone.hashCode());
-		result = prime * result
-				+ ((wechatOpenid == null) ? 0 : wechatOpenid.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		OrderAddress that = (OrderAddress) o;
+
+		if (address != null ? !address.equals(that.address) : that.address != null) return false;
+		if (contactName != null ? !contactName.equals(that.contactName) : that.contactName != null) return false;
+		if (contactPhone != null ? !contactPhone.equals(that.contactPhone) : that.contactPhone != null) return false;
+		return wechatOpenid != null ? wechatOpenid.equals(that.wechatOpenid) : that.wechatOpenid == null;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrderAddress other = (OrderAddress) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (contactName == null) {
-			if (other.contactName != null)
-				return false;
-		} else if (!contactName.equals(other.contactName))
-			return false;
-		if (contactPhone == null) {
-			if (other.contactPhone != null)
-				return false;
-		} else if (!contactPhone.equals(other.contactPhone))
-			return false;
-		if (wechatOpenid == null) {
-			if (other.wechatOpenid != null)
-				return false;
-		} else if (!wechatOpenid.equals(other.wechatOpenid))
-			return false;
-		return true;
+	public int hashCode() {
+		int result = address != null ? address.hashCode() : 0;
+		result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
+		result = 31 * result + (contactPhone != null ? contactPhone.hashCode() : 0);
+		result = 31 * result + (wechatOpenid != null ? wechatOpenid.hashCode() : 0);
+		return result;
 	}
 
 	@Override
@@ -108,6 +86,12 @@ public class OrderAddress {
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
 	}
-	
-	
+
+	public Integer getDefaultAddr() {
+		return defaultAddr;
+	}
+
+	public void setDefaultAddr(Integer defaultAddr) {
+		this.defaultAddr = defaultAddr;
+	}
 }
