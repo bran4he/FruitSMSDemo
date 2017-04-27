@@ -95,14 +95,17 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">一单最大量<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxOrderNum" required="true">
+			      <input type="text" class="form-control" name="maxOrderNum" sliderFlag="true" initValue="10" minValue="1" maxValue="200" required="true">
+					<div></div>
 			    </div>
 			  </div>
 			  
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">供应量</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="maxProvNum" >
+			      <input type="text" class="form-control" name="maxProvNum" sliderFlag="true" initValue="99" minValue="1" maxValue="200">
+					<div></div>
+
 			    </div>
 			  </div>
 			  <div class="form-group">

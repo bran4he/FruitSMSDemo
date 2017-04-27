@@ -105,13 +105,16 @@
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">增加量<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="unitUpdate" editForbidden="ture" required="true">
+			      <input type="text" class="form-control" name="unitUpdate" editForbidden="true" required="true"
+						 sliderFlag="true" initValue="0" minValue="-200" maxValue="200" >
+					<div></div>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">送礼人手机<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="masterPhone" required="true">
+
 			    </div>
 			  </div>
 			  <div class="form-group">

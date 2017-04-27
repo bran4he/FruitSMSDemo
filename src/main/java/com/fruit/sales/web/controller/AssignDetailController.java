@@ -48,6 +48,7 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 	private PubConfigService pubConfigService;
 
 	// 规定命名，每个模块的首页
+	@Override
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index() {
 		return "assignDetail";
@@ -95,6 +96,7 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 		return pubConfig.getValue();
 	}
 
+	@Override
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody Result del(@PathVariable String id) {
 //		AssignDetail u = service.findById(id);
@@ -108,15 +110,15 @@ public class AssignDetailController implements BaseController<AssignDetail> {
 		return null;
 	}
 
+	@Override
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public @ResponseBody Result update(@RequestBody AssignDetail u) {
-//		boolean flag = service.update(u);
-//		Map<String, Object> data = new HashMap<String, Object>();
-//		if (flag) {
-//			data.put("data", service.findById(u.getId()));
-//		}
-//		return new Result(flag, data);
-		return null;
+		boolean flag = service.update(u);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (flag) {
+			data.put("data", service.findById(u.getId()));
+		}
+		return new Result(flag, data);
 	}
 
 }

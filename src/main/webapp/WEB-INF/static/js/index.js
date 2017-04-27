@@ -18,6 +18,7 @@ $(document).ready(function(){
 	
 });
 
+//设置日期控件
 function setDatepicker($ele) {
     $ele.prop("readOnly", true)
         // .datetimepicker({
@@ -31,6 +32,28 @@ function setDatepicker($ele) {
     .datepicker({
 
     });
+}
+
+//设置滑块
+function setSlider($slider, $ele, initVal, minVal, maxVal) {
+	console.info($slider, $ele);
+	console.info(initVal +"，" + minVal +"，" +maxVal);
+
+	if($ele.val()){
+        initVal = $ele.val();
+        console.log('change initVal to:' + initVal);
+	}
+
+    $slider.slider({
+        range: "max",
+        min: Number(minVal),  //should be int
+        max: Number(maxVal),  //should be int
+        value: initVal, //should be string
+        slide: function( event, ui ) {
+            $ele.val( ui.value );
+        }
+    });
+    // $ele.val($slider.slider( "value" ) );
 }
 
 //日期反格式化  - 公用方法
@@ -108,6 +131,13 @@ function setViewDialogData(rowData){
 		if(dateFlag){
 			setDatepicker($(ele));
 		}
+
+		//slider
+        var sliderFlag = $(ele).attr('sliderFlag');
+        if(sliderFlag){
+            setSlider($($(ele).next('div').get(0)), $(ele)
+				, $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
+        }
 		
 	});
 	
@@ -144,6 +174,14 @@ function setDialogData(rowData){
 		if(dateFlag){
             setDatepicker($(ele));
 		}
+
+		//slider
+		var sliderFlag = $(ele).attr('sliderFlag');
+		if(sliderFlag){
+            setSlider($($(ele).next('div').get(0)), $(ele)
+                , $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
+		}
+
 		
 	});
 	
@@ -179,8 +217,11 @@ function setDialogData(rowData){
 	});
 	
 	//class = editForbidden, cannot edit
-	$("#form .editForbidden").each(function(){
+	$(":input[editForbidden]", "#form").each(function(){
+	    console.info("go to editforbidden: " + $(this));
 		$(this).prop("readOnly", true);
+		//assign detail not allowed slide
+        $($(this).next('div').get(0)).slider("disable");
 	});
 	
 	bindCheckBoxEvt();
@@ -191,11 +232,15 @@ function cleanDialog(){
 	$("#form input, textarea").each(function(idx, ele){
 		var name = $(ele).attr('name');
 		var type = $(ele).attr('type');
+		var sliderFlag = $(ele).attr('sliderFlag');
 		if(name){
 			if(type == 'checkbox'){
 				$(ele).prop("checked", false);
 			}else{
 				$(ele).val('');
+			}
+			if(sliderFlag){
+                $($(ele).next('div').get(0)).slider( "destroy" );
 			}
 		}
 	});
@@ -211,6 +256,13 @@ function initAddDialog(){
 		if(dateFlag){
 			setDatepicker($(ele));
 		}
+
+		//slider
+        var sliderFlag = $(ele).attr('sliderFlag');
+        if(sliderFlag){
+            setSlider($($(ele).next('div').get(0)), $(ele)
+                , $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
+        }
 		
 	});
 	
