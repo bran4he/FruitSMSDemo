@@ -13,7 +13,8 @@
 		"34207189-6d48-f3a3-65e6-65d9f0660bbd",
 		"4dda3fb9-6bf9-831b-ed24-447753e4a735",
 		"9a9eee37-49c6-695a-f27d-7a3f3a4afae6",
-		"b723b954-85d4-8c1f-f8fa-4dedb08dd67b"
+		"b723b954-85d4-8c1f-f8fa-4dedb08dd67b",
+		"cff0dd01-6111-7d5e-4f8d-38068319804d"
 	],
 	"folders": [],
 	"timestamp": 1491442429520,
@@ -99,7 +100,7 @@
 		{
 			"id": "4dda3fb9-6bf9-831b-ed24-447753e4a735",
 			"headers": "Auth: QWERTYUIOP\n",
-			"url": "{{server}}/rest/order/delAddress/3",
+			"url": "{{server}}/rest/order/delAddress/4",
 			"preRequestScript": null,
 			"pathVariables": {},
 			"method": "GET",
@@ -108,7 +109,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1491877813239,
+			"time": 1493294267518,
 			"name": "delAddress",
 			"description": "",
 			"collectionId": "04ffbc24-978e-fd8d-b7d2-8d0b2a627669",
@@ -136,7 +137,7 @@
 		{
 			"id": "664ab0b7-e9bf-452e-574d-2ffc39688407",
 			"headers": "Auth: QWERTYUIOP\n",
-			"url": "{{server}}/rest/order/cancleOrder/1",
+			"url": "{{server}}/rest/order/cancleOrder/2",
 			"preRequestScript": null,
 			"pathVariables": {},
 			"method": "GET",
@@ -146,7 +147,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1491877795605,
+			"time": 1493292456689,
 			"name": "cancleOrder",
 			"description": "",
 			"collectionId": "04ffbc24-978e-fd8d-b7d2-8d0b2a627669",
@@ -184,12 +185,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1493196647205,
+			"time": 1493294042240,
 			"name": "userOrder",
 			"description": "",
 			"collectionId": "04ffbc24-978e-fd8d-b7d2-8d0b2a627669",
 			"responses": [],
-			"rawModeData": "{\n    \"address\": \"小黄2的家\",\n    \"contactName\": \"小黄2\",\n    \"contactPhone\": \"13122223333\",\n    \"remark\": null,\n    \"fruitList\": [\n        {\n            \"fruitId\": \"3\",\n            \"fruitName\": \"火龙果\",\n            \"orderUnit\": 2\n        }\n    ]\n}"
+			"rawModeData": "{\n    \"address\": \"小黄2的家\",\n    \"contactName\": \"小黄2\",\n    \"contactPhone\": \"13122223333\",\n    \"remark\": null,\n    \"fruitList\": [\n        {\n            \"fruitId\": \"1\",\n            \"fruitName\": \"apple\",\n            \"orderUnit\": 2\n        }\n    ]\n}"
 		},
 		{
 			"id": "9a9eee37-49c6-695a-f27d-7a3f3a4afae6",
@@ -228,6 +229,24 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {}
+		},
+		{
+			"id": "cff0dd01-6111-7d5e-4f8d-38068319804d",
+			"headers": "Auth: QWERTYUIOP\n",
+			"url": "{{server}}/rest/order/defaultAddr/QWERTYUIOP/2",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1493293703246,
+			"name": "defaultAddr",
+			"description": "",
+			"collectionId": "04ffbc24-978e-fd8d-b7d2-8d0b2a627669",
+			"responses": []
 		}
 	]
 }
