@@ -25,6 +25,25 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
 
 
+	public int getWaitOrderNumsCurrMonth(String wechatId){
+		/*
+		select count(*) from T_ORDER o
+			join T_ASSIGN a
+			on o.assignId = a.id
+			where
+			DATE_FORMAT( o.insertDate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+			and
+			a.wechatOpenid = 'QWERTYUIOP'
+			and
+			o.statusId = 1;
+		*/
+		StringBuffer sql = new StringBuffer("select count(*) from T_ORDER o join T_ASSIGN a on o.assignId = a.id where DATE_FORMAT( o.insertDate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and a.wechatOpenid = '")
+				.append(wechatId).append("'").append(" and o.statusId = 1 ");
+
+		return getJdbcTemplate().queryForObject(sql.toString(), Integer.class);
+
+	}
+
 	public int updateMutiStatus(String[] idArr, String status){
 		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId= ")
 							.append(status).append(" WHERE id in(");

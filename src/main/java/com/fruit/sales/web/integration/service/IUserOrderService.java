@@ -73,6 +73,10 @@ public class IUserOrderService {
 	private PubConfigService pubConfigService;
 
 
+	public int getWaitOrderNumsCurrMonth(String wechatId){
+		return orderDao.getWaitOrderNumsCurrMonth(wechatId);
+	}
+
 	/**
 	 * validate order status, only wait for delivery status can be canceled.
 	 *

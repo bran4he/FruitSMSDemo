@@ -1,6 +1,7 @@
 package com.fruit.sales.web.integration.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.dto.UserOrder;
 import com.fruit.sales.entity.Assign;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 //@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/rest/order")
@@ -35,7 +38,26 @@ public class IOrderController {
 
 	@Autowired
 	private OrderAddressService orderAddressService;
-	
+
+
+	@RequestMapping(value="waitForNums/{wechatId}", method = RequestMethod.GET)
+	public @ResponseBody ReturnResult getCurrentMonthWaitForOrderNums(@PathVariable String wechatId) throws JsonProcessingException{
+		logger.info("get user wait for order nums current month with wechatId:{}", wechatId);
+		ReturnResult rr = new ReturnResult();
+		int count = iUserOrderService.getWaitOrderNumsCurrMonth(wechatId);
+
+		rr.setCode(RestultCode.SUCCESS.toString());
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("count", count);
+		ObjectMapper mapper = new ObjectMapper();
+		String json =  mapper.writeValueAsString(map);
+		rr.setMsg(json);
+
+		return rr;
+
+	}
 	
 	@RequestMapping(value="cancleOrder/{orderId}", method = RequestMethod.GET)
 	public @ResponseBody ReturnResult cancleOrder(@PathVariable String orderId) throws JsonProcessingException{

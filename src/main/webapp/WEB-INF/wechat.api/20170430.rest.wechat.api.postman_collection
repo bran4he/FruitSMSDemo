@@ -14,7 +14,8 @@
 		"4dda3fb9-6bf9-831b-ed24-447753e4a735",
 		"9a9eee37-49c6-695a-f27d-7a3f3a4afae6",
 		"b723b954-85d4-8c1f-f8fa-4dedb08dd67b",
-		"cff0dd01-6111-7d5e-4f8d-38068319804d"
+		"cff0dd01-6111-7d5e-4f8d-38068319804d",
+		"85d73850-89a5-7ecc-bae1-e973a857bf26"
 	],
 	"folders": [],
 	"timestamp": 1491442429520,
@@ -152,6 +153,26 @@
 			"description": "",
 			"collectionId": "04ffbc24-978e-fd8d-b7d2-8d0b2a627669",
 			"responses": []
+		},
+		{
+			"id": "85d73850-89a5-7ecc-bae1-e973a857bf26",
+			"headers": "Auth: QWERTYUIOP\n",
+			"url": "{{server}}/rest/order/waitForNums/QWERTYUIOP",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1493564636070,
+			"name": "waitForNums",
+			"description": "",
+			"collectionId": "04ffbc24-978e-fd8d-b7d2-8d0b2a627669",
+			"responses": [],
+			"rawModeData": "  {\n    \"assignId\": null,\n    \"fruitId\": 1,\n    \"fruitName\": \"apple0\",\n    \"orderUnit\": 1,\n    \"address\": \"中国上海市淞沪路270号创智天地广场3号楼\",\n    \"contactName\": \"王小二\",\n    \"contactPhone\": \"15888888888\",\n    \"remark\":\"remakr\"\n  }"
 		},
 		{
 			"id": "9500e7a2-87af-d1cd-acb4-682df8cc72b4",

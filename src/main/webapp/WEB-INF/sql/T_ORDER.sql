@@ -46,10 +46,34 @@ insert into T_ORDER
 
 /*以上初始化和建库脚步*/
 
+select CURDATE( ) , DATE_FORMAT( CURDATE( ) , '%Y%m' ), insertDate, DATE_FORMAT( o.insertDate, '%Y%m' )  from T_ORDER o;
+
 select * from T_ORDER;
+
+select count(*) from T_ORDER o 
+	join T_ASSIGN a 
+    on o.assignId = a.id
+    where
+    DATE_FORMAT( o.insertDate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+    and
+    a.wechatOpenid = 'QWERTYUIOP'
+    and 
+    o.statusId = 1;
 
 
 
 /*
+select count(*) from T_ORDER o 
+	join T_ASSIGN a 
+    on o.assignId = a.id
+    where
+    DATE_FORMAT( a.insertDate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+    and
+    a.wechatOpenid = 'QWERTYUIOP'
+    and 
+    o.statusId = 1;
+    
 select *, max(orderUnit) from T_ORDER where fruitId = 1;
 */
+
+

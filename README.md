@@ -77,7 +77,8 @@ a demo for fruit sales management system
 52. 简化页面格式选择，只显示yyyy-MM-dd(只保留登录日志精确到时分秒) - 20170427
 53. 新增defaultAddr字段，用于标识用户的默认地址，用于自动填充 - 20170427
 54. 新增控件用于数量的操作，防止不当操作。支持设置初始值，最小最大值 - 20170428
-
+55. 更新下单接口，支持参数是否将此单地址设为默认地址，兼容之前设计的下单接口 - 20170430
+56. 新增接口 统计当月用户已经下的订单数量（待派送的订单数量） - 20170430
 - - - 
 
 ### bug fix
@@ -539,6 +540,35 @@ Response:
   "code": "SUCCESS",
   "value": "0",
   "msg": null
+}
+```
+- - -
+
+### 统计当月用户已经下的订单数量（待派送的订单数量）
+
+**Request:**
+```
+GET: {web_root}/rest/order/waitForNums/{wechatId}
+```
+**Response**
+```
+{
+  "code": {code},
+  "value": {value},
+  "msg": {count}
+}
+```
+
+**sample**
+Request:
+GET fruit/rest/order/waitForNums/QWERTYUIOP
+
+Response:
+```
+{
+  "code": "SUCCESS",
+  "value": "0",
+  "msg": "{\"count\":5}"
 }
 ```
 
