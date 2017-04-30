@@ -195,10 +195,15 @@ GET  fruit/rest/user/register/1588888888/QWERTYUIOP
 ### 下订单接口
 **Request:**
 ```
-POST: {web_root}/rest/order/userOrder/{wechatOpenID}
+POST: {web_root}/rest/order/userOrder/{wechatOpenID}/{isDefaultAddr}
 BODY:
 {JSON DATA}
 ```
+**参数**
+`isDefaultAddr`是否将此单地址设为默认地址。
+1. 不传递此参数或者传递0，将不将此地址设为默认
+2. 传递1，将此单地址设为默认地址
+
 **Response**
 ```
 {

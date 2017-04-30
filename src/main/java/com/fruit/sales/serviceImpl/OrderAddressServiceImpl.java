@@ -54,4 +54,9 @@ public class OrderAddressServiceImpl implements OrderAddressService {
 		addr.setDefaultAddr(BusinessConstant.DEFAULT_ADDRESS);
 		dao.update(addr);
 	}
+
+	@Override
+	public void clearDefaultStatusAddr(String wechatOpenid){
+		dao.setAddrToNotDefault(wechatOpenid);
+	}
 }

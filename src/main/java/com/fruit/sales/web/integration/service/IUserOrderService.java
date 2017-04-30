@@ -254,7 +254,7 @@ public class IUserOrderService {
 	}
 	
 	@Transactional
-	public ReturnResult order(Assign assign, UserOrder userOrder) throws JsonProcessingException{
+	public ReturnResult order(Assign assign, UserOrder userOrder, Integer isDefaultAddr) throws JsonProcessingException{
 
 		ReturnResult rr = new ReturnResult();
 		
@@ -314,25 +314,8 @@ public class IUserOrderService {
 				orderDetailLst.size(), updatedCount);
 		
 		//save user common address
-		OrderAddress addr = new OrderAddress();
-		addr.setId(null);
-		addr.setAddress(newOrder.getAddress());
-		addr.setContactName(newOrder.getContactName());
-		addr.setContactPhone(newOrder.getContactPhone());
-		addr.setWechatOpenid(assign.getWechatOpenid());
-		//default not
-		addr.setDefaultAddr(BusinessConstant.NOT_DEFAULT_ADDRESS);
-		
-		List<OrderAddress> addrLst = orderAddressService.findByOpenId(assign.getWechatOpenid());
-		if(addrLst.size()>0){
-			long count = addrLst.stream().filter(add -> add.equals(addr)).count();
-			if(count == 0){
-				orderAddressService.add(addr);
-			}
-		}else{
-			orderAddressService.add(addr);
-		}
-		
+		saveAddress(newOrder, assign, isDefaultAddr);
+
 		//retrun message
 		rr.setCode(RestultCode.SUCCESS.toString());
 		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
@@ -342,6 +325,33 @@ public class IUserOrderService {
 		
 		return rr;
 	
+	}
+
+	private void saveAddress(Order newOrder, Assign assign, Integer defaultAddr){
+		//save user common address
+		OrderAddress addr = new OrderAddress();
+		addr.setId(null);
+		addr.setAddress(newOrder.getAddress());
+		addr.setContactName(newOrder.getContactName());
+		addr.setContactPhone(newOrder.getContactPhone());
+		addr.setWechatOpenid(assign.getWechatOpenid());
+		//default address or not
+		addr.setDefaultAddr(defaultAddr);
+
+		List<OrderAddress> addrLst = orderAddressService.findByOpenId(assign.getWechatOpenid());
+		if(addrLst.size()>0){
+			if(BusinessConstant.DEFAULT_ADDRESS.equals(defaultAddr)){
+				//clear all status
+				orderAddressService.clearDefaultStatusAddr(assign.getWechatOpenid());
+			}
+
+			long count = addrLst.stream().filter(add -> add.equals(addr)).count();
+			if(count == 0){
+				orderAddressService.add(addr);
+			}
+		}else{
+			orderAddressService.add(addr);
+		}
 	}
 	
 }

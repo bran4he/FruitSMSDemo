@@ -1,1 +1,4 @@
 mysqldump -uroot -p ebaodemo > d:/dump.sql
+
+
+mysqldump -uroot -p ebaodemo > /Users/chundong.hcd/Documents/GitHub/FruitSMSDemo/src/main/webapp/WEB-INF/sql/dump/20170430_dump.sql

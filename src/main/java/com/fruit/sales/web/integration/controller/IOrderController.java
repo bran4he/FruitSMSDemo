@@ -117,38 +117,61 @@ public class IOrderController {
 		rr.setMsg(null);
 		return rr;
 	}
-	
-	
+
 	@RequestMapping(value="userOrder/{wechatId}", method = RequestMethod.POST)
-	public @ResponseBody ReturnResult userOrder(@RequestBody UserOrder userOrder, @PathVariable String wechatId) throws JsonProcessingException{
-		logger.info("user order, get wechatId:{}, and order:\n{}", wechatId, userOrder);
-		
+	public @ResponseBody ReturnResult userOrder(@RequestBody UserOrder userOrder, @PathVariable String wechatId)
+			throws JsonProcessingException {
+
+		logger.info("user order, get wechatId:{} and order:\n{}", wechatId, userOrder);
+
+		return handleUserOrder(userOrder, wechatId, BusinessConstant.NOT_DEFAULT_ADDRESS);
+	}
+
+	@RequestMapping(value="userOrder/{wechatId}/{isDefaultAddr}", method = RequestMethod.POST)
+	public @ResponseBody ReturnResult userOrder(
+			@RequestBody UserOrder userOrder, @PathVariable String wechatId, @PathVariable Integer isDefaultAddr)
+				throws JsonProcessingException{
+		logger.info("user order, get wechatId:{}, isDefaultAddr:{}, and order:\n{}", wechatId, isDefaultAddr, userOrder);
+
+		return handleUserOrder(userOrder, wechatId, isDefaultAddr);
+
+	}
+
+	private ReturnResult handleUserOrder(UserOrder userOrder, String wechatId, Integer isDefaultAddr)
+			throws JsonProcessingException{
 		ReturnResult rr = new ReturnResult();
-		
+
 		if(StringUtils.isNotEmpty(wechatId)){
 			Assign assign = assinService.findByWechatId(wechatId);
-			
+
 			if(null != assign){
-				
+
 				//用户是否激活
 				if(assign.getIsActive().equals(BusinessConstant.NOT_ACTIVE)){
+					logger.info("exception: wechat/user not active.");
 					rr.setCode(RestultCode.EXCEPTION.toString());
 					rr.setValue(UserOrderConstant.USER_NOT_ACTIVE);
 				}else{
-					rr = iUserOrderService.order(assign, userOrder);
+					logger.info("prepare to save order.");
+					rr = iUserOrderService.order(assign, userOrder, isDefaultAddr);
 				}
-				
+
 			}else{
+				logger.info("exception: user not exists.");
 				//用户验证未通过
 				rr.setCode(RestultCode.FAIL.toString());
 				rr.setValue(UserOrderConstant.USER_NOT_EXIST);
 			}
-			
+
 		}else{
+			logger.info("exception: param not correct!");
 			rr.setCode(RestultCode.FAIL.toString());
 			rr.setValue(BusinessConstant.PARAM_NOT_CORRECT);
 		}
-		
+
 		return rr;
 	}
 }
+
+
+

@@ -17,4 +17,6 @@ public interface OrderAddressService {
 	OrderAddress findById(String id);
 
 	void setDefaultAddr(String wechatOpenid, String addrId);
+
+	void clearDefaultStatusAddr(String wechatOpeni);
 }
