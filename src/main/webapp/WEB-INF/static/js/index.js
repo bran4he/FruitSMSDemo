@@ -35,6 +35,7 @@ function setDatepicker($ele) {
 }
 
 //设置滑块
+/*
 function setSlider($slider, $ele, initVal, minVal, maxVal) {
 	console.info($slider, $ele);
 	console.info(initVal +"，" + minVal +"，" +maxVal);
@@ -55,6 +56,7 @@ function setSlider($slider, $ele, initVal, minVal, maxVal) {
     });
     // $ele.val($slider.slider( "value" ) );
 }
+*/
 
 //日期反格式化  - 公用方法
 function unFormateUpdateDate(cellValue, options, rowObject){  
@@ -133,11 +135,13 @@ function setViewDialogData(rowData){
 		}
 
 		//slider
+		/*
         var sliderFlag = $(ele).attr('sliderFlag');
         if(sliderFlag){
             setSlider($($(ele).next('div').get(0)), $(ele)
 				, $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
         }
+        */
 		
 	});
 	
@@ -176,12 +180,13 @@ function setDialogData(rowData){
 		}
 
 		//slider
+		/*
 		var sliderFlag = $(ele).attr('sliderFlag');
 		if(sliderFlag){
             setSlider($($(ele).next('div').get(0)), $(ele)
                 , $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
 		}
-
+		*/
 		
 	});
 	
@@ -221,7 +226,7 @@ function setDialogData(rowData){
 	    console.info("go to editforbidden: " + $(this));
 		$(this).prop("readOnly", true);
 		//assign detail not allowed slide
-        $($(this).next('div').get(0)).slider("disable");
+        // $($(this).next('div').get(0)).slider("disable");
 	});
 	
 	bindCheckBoxEvt();
@@ -232,16 +237,18 @@ function cleanDialog(){
 	$("#form input, textarea").each(function(idx, ele){
 		var name = $(ele).attr('name');
 		var type = $(ele).attr('type');
-		var sliderFlag = $(ele).attr('sliderFlag');
+
+		// var sliderFlag = $(ele).attr('sliderFlag');
+
 		if(name){
 			if(type == 'checkbox'){
 				$(ele).prop("checked", false);
 			}else{
 				$(ele).val('');
 			}
-			if(sliderFlag){
-                $($(ele).next('div').get(0)).slider( "destroy" );
-			}
+			// if(sliderFlag){
+             //    $($(ele).next('div').get(0)).slider( "destroy" );
+			// }
 		}
 	});
 }
@@ -258,11 +265,11 @@ function initAddDialog(){
 		}
 
 		//slider
-        var sliderFlag = $(ele).attr('sliderFlag');
-        if(sliderFlag){
-            setSlider($($(ele).next('div').get(0)), $(ele)
-                , $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
-        }
+        // var sliderFlag = $(ele).attr('sliderFlag');
+        // if(sliderFlag){
+         //    setSlider($($(ele).next('div').get(0)), $(ele)
+         //        , $(ele).attr('initValue'), $(ele).attr('minValue'), $(ele).attr('maxValue'));
+        // }
 		
 	});
 	
@@ -517,12 +524,34 @@ function btnOk(){
 			pass = false;
 			myNoty($(ele).attr('name') + "是必填项", 'warning', 1500);
 		}
+
+        //number validation
+		if($(ele).attr('sliderFlag')){
+			var minValue = $(ele).attr('minValue');
+			var maxValue = $(ele).attr('maxValue');
+			var input = $(ele).val();
+			//not number
+            if(isNaN(Number(input))){
+				pass = false;
+                myNoty($(ele).attr('name') + "必须是数字", 'warning', 1500);
+			}else{
+            	//is number
+				if(input < minValue || input > maxValue){
+					pass = false;
+                    myNoty($(ele).attr('name') + "必须在" + minValue + "~" + maxValue +"范围内", 'warning', 1500);
+				}
+
+			}
+		}
 	});
 	
 	if(!pass){
 		return false;
 	}
-	
+
+
+
+
 	
     $.ajax({
     	type: "POST",

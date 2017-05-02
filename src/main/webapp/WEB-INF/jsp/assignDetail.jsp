@@ -106,8 +106,10 @@
 			    <label for="lastname" class="col-sm-2 control-label">增加量<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="unitUpdate" editForbidden="true" required="true"
-						 sliderFlag="true" initValue="0" minValue="-200" maxValue="200" >
+						 sliderFlag="true" initValue="0" minValue="-10000" maxValue="10000" >
+					<!--
 					<div></div>
+					-->
 			    </div>
 			  </div>
 			  <div class="form-group">
