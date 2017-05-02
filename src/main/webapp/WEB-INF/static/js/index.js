@@ -536,7 +536,7 @@ function btnOk(){
                 myNoty($(ele).attr('name') + "必须是数字", 'warning', 1500);
 			}else{
             	//is number
-				if(input < minValue || input > maxValue){
+				if(Number(input) < Number(minValue) || Number(input) > Number(maxValue)){
 					pass = false;
                     myNoty($(ele).attr('name') + "必须在" + minValue + "~" + maxValue +"范围内", 'warning', 1500);
 				}
