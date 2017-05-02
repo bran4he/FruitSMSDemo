@@ -3,7 +3,7 @@ $(function(){
 	                '水果', 
 	                '产地',
 	                '月份', 
-	                '最大订单日', 
+	                // '最大订单日',
 	                '一单最大量', 
 	                '供应量', 
 	                
@@ -18,7 +18,7 @@ $(function(){
 		             {name : 'fruitName',index : 'fruitName'}, 
 		             {name : 'fruitArea',index : 'fruitArea'}, 
 		             {name : 'fruitMonth',index : 'fruitMonth'}, 
-		             {name : 'maxOrderDay',index : 'maxOrderDay'}, 
+		             // {name : 'maxOrderDay',index : 'maxOrderDay'},
 		             {name : 'maxOrderNum',index : 'maxOrderNum'}, 
 		             {name : 'maxProvNum',index : 'maxProvNum'},
 		             

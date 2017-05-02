@@ -21,9 +21,9 @@ public class FruitConfig {
 	@JsonDeserialize(using = DateJsonDeserializer.class)
 	private Date fruitMonth;
 
-	@JsonSerialize(using = DateJsonSerializer.class)
-	@JsonDeserialize(using = DateJsonDeserializer.class)
-	private Date maxOrderDay;
+//	@JsonSerialize(using = DateJsonSerializer.class)
+//	@JsonDeserialize(using = DateJsonDeserializer.class)
+//	private Date maxOrderDay;
 
 	private String fruitArea;
 	private Integer maxOrderNum;
@@ -124,13 +124,13 @@ public class FruitConfig {
 		this.fruitMonth = fruitMonth;
 	}
 
-	public Date getMaxOrderDay() {
-		return maxOrderDay;
-	}
-
-	public void setMaxOrderDay(Date maxOrderDay) {
-		this.maxOrderDay = maxOrderDay;
-	}
+//	public Date getMaxOrderDay() {
+//		return maxOrderDay;
+//	}
+//
+//	public void setMaxOrderDay(Date maxOrderDay) {
+//		this.maxOrderDay = maxOrderDay;
+//	}
 
 	public String getFruitArea() {
 		return fruitArea;

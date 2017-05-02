@@ -86,12 +86,15 @@
 			      <input type="text" class="form-control" dateFlag="true" name="fruitMonth" required="true">
 			    </div>
 			  </div>
+			  <!-- remove this field
+
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">最大定单日<span style="color:red">*</span></label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" dateFlag="true" name="maxOrderDay" required="true">
 			    </div>
 			  </div>
+			  -->
 			  <div class="form-group">
 			    <label for="lastname" class="col-sm-2 control-label">一单最大量<span style="color:red">*</span></label>
 			    <div class="col-sm-10">

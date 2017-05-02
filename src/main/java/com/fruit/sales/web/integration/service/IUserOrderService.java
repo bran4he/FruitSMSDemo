@@ -226,12 +226,13 @@ public class IUserOrderService {
 			FruitConfig fruitConfig = fruitConfigService.findById(fruitOrder.getFruitId());
 			
 			//check the order date
-			if(fruitConfig.getMaxOrderDay().compareTo(new Date()) < 0){
-				rr.setCode(RestultCode.EXCEPTION.toString());
-				rr.setValue(UserOrderConstant.EXCEED_MAX_ORDER_DATE);
-				rr.setMsg(fruitOrder.getFruitName());
-				return rr;
-			}
+			//delete this field
+//			if(fruitConfig.getMaxOrderDay().compareTo(new Date()) < 0){
+//				rr.setCode(RestultCode.EXCEPTION.toString());
+//				rr.setValue(UserOrderConstant.EXCEED_MAX_ORDER_DATE);
+//				rr.setMsg(fruitOrder.getFruitName());
+//				return rr;
+//			}
 			
 			//检查水果设置参数max order num
 			if(fruitConfig.getMaxOrderNum() < fruitOrder.getOrderUnit()){

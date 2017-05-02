@@ -26,4 +26,6 @@ insert into T_ORDER_DETAIL
 (null, 1, 'apple', 1, 5,'2017-04-02', 'admin','2017-04-02', 'admin');
 
 select * from T_ORDER_DETAIL;
+/*
 select max(orderUnit)as maxUnit from T_ORDER_DETAIL where fruitId = 1;
+*/

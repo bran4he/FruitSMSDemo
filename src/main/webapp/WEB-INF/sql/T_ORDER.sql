@@ -50,6 +50,7 @@ select CURDATE( ) , DATE_FORMAT( CURDATE( ) , '%Y%m' ), insertDate, DATE_FORMAT(
 
 select * from T_ORDER;
 
+/*
 select count(*) from T_ORDER o 
 	join T_ASSIGN a 
     on o.assignId = a.id
@@ -59,7 +60,7 @@ select count(*) from T_ORDER o
     a.wechatOpenid = 'QWERTYUIOP'
     and 
     o.statusId = 1;
-
+*/
 
 
 /*
