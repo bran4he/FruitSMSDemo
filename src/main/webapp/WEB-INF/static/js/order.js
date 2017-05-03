@@ -47,21 +47,23 @@ $(function(){
 		             {name : 'planDeliveryDate',index : 'planDeliveryDate'}, 
 		             {name : 'address',index : 'address'}, 
 		             {name : 'contactName',index : 'contactName'}, 
-		             {name : 'contactPhone',index : 'contactPhone'}, 
-		             {name : 'deliveryDate',index : 'deliveryDate'}, 
+		             {name : 'contactPhone',index : 'contactPhone'},
+        			//special date
+		             {name : 'deliveryDate',index : 'deliveryDate', formatter: formateTwoDate},
 		             {name : 'deliveryBy',index : 'deliveryBy'}, 
-		             {name : 'deliveryRemark',index : 'deliveryRemark'}, 
-		             {name : 'finishDate',index : 'finishDate'}, 
+		             {name : 'deliveryRemark',index : 'deliveryRemark'},
+					//special date
+		             {name : 'finishDate',index : 'finishDate', formatter: formateTwoDate},
 		             {name : 'finishBy',index : 'finishBy'}, 
 		             {name : 'finishRemark',index : 'finishRemark'}, 
 		             
 		             {name : 'remark',index : 'remark'}, 
 		             {name : 'extendData',index : 'extendData', hidden:true}, 
 		             
-		             {name : 'insertDate',index : 'insertDate'}, 
-		             {name : 'insertBy',index : 'insertBy'}, 
-		             {name : 'updateDate',index : 'updateDate'}, 
-		             {name : 'updateBy',index : 'updateBy'}
+		             {name : 'insertDate',index : 'insertDate', hidden:true},
+		             {name : 'insertBy',index : 'insertBy',hidden:true},
+		             {name : 'updateDate',index : 'updateDate',hidden:true},
+		             {name : 'updateBy',index : 'updateBy',hidden:true}
 		           ];
 	var caption = "订单列表";
 	
@@ -268,7 +270,15 @@ function formateOrderStatus(cellValue, options, rowObject){
 	
 }
 
+//格式化两个特殊时间格式
+function formateTwoDate(cellValue, options, rowObject){
+	console.info(cellValue);
 
+    if(cellValue == '1970-01-01'){
+        return '';
+    }
+    return cellValue;
+}
 
 
 

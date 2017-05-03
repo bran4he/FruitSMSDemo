@@ -1,8 +1,11 @@
 package com.fruit.sales.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.entity.OrderDetail;
 import com.fruit.sales.vo.IOrderDetailVO;
 import org.apache.commons.lang3.StringUtils;
@@ -45,8 +48,17 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	}
 
 	public int updateMutiStatus(String[] idArr, String status){
-		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId= ")
-							.append(status).append(" WHERE id in(");
+		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId = ")
+							.append(status);
+		if(StringUtils.equalsIgnoreCase(status, OrderConstant.DELIVERY_SUCCESS)){
+			String crruentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+			sql.append(" , deliveryDate ='").append(crruentDate).append("' , finishDate ='")
+				.append(crruentDate).append("' ");
+		}
+		//TODO not update by person info
+
+		sql.append(" WHERE id in(");
 		for(int i=0 ; i< idArr.length; i++){
 			if(i == idArr.length-1 ){
 				sql.append(idArr[i]);

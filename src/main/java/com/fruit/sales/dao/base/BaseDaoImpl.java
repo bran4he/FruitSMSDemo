@@ -352,17 +352,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> ,Serializable{
 				for (int i = 0; argTypes != null && i < argTypes.length; i++) {
 					fields[i].setAccessible(true); // 暴力反射
 					
-					logger.info("====================");
-					
-					logger.info("fields[i]:{}",fields[i]);
-					logger.info("fields[i].get(entity):{}",fields[i].get(entity));
-					logger.info("fields[i].get(entity).getClass():{}",fields[i].get(entity).getClass());
-					logger.info("fields[i].get(entity).getClass().getName():{}",fields[i].get(entity).getClass().getName());
-					
-					logger.info("====================");
+//					logger.info("====================");
+//
+//					logger.info("fields[i]:{}",fields[i]);
+//					logger.info("fields[i].get(entity):{}",fields[i].get(entity));
+//					logger.info("fields[i].get(entity).getClass():{}",fields[i].get(entity).getClass());
+//					logger.info("fields[i].get(entity).getClass().getName():{}",fields[i].get(entity).getClass().getName());
+//
+//					logger.info("====================");
 					
 					String fieldType = fields[i].get(entity).getClass().getName();
-					logger.info("====================fieldType:{}", fieldType);
+//					logger.info("====================fieldType:{}", fieldType);
 					
 					//update by brandon
 //					String fieldType = fields[i].getGenericType().getTypeName();

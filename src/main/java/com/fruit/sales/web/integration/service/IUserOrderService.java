@@ -207,11 +207,16 @@ public class IUserOrderService {
 		order.setRemark(userOrder.getRemark());
 		order.setContactName(userOrder.getContactName());
 		order.setContactPhone(userOrder.getContactPhone());
-		
-		order.setDeliveryDate(new DateTime().plusDays(7).toDate());
+
+		//default to 0 - Thu Jan 01 08:00:00 CST 1970
+		order.setDeliveryDate(new DateTime(0).plusHours(1).toDate());
+
 		order.setDeliveryBy("DeliveryBy");
 		order.setDeliveryRemark("DeliveryRemark");
-		order.setFinishDate(new DateTime().plusDays(7).toDate());
+
+		//default to 0 - Thu Jan 01 08:00:00 CST 1970
+		order.setFinishDate(new DateTime(0).plusHours(1).toDate());
+
 		order.setFinishBy("FinishBy");
 		order.setFinishRemark("FinishRemark");
 		order.setExtendData("extdata");

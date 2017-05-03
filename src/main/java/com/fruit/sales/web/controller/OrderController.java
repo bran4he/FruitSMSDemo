@@ -6,10 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fruit.sales.common.OrderConstant;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,7 +105,10 @@ public class OrderController implements BaseController<Order>{
 				@RequestParam("status") String status){
 		
 		logger.info("mutiUpdate, ids:{} and status:{}", ids, status);
-		
+
+		Assert.isTrue((OrderConstant.DELIVERYING.equals(status) || OrderConstant.DELIVERY_SUCCESS.equals(status)),
+				"mutiUpdateStatus status is " + status +", not DELIVERYING:2 or DELIVERY_SUCCESS:3!");
+
 		String[] idArr = ids.split(",");
 		int count = service.updateMutiStatus(idArr, status);
 		Map<String, Object> data = new HashMap<String, Object>();
