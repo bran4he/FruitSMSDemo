@@ -1,7 +1,7 @@
 drop table if exists T_PUB_CONFIG;
 CREATE TABLE `T_PUB_CONFIG` (
 `id` int(5) NOT NULL AUTO_INCREMENT, 
-`name` VARCHAR(20) NOT NULL,
+`name` VARCHAR(100) NOT NULL,
 `value` VARCHAR(200) NOT NULL,
 `remark` VARCHAR(100) NOT NULL,
 `insertDate` timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -20,6 +20,10 @@ insert into T_PUB_CONFIG (id, name, value, remark) values (null,'WECHAT_SERVER_U
 
 
 insert into T_PUB_CONFIG (id, name, value, remark) values (null,'RECIVER_SMS_CONTENT', '亲爱的用户，恭喜您收到水果啦，请到微信公众号xxx激活手机号并领取水果。', '用户分配到水果后收到的短信内容');
+
+
+insert into T_PUB_CONFIG (id, name, value, remark) values (null,'MAX_WAITFOR_ORDER_NUM', '25', '一个月最大在途订单量');
+
 
 /*以上初始化和建库脚步*/
 

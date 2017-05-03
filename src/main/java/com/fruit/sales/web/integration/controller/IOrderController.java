@@ -6,8 +6,10 @@ import com.fruit.sales.common.BusinessConstant;
 import com.fruit.sales.dto.UserOrder;
 import com.fruit.sales.entity.Assign;
 import com.fruit.sales.entity.OrderAddress;
+import com.fruit.sales.entity.PubConfig;
 import com.fruit.sales.service.AssignService;
 import com.fruit.sales.service.OrderAddressService;
+import com.fruit.sales.serviceImpl.PubConfigServiceImpl;
 import com.fruit.sales.web.integration.common.UserOrderConstant;
 import com.fruit.sales.web.integration.service.IUserOrderService;
 import com.fruit.sales.wechat.RestultCode;
@@ -39,21 +41,36 @@ public class IOrderController {
 	@Autowired
 	private OrderAddressService orderAddressService;
 
+	@Autowired
+	private PubConfigServiceImpl pubConfigServiceImpl;
 
 	@RequestMapping(value="waitForNums/{wechatId}", method = RequestMethod.GET)
 	public @ResponseBody ReturnResult getCurrentMonthWaitForOrderNums(@PathVariable String wechatId) throws JsonProcessingException{
 		logger.info("get user wait for order nums current month with wechatId:{}", wechatId);
 		ReturnResult rr = new ReturnResult();
-		int count = iUserOrderService.getWaitOrderNumsCurrMonth(wechatId);
+		int currentNums = iUserOrderService.getWaitOrderNumsCurrMonth(wechatId);
 
-		rr.setCode(RestultCode.SUCCESS.toString());
-		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
+		PubConfig pubcfg = pubConfigServiceImpl.findByName(BusinessConstant.MAX_WAITFOR_ORDER_NUM);
 
-		HashMap<String, Integer> map = new HashMap<>();
-		map.put("count", count);
+		String maxNumConfig = "";
+
+		if(pubcfg != null){
+			maxNumConfig = pubcfg.getValue();
+			rr.setCode(RestultCode.SUCCESS.toString());
+		}else{
+			maxNumConfig = BusinessConstant.MAX_WAITFOR_ORDER_NUM_UNDEFINED;
+			rr.setCode(RestultCode.EXCEPTION.toString());
+		}
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("maxNumConfig", maxNumConfig);
+		map.put("currentNums", currentNums);
+
 		ObjectMapper mapper = new ObjectMapper();
 		String json =  mapper.writeValueAsString(map);
 		rr.setMsg(json);
+
+		rr.setValue(BusinessConstant.PROCESS_SUCCESS);
 
 		return rr;
 

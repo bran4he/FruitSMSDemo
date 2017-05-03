@@ -290,6 +290,7 @@ public class IUserOrderService {
 		order.setSlaveName(assign.getSlaveName());
 		order.setSlavePhone(assign.getSlavePhone());
 		order.setStatusId(OrderConstant.WAIT_FOR);
+		//default + 7 days
 		order.setPlanDeliveryDate(new DateTime().plusDays(7).toDate());
 		
 		setDefaultOrderParams(order, userOrder);

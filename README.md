@@ -81,6 +81,7 @@ a demo for fruit sales management system
 56. 新增接口 统计当月用户已经下的订单数量（待派送的订单数量） - 20170430
 57. 根据讨论，删除水果设置上的最大订单日限制 - 20170502
 58. 删除slider控制数字，在前端页面使用js写死逻辑强制校验数字，0~10000、-10000~10000 - 20170502
+59. 更新最大可在途订单量接口，返回当前用于当月的在途订单和公共参数配置的单数  - 20170503
 - - - 
 
 ### bug fix
@@ -233,8 +234,8 @@ BODY:
 	public static final String EXCEED_ORDER_DAY_CFG = new String("2");
 	//fruit config
 	public static final String EXCEED_MAX_ORDER_LIMIT = new String("3");
-	//fruit config
-	public static final String EXCEED_MAX_ORDER_DATE = new String("4");
+	//fruit config - disabled
+	//public static final String EXCEED_MAX_ORDER_DATE = new String("4");
 	//assign
 	public static final String EXCEED_ASSIGN_BALANCE_UNIT = new String("5");
 	//fruit config, ignore
@@ -394,7 +395,7 @@ Response:
 
 ### 查询下单人常用地址列表接口（增加默认地址标志位）
 
->defaultAddr:1是默认地址，0是非默认地址，一个用户只能有一个默认地址。
+>返回消息中defaultAddr:1是默认地址，0是非默认地址，一个用户只能有一个默认地址。
 
 **Request:**
 ```
@@ -546,7 +547,7 @@ Response:
 ```
 - - -
 
-### 统计当月用户已经下的订单数量（待派送的订单数量）
+### 统计当月用户已经下的订单数量
 
 **Request:**
 ```
@@ -557,7 +558,7 @@ GET: {web_root}/rest/order/waitForNums/{wechatId}
 {
   "code": {code},
   "value": {value},
-  "msg": {count}
+  "msg": {待派送的订单数量和公共参数配置的最大在途订单量}
 }
 ```
 
@@ -570,10 +571,17 @@ Response:
 {
   "code": "SUCCESS",
   "value": "0",
-  "msg": "{\"count\":5}"
+  "msg": "{\"maxNumConfig\":\"25\",\"currentNums\":10}"
 }
 ```
-
+或者未在公共参数设置最大在读订单量，返回
+```
+{
+  "code": "EXCEPTION",
+  "value": "0",
+  "msg": "{\"maxNumConfig\":\"UNDEFINED\",\"currentNums\":10}"
+}
+```
 
 ## Assign
 
