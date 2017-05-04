@@ -93,6 +93,7 @@ a demo for fruit sales management system
 5. fix jquery ajax with CORS issue - 20170412
 6. fix bug of cannot query order from wechat - 20170420
 7. fix bug that user can cancel canceled orders - 20170427
+8. fix bug of getCurrentMonthWaitForOrderNums - 20170504
 
 - - -
 

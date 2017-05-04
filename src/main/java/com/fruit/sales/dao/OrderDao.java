@@ -41,7 +41,9 @@ public class OrderDao extends BaseDaoImpl<Order>{
 			o.statusId = 1;
 		*/
 		StringBuffer sql = new StringBuffer("select count(*) from T_ORDER o join T_ASSIGN a on o.assignId = a.id where DATE_FORMAT( o.insertDate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and a.wechatOpenid = '")
-				.append(wechatId).append("'").append(" and o.statusId = 1 ");
+				.append(wechatId).append("'").append(" and o.statusId = ").append(OrderConstant.DELIVERYING).append(" ");
+
+		logger.info("getWaitOrderNumsCurrMonth:{}", sql.toString());
 
 		return getJdbcTemplate().queryForObject(sql.toString(), Integer.class);
 
