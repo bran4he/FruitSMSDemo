@@ -54,17 +54,6 @@ select * from T_ORDER;
 UPDATE T_ORDER set statusId = 3 , deliveryDate ='2017-05-03' , finishDate ='2017-05-03'  WHERE id in(7, 6);
 */
 
-/*
-select count(*) from T_ORDER o 
-	join T_ASSIGN a 
-    on o.assignId = a.id
-    where
-    DATE_FORMAT( o.insertDate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
-    and
-    a.wechatOpenid = 'QWERTYUIOP'
-    and 
-    o.statusId = 1;
-*/
 
 
 /*
