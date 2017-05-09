@@ -465,6 +465,7 @@ function btnDeleteClick(){
 }
 
 //点击【确定删除】内容事件
+//TODO 改造，删除有外键关联的数据时，可以将错误信息抛出，体验感更好。
 function del(rowId){
 	var postUrl = $("#form").attr('deleteAction');
 

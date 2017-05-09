@@ -59,4 +59,10 @@ public class OrderAddressServiceImpl implements OrderAddressService {
 	public void clearDefaultStatusAddr(String wechatOpenid){
 		dao.setAddrToNotDefault(wechatOpenid);
 	}
+
+	@Override
+	public boolean update(OrderAddress orderAddress) {
+		dao.update(orderAddress);
+		return true;
+	}
 }

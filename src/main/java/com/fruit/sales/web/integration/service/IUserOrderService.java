@@ -3,6 +3,7 @@ package com.fruit.sales.web.integration.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fruit.sales.dao.OrderDetailDao;
@@ -349,20 +350,36 @@ public class IUserOrderService {
 		//default address or not
 		addr.setDefaultAddr(defaultAddr);
 
-		List<OrderAddress> addrLst = orderAddressService.findByOpenId(assign.getWechatOpenid());
-		if(addrLst.size()>0){
-			if(BusinessConstant.DEFAULT_ADDRESS.equals(defaultAddr)){
-				//clear all status
-				orderAddressService.clearDefaultStatusAddr(assign.getWechatOpenid());
-			}
+		//save as default
+		if(BusinessConstant.DEFAULT_ADDRESS.equals(defaultAddr)){
 
-			long count = addrLst.stream().filter(add -> add.equals(addr)).count();
-			if(count == 0){
+			List<OrderAddress> addrLst = orderAddressService.findByOpenId(assign.getWechatOpenid());
+			if(addrLst.size()>0){
+
+				long count = addrLst.stream().filter(add -> add.equals(addr)).count();
+				logger.info("find same addr count:{}, wait to save addr:{}", count, addr.toString());
+
+				if(count == 0){
+					//clear all status
+					orderAddressService.clearDefaultStatusAddr(assign.getWechatOpenid());
+					orderAddressService.add(addr);
+				}else{
+					OrderAddress findAddr = addrLst.stream().filter(add -> add.equals(addr)).findFirst().get();
+					logger.info("find same addr:{}", findAddr.toString());
+					if(BusinessConstant.NOT_DEFAULT_ADDRESS.equals(findAddr.getDefaultAddr())){
+						findAddr.setDefaultAddr(defaultAddr);
+						orderAddressService.update(findAddr);
+					}
+				}
+			}else{
 				orderAddressService.add(addr);
 			}
-		}else{
+
+		}else if(BusinessConstant.NOT_DEFAULT_ADDRESS.equals(defaultAddr)){
 			orderAddressService.add(addr);
 		}
+
+
 	}
 	
 }

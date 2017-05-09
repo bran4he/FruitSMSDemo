@@ -83,6 +83,7 @@ a demo for fruit sales management system
 58. 删除slider控制数字，在前端页面使用js写死逻辑强制校验数字，0~10000、-10000~10000 - 20170502
 59. 更新最大可在途订单量接口，返回当前用于当月的在途订单和公共参数配置的单数  - 20170503
 60. 更新计划送达时间（+7days of create day），送达时间，完成时间（状态扭转前不显示，扭转成功后显示当前时间）- 20170503
+61. move API related docs to wiki - 20170509
 - - - 
 
 ### bug fix
@@ -94,7 +95,7 @@ a demo for fruit sales management system
 6. fix bug of cannot query order from wechat - 20170420
 7. fix bug that user can cancel canceled orders - 20170427
 8. fix bug of getCurrentMonthWaitForOrderNums - 20170504
-
+9. fix bug of save same address with order set default address - 20170509
 - - -
 
 ### function design
