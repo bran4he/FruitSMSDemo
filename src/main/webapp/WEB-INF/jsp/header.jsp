@@ -5,7 +5,7 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#" role="menu">
        	<form action="<%=request.getContextPath()%>/index/index" method="get">
-       	</form>尝鲜
+       	</form>尝尝鲜
       </a>
     </div>
 

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8">
-	<title>尝鲜后台管理系统</title>
+	<title>尝尝鲜后台管理系统</title>
 	<link rel="stylesheet" href="../static/css/index.css" type="text/css" />
 	<script type="text/javascript" src="../static/js/jquery/jquery-1.10.0-min.js"></script>
 
