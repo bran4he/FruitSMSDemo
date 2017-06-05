@@ -52,11 +52,15 @@ public class OrderDao extends BaseDaoImpl<Order>{
 	public int updateMutiStatus(String[] idArr, String status){
 		StringBuffer sql = new StringBuffer("UPDATE T_ORDER set statusId = ")
 							.append(status);
-		if(StringUtils.equalsIgnoreCase(status, OrderConstant.DELIVERY_SUCCESS)){
-			String crruentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-			sql.append(" , deliveryDate ='").append(crruentDate).append("' , finishDate ='")
+		String crruentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		if(StringUtils.equalsIgnoreCase(status, OrderConstant.DELIVERY_SUCCESS)){
+
+			sql.append(" , finishDate ='")
 				.append(crruentDate).append("' ");
+		}else if (StringUtils.equalsIgnoreCase(status, OrderConstant.DELIVERYING)){
+
+			sql.append(" , deliveryDate ='").append(crruentDate).append("' ");
 		}
 		//TODO not update by person info
 

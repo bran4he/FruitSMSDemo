@@ -41,7 +41,7 @@ public class BusinessConstant {
 	public static final String PROCESS_SUCCESS = new String("0");
 	
 	
-	public static final String DEFAULT_REMARK_DATA = new String("default_remark");
+	public static final String DEFAULT_REMARK_DATA = new String("");
 	public static final String DEFAULT_EXTEND_DATA = new String("{name:value}");
 	public static final Integer DEFAULT_FRUIT_MAX_PROV = new Integer(99);
 	
